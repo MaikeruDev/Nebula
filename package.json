@@ -15,6 +15,7 @@
   "dependencies": {
     "@angular/common": "^15.0.0",
     "@angular/core": "^15.0.0",
+    "@angular/fire": "^7.5.0",
     "@angular/forms": "^15.0.0",
     "@angular/platform-browser": "^15.0.0",
     "@angular/platform-browser-dynamic": "^15.0.0",
@@ -25,6 +26,7 @@
     "@capacitor/keyboard": "4.1.1",
     "@capacitor/status-bar": "4.1.1",
     "@ionic/angular": "^6.1.9",
+    "firebase": "^9.17.1",
     "ionicons": "^6.0.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
