@@ -1,0 +1,7 @@
+{
+  "name": "Nebula",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
