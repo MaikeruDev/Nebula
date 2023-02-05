@@ -24,3 +24,50 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+ion-button{ 
+    --ripple-color: transparent; 
+    --box-shadow:none;
+  }
+
+ion-modal.register, ion-modal.login{ 
+  ion-header{
+    ion-toolbar{
+      img{
+        width: 40px;
+        height: auto;
+        position: absolute;
+        left: 50%;
+        top: 5px;
+        transform: translateX(-50%);
+      }
+    }
+  }
+  ion-content{ 
+    ion-title{
+      font-size: 25px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+    }
+      ion-item{
+          margin: 10px 10px;
+          padding-top: 10px;
+          border-bottom: 1px grey solid; 
+          @keyframes slidein {
+            0%   {margin-left:1500px;}
+            100% {margin-left:0px;}
+          }
+          ion-label{
+            animation-name: slidein;
+            animation-duration: .5s;
+            display: block;
+          }
+      }
+      ion-button{
+        float: right;
+        font-size: 12px;
+      }
+  } 
+}

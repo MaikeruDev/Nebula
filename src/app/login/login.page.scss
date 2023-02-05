@@ -1,0 +1,35 @@
+ion-content{
+    div.logo{ 
+        ion-title{
+            position: relative;
+            top: -100px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 5vw; 
+        } 
+        img{  
+            mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 77%, rgba(0,0,0,0.5186275193671219) 80%, rgba(0,0,0,0) 100%);
+        }
+    }
+    div.content{
+        position: absolute;
+        bottom: 30px;
+        width: 100%;
+        ion-button{
+            font-size: 3.2vw;
+            height: 5vh;
+            margin: 0 50px; 
+            font-family: 'Lato', sans-serif;
+        }
+        p{
+            color: grey;
+            font-size: 3vw;
+            span{
+                color: var(--ion-color-primary);
+                font-weight: bold;
+            }
+        }
+    }
+    
+}
+
