@@ -1,0 +1,55 @@
+<ion-content>
+
+  <ion-fab class="back" vertical="top" horizontal="start" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab class="settings" vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="settings-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div class="banner">
+    <img (click)="openViewer('https://pbs.twimg.com/profile_banners/1490655263124336647/1644235590/600x200')" src="https://pbs.twimg.com/profile_banners/1490655263124336647/1644235590/600x200">
+  </div>
+
+  <ion-avatar>
+    <img (click)="openViewer('https://avatars.githubusercontent.com/u/78266557?v=4')" src="https://avatars.githubusercontent.com/u/78266557?v=4">
+  </ion-avatar>
+
+  <div class="content">
+    <ion-title>Maikeru.txt</ion-title> 
+    <ion-text>
+      <p class="handle">@Maikeru</p>
+    </ion-text> 
+    <ion-text>
+      <p class="bio">You're now manually breathing.</p>
+    </ion-text> 
+    <ion-text>
+      <p class="follow"><b>23</b> Following <b>3</b> Follower</p>
+    </ion-text> 
+  </div>
+
+  <ion-list>
+    <div *ngFor="let user of users">
+      <ion-item lines="none"> 
+        <ion-avatar slot="start">
+          <img src="https://avatars.githubusercontent.com/u/78266557?v=4" (click)="openViewer('https://avatars.githubusercontent.com/u/78266557?v=4')" />
+        </ion-avatar>
+        <ion-title>{{ user.username }}</ion-title>
+        <ion-text>{{ user.handle }}</ion-text>
+      </ion-item>  
+      <ion-text><p>{{ user.content }}</p></ion-text>
+      <img class="content" (click)="openViewer('https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e')" src="https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e">
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="heart"></ion-icon>56</ion-button></ion-col>
+          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="chatbox"></ion-icon>56</ion-button></ion-col>
+          <ion-col size="4" id="share"><ion-button expand="full" fill=""><ion-icon slot="start" name="share"></ion-icon></ion-button></ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-list>
+</ion-content>

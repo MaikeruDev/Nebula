@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+ion-content{
+    ion-fab.back{
+        left: 20px;
+        top: 20px;
+        ion-fab-button{
+            --background: transparent;
+            --box-shadow: transparent;
+            background: rgba($color: #000000, $alpha: 0.4);
+            border-radius: 50%; 
+            width: 35px;
+            height: 35px;
+            ion-icon{ 
+                font-size: 20px;
+            }
+        }
+    }
+    ion-fab.settings{
+        right: 20px;
+        top: 20px;
+        ion-fab-button{
+            --background: transparent;
+            --box-shadow: transparent;
+            background: rgba($color: #000000, $alpha: 0.4);
+            border-radius: 50%; 
+            width: 35px;
+            height: 35px;
+            ion-icon{ 
+                font-size: 20px;
+            }
+        }
+    }
+    ion-button{
+        position: absolute;
+        color: white;
+        border-radius: 50px;
+        background-color: rgba($color: #000000, $alpha: 0.4);
+        --border-radius: 50%; 
+    }
+    div.banner{
+        width: 100%;  
+        img{
+            width: 100%;
+        }
+    }
+    ion-avatar{
+        width: 20vw;
+        height: 20vw;
+        position: relative; 
+        margin: -40px 0px 0px 15px;
+        border: 4px var(--ion-background-color, #fff) solid; 
+    }
+    div.content{
+        border-bottom: 1px rgb(235, 235, 235) solid;
+        padding-top: 5px;
+        padding-bottom: 15px;
+        ion-title{
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+        }
+        ion-text{
+            p.handle{
+                font-family: 'Lato', sans-serif;
+                font-weight: 500;
+                margin: 0;
+                padding-left: 20px;
+                color: rgb(83, 83, 83);
+            }
+            p.bio{
+                font-family: 'Lato', sans-serif;
+                font-weight: 500;
+                margin: 0;
+                padding-top: 5px;
+                padding-left: 20px; 
+            }
+            p.follow{
+                font-family: 'Lato', sans-serif;
+                font-weight: 500;
+                margin: 0;
+                padding-top: 10px;
+                padding-left: 20px; 
+                color: rgb(83, 83, 83);
+                b{
+                    color: black;
+                }
+            }
+        } 
+    }
+    ion-list{ 
+        div{
+          border-bottom: 1px rgb(235, 235, 235) solid;
+          padding-bottom: 50px;
+          padding-top: 5px;
+          ion-item{  
+            ion-avatar{
+                width: 50px; 
+                height: 50px;
+                margin: 10px;
+                margin-left: 0;
+                margin-right: 5px;
+            }
+            ion-title{
+              margin-bottom: 15px;
+              padding-left: 8px;
+              font-family: 'Lato', sans-serif;
+              font-weight: 700;
+            }
+            ion-text{
+              position: absolute;
+              left: 8px;
+              bottom: 12px;
+              font-size: 12px;
+              color: grey;
+              font-family: 'Lato', sans-serif; 
+            } 
+          }
+          ion-text{
+            p{
+              margin-top: 0;
+              padding: 0 20px 0 80px;
+            }
+          }
+          img.content{
+            width: 90%;
+            display: block; 
+            padding: 0 20px 0 80px;
+            padding-bottom: 5px;
+          }
+          ion-grid{
+            padding: 0px 25px 0px 80px;
+            ion-row{
+                ion-col{
+                    ion-button{
+                        color: black;
+                    }
+                }
+                ion-col#share{
+                    padding-right: 35px;
+                }
+            }
+          }
+        } 
+      }
+}
+
+ion-button{ 
+    --ripple-color: transparent; 
+  }

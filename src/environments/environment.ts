@@ -3,23 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  firebase: {
-    apiKey: "AIzaSyBRkaoQL-fLJhj0ZoZUj9X9SS8dFHoUwfg",
-
-  authDomain: "web-nebula.firebaseapp.com",
-
-  projectId: "web-nebula",
-
-  storageBucket: "web-nebula.appspot.com",
-
-  messagingSenderId: "346200027326",
-
-  appId: "1:346200027326:web:3816d399d1655e80376eef",
-
-  measurementId: "G-H4EYK9TP9J"
-
-  }
+  production: false
 };
 
 /*
