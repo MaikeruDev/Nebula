@@ -32,7 +32,7 @@
               }
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": [ "../node_modules/crypto-js/crypto-js.js"]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -112,7 +112,7 @@
               }
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": ["../node_modules/crypto-js/crypto-js.js"]
+            "scripts": []
           },
           "configurations": {
             "ci": {

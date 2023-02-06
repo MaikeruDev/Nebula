@@ -14,23 +14,29 @@
 </ion-header>
 
 
+
 <ion-content>
-  
+  <ion-button (click)="login()" expand="block" fill="clear" shape="round">
+    Login
+  </ion-button>
+  <ion-button (click)="auth()" expand="block" fill="clear" shape="round">
+    CheckAuth
+  </ion-button>
   <ion-list>
-    <div *ngFor="let user of users">
+    <div *ngFor="let post of posts">
       <ion-item lines="none"> 
         <ion-avatar slot="start">
-          <img src="https://avatars.githubusercontent.com/u/78266557?v=4" />
+          <img src="{{ post.users.ProfilePicture }}" />
         </ion-avatar>
-        <ion-title>{{ user.username }}</ion-title>
-        <ion-text>{{ user.handle }}</ion-text>
+        <ion-title>{{ post.users.Username }}</ion-title>
+        <ion-text>@{{ post.users.Handle }}</ion-text>
       </ion-item>  
-      <ion-text><p>{{ user.content }}</p></ion-text>
-      <img class="content" src="https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e">
+      <ion-text><p>{{ post.Text }}</p></ion-text>
+      <img class="content" *ngIf="post.Image" src="{{ post.Image }}">
       <ion-grid fixed>
         <ion-row>
-          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="heart"></ion-icon>56</ion-button></ion-col>
-          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="chatbox"></ion-icon>56</ion-button></ion-col>
+          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="heart"></ion-icon>{{ post.likes.length }}</ion-button></ion-col>
+          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="chatbox"></ion-icon>{{ post.comments.length }}</ion-button></ion-col>
           <ion-col size="4" id="share"><ion-button expand="full" fill=""><ion-icon slot="start" name="share"></ion-icon></ion-button></ion-col>
         </ion-row>
       </ion-grid>

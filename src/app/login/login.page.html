@@ -9,9 +9,9 @@
     </ion-button>
     <p class="ion-text-center">Already have an Account? <span id="open-modal-login">Log in</span></p>
   </div>
-
+  
   <!-- REGISTER MODAL -->
-  <ion-modal class="register" trigger="open-modal-register" (willDismiss)="register_onWillDismiss($event)" #register_modal>
+  <ion-modal class="register" trigger="open-modal-register" #register_modal>
     <ng-template>
       <ion-header class="ion-no-border">
         <ion-toolbar> 
@@ -24,15 +24,19 @@
       <ion-content class="ion-padding">
         <ion-title>Create Account</ion-title>
         <ion-item lines="none"> 
-          <ion-label position="stacked" *ngIf="register_name">Name</ion-label>
+          <ion-label position="stacked" *ngIf="register_name.trim() !== ''">Name</ion-label>
           <ion-input placeholder="Name" type="name" [(ngModel)]="register_name"></ion-input>
         </ion-item>
         <ion-item lines="none"> 
-          <ion-label position="stacked" *ngIf="register_email">Email</ion-label>
+          <ion-label position="stacked" *ngIf="register_handle.trim() !== ''">Handle</ion-label>
+          <ion-input placeholder="Handle" type="name" [(ngModel)]="register_handle"></ion-input>
+        </ion-item>
+        <ion-item lines="none"> 
+          <ion-label position="stacked" *ngIf="register_email.trim() !== ''">Email</ion-label>
           <ion-input placeholder="Email" type="email" [(ngModel)]="register_email"></ion-input>
         </ion-item>
         <ion-item lines="none"> 
-          <ion-label position="stacked" *ngIf="register_password">Password</ion-label>
+          <ion-label position="stacked" *ngIf="register_password.trim() !== ''">Password</ion-label>
           <ion-input placeholder="Password" type="password" [(ngModel)]="register_password"></ion-input>
         </ion-item>
         <ion-button size="small" shape="round" (click)="register_confirm()">Continue</ion-button>
@@ -41,7 +45,7 @@
   </ion-modal>
 
   <!-- LOGIN MODAL -->
-  <ion-modal class="login" trigger="open-modal-login" (willDismiss)="login_onWillDismiss($event)" #login_modal>
+  <ion-modal class="login" trigger="open-modal-login" #login_modal>
     <ng-template>
       <ion-header class="ion-no-border">
         <ion-toolbar> 
@@ -54,11 +58,11 @@
       <ion-content class="ion-padding">
         <ion-title>Log in</ion-title>
         <ion-item lines="none"> 
-          <ion-label position="stacked" *ngIf="login_name">Name</ion-label>
+          <ion-label position="stacked" *ngIf="login_name.trim() !== ''">Name</ion-label>
           <ion-input placeholder="Name" type="name" [(ngModel)]="login_name"></ion-input>
         </ion-item>
         <ion-item lines="none"> 
-          <ion-label position="stacked" *ngIf="login_password">Password</ion-label>
+          <ion-label position="stacked" *ngIf="login_password.trim() !== ''">Password</ion-label>
           <ion-input placeholder="Password" type="password" [(ngModel)]="login_password"></ion-input>
         </ion-item>
         <ion-button size="small" shape="round" (click)="login_confirm()">Continue</ion-button>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as CryptoJS from 'crypto-js';
+import { token } from './key'
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,9 @@ export class CryptoService {
 
   constructor() { }
  
-   set(keys: any, value: any){
-    var key = CryptoJS.enc.Utf8.parse(keys);
-    var iv = CryptoJS.enc.Utf8.parse(keys);
+   set(value: any){ 
+    var key = CryptoJS.enc.Utf8.parse(token.key);
+    var iv = CryptoJS.enc.Utf8.parse(token.key);
     var encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(value.toString()), key,
     {
         keySize: 128 / 8,
@@ -22,9 +23,9 @@ export class CryptoService {
     return encrypted.toString();
   }
 
-  get(keys: any, value: any){
-    var key = CryptoJS.enc.Utf8.parse(keys);
-    var iv = CryptoJS.enc.Utf8.parse(keys);
+  get(value: any){
+    var key = CryptoJS.enc.Utf8.parse(token.key);
+    var iv = CryptoJS.enc.Utf8.parse(token.key);
     var decrypted = CryptoJS.AES.decrypt(value, key, {
         keySize: 128 / 8,
         iv: iv,
