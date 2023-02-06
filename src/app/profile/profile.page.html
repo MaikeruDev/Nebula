@@ -1,10 +1,10 @@
 <ion-content>
 
-  <ion-fab class="back" vertical="top" horizontal="start" slot="fixed">
+  <!-- <ion-fab class="back" vertical="top" horizontal="start" slot="fixed">
     <ion-fab-button>
       <ion-icon name="arrow-back"></ion-icon>
     </ion-fab-button>
-  </ion-fab>
+  </ion-fab> -->
   <ion-fab class="settings" vertical="top" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="settings-outline"></ion-icon>
@@ -12,23 +12,23 @@
   </ion-fab>
 
   <div class="banner">
-    <img (click)="openViewer('https://pbs.twimg.com/profile_banners/1490655263124336647/1644235590/600x200')" src="https://pbs.twimg.com/profile_banners/44196397/1576183471/600x200">
+    <img (click)="openViewer(user.Banner)" src="{{user?.Banner}}">
   </div>
 
   <ion-avatar>
-    <img (click)="openViewer('https://avatars.githubusercontent.com/u/78266557?v=4')" src="https://avatars.githubusercontent.com/u/78266557?v=4">
+    <img (click)="openViewer(user?.ProfilePicture)" src="{{user?.ProfilePicture}}">
   </ion-avatar>
 
   <div class="content">
-    <ion-title>Maikeru.txt</ion-title> 
+    <ion-title>{{ user?.Username }}</ion-title> 
     <ion-text>
-      <p class="handle">@Maikeru</p>
+      <p class="handle">@{{ user?.Handle }}</p>
     </ion-text> 
     <ion-text>
-      <p class="bio">You're now manually breathing.</p>
+      <p class="bio">{{ user?.Bio }}</p>
     </ion-text> 
     <ion-text>
-      <p class="follow"><b>23</b> Following <b>3</b> Follower</p>
+      <p class="follow"><b>{{ user?.Following }}</b> Following <b>{{ user?.Followers }}</b> Followers</p>
     </ion-text> 
   </div>
 

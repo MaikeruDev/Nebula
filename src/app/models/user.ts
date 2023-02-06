@@ -6,8 +6,11 @@ export class User {
   public Email: string;
   public Username: string;
   public Handle: string; 
-  public ProfilePicture: SafeResourceUrl;
+  public ProfilePicture: string;
   public Banner: SafeResourceUrl;
+  public Bio: string;
+  public Following: number;
+  public Followers: number;
   public SignUpDate: Date;
 
   constructor(
@@ -15,8 +18,11 @@ export class User {
     email: string,
     username: string,
     handle: string,
-    profileImage: SafeResourceUrl,
+    profileImage: string,
     banner: SafeResourceUrl,
+    bio: string,
+    following: number,
+    followers: number,
     creationDate: Date
   ) {
     this.ID = id;
@@ -25,6 +31,9 @@ export class User {
     this.Handle = handle;
     this.ProfilePicture = profileImage;
     this.Banner = banner;
+    this.Bio = bio;
+    this.Following = following,
+    this.Followers = followers,
     this.SignUpDate = creationDate; 
   }
 }

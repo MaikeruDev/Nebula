@@ -7,19 +7,45 @@ import { StorageService } from './storage.service';
 import { UserService } from './user.service';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  authenticationState = new BehaviorSubject<string>(null);
+  authenticationState = new BehaviorSubject<string>(null!);
   private decodedUserToken: any = null;
 
   private helper: JwtHelperService;
 
-  constructor(private api: ApiService, private alert: AlertService, private storageService: StorageService, private router: Router, private userService: UserService) {
+  constructor(private platform: Platform, private api: ApiService, private alert: AlertService, private storageService: StorageService, private router: Router, private userService: UserService) {
     this.helper = new JwtHelperService();
+
+    this.platform.ready().then(() => {
+      this.checkToken();
+    });
+  }
+
+  checkToken() {
+    const token = this.storageService.getToken();
+    if (token) {
+      const decoded = this.helper.decodeToken(token);
+      const isExpired = this.helper.isTokenExpired(token);
+
+      if (!isExpired) {
+        this.decodedUserToken = decoded;
+        this.updateAuthenticationState(decoded); 
+        this.userService.fetchUserFromApi(this.getUserFromToken().id); 
+      }
+    }
+    else {
+      this.authenticationState.next('none');
+    }
+  }
+
+  updateAuthenticationState(token: any) {
+    if(token) this.authenticationState.next('user'); 
   }
 
   async storeToken(token: any) {
@@ -44,9 +70,10 @@ export class AuthService {
       if (res.status === 'OK') {
         this.storeToken(res.data.token);
         this.decodedUserToken = this.helper.decodeToken(res.data.token); 
+        this.updateAuthenticationState(this.decodedUserToken);
         this.userService.fetchUserFromApi(this.getUserFromToken().id);
         modal.dismiss()
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/feed']);
       }
 
     }),
@@ -55,4 +82,35 @@ export class AuthService {
         throw new Error(e);
       });
   }
+  
+  login(obj: any, modal: any){
+    return this.api.login(obj.email, obj.password).subscribe(async res => {
+      if (res.status === 'OK') {
+        this.storeToken(res.data.token);
+        this.decodedUserToken = this.helper.decodeToken(res.data.token); 
+        this.updateAuthenticationState(this.decodedUserToken);
+        this.userService.fetchUserFromApi(this.getUserFromToken().id);
+        modal.dismiss()
+        this.router.navigate(['/feed']);
+      }
+      else {
+        this.alert.ok('Ooops', res.errors[0]);
+      }
+
+    }),
+      catchError(e => {
+        this.alert.ok('Error', e.error.message);
+        throw new Error(e);
+      }); 
+  }
+
+  logout() {
+    this.storageService.removeToken();
+    this.userService.clearData(); 
+    this.decodedUserToken = null;
+    this.authenticationState.next('none');
+    this.router.navigate(['login']);
+  }
+  
+
 }

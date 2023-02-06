@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular'; 
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
+import { User } from '../models/user';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -182,10 +184,15 @@ export class ProfilePage implements OnInit {
     }
   ]
 
-  constructor(private modalController: ModalController) { }
+  user: User;
+
+  constructor(private modalController: ModalController, private userService: UserService) { }
 
   ngOnInit() {
-    
+    this.userService.getCurrentUser().subscribe(user => {
+      this.user = user;
+      console.log(this.user) 
+    });
   }
 
   async openViewer(src: any) {

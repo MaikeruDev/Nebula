@@ -53,14 +53,12 @@ ion-modal.register, ion-modal.login{
     }
       ion-item{
           margin: 10px 10px;
-          padding-top: 10px;
-          border-bottom: 1px grey solid; 
+          padding-top: 10px; 
           @keyframes slidein {
             0%   {margin-left:1500px;}
             100% {margin-left:0px;}
           }
           ion-label{
-            animation-name: slidein;
             animation-duration: .5s;
             display: block;
           }

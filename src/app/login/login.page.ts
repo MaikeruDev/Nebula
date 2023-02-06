@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertController, AnimationController, IonModal } from '@ionic/angular'; 
 import { OverlayEventDetail } from '@ionic/core/components';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { catchError } from 'rxjs/operators';
 import { AlertService } from '../services/alert.service';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-login',
@@ -16,15 +18,31 @@ export class LoginPage implements OnInit {
   @ViewChild('register_modal') register_modal: IonModal;
   @ViewChild('login_modal') login_modal: IonModal;
 
-  login_name: string = "";
-  login_password: string = "";
+  registerForm: FormGroup;
 
-  register_name : string = "";
-  register_email : string = "";
-  register_password : string = "";
-  register_handle: string = "";
+  loginForm: FormGroup;
 
-  constructor(private alert: AlertService, public api: ApiService, private auth: AuthService) { }
+  constructor(private alert: AlertService, public api: ApiService, private auth: AuthService) {
+    this.registerForm = new FormGroup({
+      reg_email: new FormControl<string | null>('', [Validators.required, Validators.email]),
+      reg_username: new FormControl<string | null>('', [Validators.required, Validators.minLength(3)]),
+      reg_handle: new FormControl<string | null>('', [Validators.required, Validators.minLength(3)]),
+      reg_password: new FormControl<string | null>('', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[\S]{6,}$/)]),
+    });
+
+    this.loginForm = new FormGroup({
+      log_email: new FormControl<string | null>('', [Validators.required, Validators.email]), 
+      log_password: new FormControl<string | null>('', [Validators.required, Validators.minLength(1)]),
+    });
+  }
+
+  get reg_email() {return this.registerForm.get('reg_email');} 
+  get reg_username() {return this.registerForm.get('reg_username');} 
+  get reg_handle() {return this.registerForm.get('reg_handle');} 
+  get reg_password() {return this.registerForm.get('reg_password');}
+
+  get log_email() {return this.loginForm.get('log_email');} 
+  get log_password() {return this.loginForm.get('log_password');} 
 
   async ngOnInit() {
     
@@ -34,31 +52,20 @@ export class LoginPage implements OnInit {
     this.register_modal.dismiss(null, 'cancel');
   }
 
-  register_confirm() {
-    if (this.register_name.trim() === "" || this.register_name === undefined || this.register_password.trim() === "" || this.register_password === undefined || this.register_email.trim() === "" || this.register_email === undefined || this.register_handle.trim() === "" || this.register_handle === undefined) {
-      this.alert.ok("Warning", "Please fill in every field.")
-      return;
-    } 
-
-    if (this.register_password.trim().length < 5){
-      this.alert.ok("Warning", "The password needs to have at least 5 characters.")
-      return;
+  register_confirm() { 
+    if (this.registerForm.valid) { 
+      this.auth.register({email: this.reg_email!.value, username: this.reg_username!.value, handle: this.reg_handle!.value, password: this.reg_password!.value}, this.register_modal);
     }
-
-    this.auth.register({email: this.register_email, username: this.register_name, handle: this.register_handle, password: this.register_password}, this.register_modal)    
   }
 
   login_cancel() {
     this.login_modal.dismiss(null, 'cancel'); 
   }
 
-  login_confirm() { 
-    if (this.login_name.trim() === "" || this.login_name === undefined || this.login_password.trim() === "" || this.login_password === undefined) {
-      this.alert.ok("Warning","Please fill in every field.")
-      return;
-    }  
-
-    this.api.login(this.login_name, this.login_password) 
+  login_confirm() {  
+    if (this.loginForm.valid) { 
+      this.auth.login({email: this.log_email!.value, password: this.log_password!.value}, this.login_modal);
+    }
   } 
 
   async delay(ms: number) {

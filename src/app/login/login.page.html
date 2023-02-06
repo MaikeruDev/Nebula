@@ -20,26 +20,28 @@
           </ion-buttons>
           <img src="../../assets/logo/logo_transparent.png">
         </ion-toolbar>
-      </ion-header>
+      </ion-header> 
       <ion-content class="ion-padding">
-        <ion-title>Create Account</ion-title>
-        <ion-item lines="none"> 
-          <ion-label position="stacked" *ngIf="register_name.trim() !== ''">Name</ion-label>
-          <ion-input placeholder="Name" type="name" [(ngModel)]="register_name"></ion-input>
-        </ion-item>
-        <ion-item lines="none"> 
-          <ion-label position="stacked" *ngIf="register_handle.trim() !== ''">Handle</ion-label>
-          <ion-input placeholder="Handle" type="name" [(ngModel)]="register_handle"></ion-input>
-        </ion-item>
-        <ion-item lines="none"> 
-          <ion-label position="stacked" *ngIf="register_email.trim() !== ''">Email</ion-label>
-          <ion-input placeholder="Email" type="email" [(ngModel)]="register_email"></ion-input>
-        </ion-item>
-        <ion-item lines="none"> 
-          <ion-label position="stacked" *ngIf="register_password.trim() !== ''">Password</ion-label>
-          <ion-input placeholder="Password" type="password" [(ngModel)]="register_password"></ion-input>
-        </ion-item>
-        <ion-button size="small" shape="round" (click)="register_confirm()">Continue</ion-button>
+        <form [formGroup]="registerForm">
+          <ion-title>Create Account</ion-title> 
+          <ion-item lines="none"> 
+            <ion-label position="stacked" [ngStyle]="{'opacity': reg_username.value ? '1' : '0'}">Name</ion-label>
+            <ion-input placeholder="Name" type="name" formControlName="reg_username" [ngClass]="reg_username.value ? reg_username.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+          </ion-item>
+          <ion-item lines="none"> 
+            <ion-label position="stacked" [ngStyle]="{'opacity': reg_handle.value ? '1' : '0'}">Handle</ion-label>
+            <ion-input placeholder="Handle" type="name" formControlName="reg_handle" [ngClass]="reg_handle.value ? reg_handle.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+          </ion-item>
+          <ion-item lines="none"> 
+            <ion-label position="stacked" [ngStyle]="{'opacity': reg_email.value ? '1' : '0'}">Email</ion-label>
+            <ion-input placeholder="Email" type="email" formControlName="reg_email" [ngClass]="reg_email.value ? reg_email.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+          </ion-item>
+          <ion-item lines="none"> 
+            <ion-label position="stacked" [ngStyle]="{'opacity': reg_password.value ? '1' : '0', 'white-space': 'normal'}">Password <b *ngIf="reg_password.value && !reg_password.valid"><br>At least 6 Characters and 1 Number</b></ion-label>
+            <ion-input placeholder="Password" type="password" formControlName="reg_password" [ngClass]="reg_password.value ? reg_password.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+          </ion-item>
+          <ion-button size="small" shape="round" (click)="register_confirm()">Continue</ion-button>
+        </form>
       </ion-content>
     </ng-template>
   </ion-modal>
@@ -56,16 +58,18 @@
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
-        <ion-title>Log in</ion-title>
-        <ion-item lines="none"> 
-          <ion-label position="stacked" *ngIf="login_name.trim() !== ''">Name</ion-label>
-          <ion-input placeholder="Name" type="name" [(ngModel)]="login_name"></ion-input>
-        </ion-item>
-        <ion-item lines="none"> 
-          <ion-label position="stacked" *ngIf="login_password.trim() !== ''">Password</ion-label>
-          <ion-input placeholder="Password" type="password" [(ngModel)]="login_password"></ion-input>
-        </ion-item>
-        <ion-button size="small" shape="round" (click)="login_confirm()">Continue</ion-button>
+        <form [formGroup]="loginForm">
+          <ion-title>Log in</ion-title>
+          <ion-item lines="none"> 
+            <ion-label position="stacked" [ngStyle]="{'opacity': log_email.value ? '1' : '0'}">Email</ion-label>
+            <ion-input placeholder="Email" type="email" formControlName="log_email" [ngClass]="log_email.value ? log_email.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+          </ion-item>
+          <ion-item lines="none"> 
+            <ion-label position="stacked" [ngStyle]="{'opacity': log_password.value ? '1' : '0', 'white-space': 'normal'}">Password <b *ngIf="log_password.value && !log_password.valid"><br>At least 6 Characters and 1 Number</b></ion-label>
+            <ion-input placeholder="Password" type="password" formControlName="log_password" [ngClass]="log_password.value ? log_password.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+          </ion-item>
+          <ion-button size="small" shape="round" (click)="login_confirm()">Continue</ion-button>
+        </form>
       </ion-content>
     </ng-template>
   </ion-modal>

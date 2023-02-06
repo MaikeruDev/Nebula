@@ -48,9 +48,11 @@ ion-content{
     ion-avatar{
         width: 20vw;
         height: 20vw;
-        position: relative; 
-        margin: -11vw 0px 0px 15px;
+        position: relative;  
+        margin: -11vw 0px 0px 15px; 
         border: 4px var(--ion-background-color, #fff) solid; 
+        img{ background-color: #fff;
+        }
     }
     div.content{
         border-bottom: 1px rgb(235, 235, 235) solid;

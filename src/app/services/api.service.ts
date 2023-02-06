@@ -37,8 +37,9 @@ export class ApiService {
     return this.http.post<any>(api_url + "/registration/register", obj);
   }
 
-  async login(name: string, password: string){ 
-
+  login(email: string, password: string): Observable<any>{ 
+    password = this.crypto.set(password);  
+    return this.http.post<any>(api_url + '/registration/login', { email, password });
   }
 
   getUserById(id: number): Observable<User> {
