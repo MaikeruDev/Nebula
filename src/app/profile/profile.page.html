@@ -5,7 +5,7 @@
       <ion-icon name="arrow-back"></ion-icon>
     </ion-fab-button>
   </ion-fab> -->
-  <ion-fab class="settings" vertical="top" horizontal="end" slot="fixed">
+  <ion-fab class="settings" vertical="top" horizontal="end" >
     <ion-fab-button>
       <ion-icon name="settings-outline"></ion-icon>
     </ion-fab-button>
@@ -20,7 +20,7 @@
   </ion-avatar>
 
   <div class="content">
-    <ion-title>{{ user?.Username }}</ion-title> 
+    <ion-title>{{ user?.Username }} <ion-badge *ngIf="user?.ID == 1" color="primary">Dev</ion-badge><ion-badge *ngIf="user?.ID == 1" color="warning">Pro</ion-badge><ion-badge *ngIf="user?.ID == 1" color="light">Day One</ion-badge></ion-title> 
     <ion-text>
       <p class="handle">@{{ user?.Handle }}</p>
     </ion-text> 

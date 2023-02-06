@@ -12,16 +12,11 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-
-
+ 
 <ion-content>
   <ion-button (click)="logout()" expand="block" fill="clear" shape="round">
     logout
-  </ion-button>
-  <ion-button (click)="load()" expand="block" fill="clear" shape="round">
-    CheckAuth
-  </ion-button>
+  </ion-button> 
   <ion-list>
     <div *ngFor="let post of posts">
       <ion-item lines="none"> 
@@ -32,7 +27,7 @@
         <ion-text>@{{ post.users.Handle }}</ion-text>
       </ion-item>  
       <ion-text><p>{{ post.Text }}</p></ion-text>
-      <img class="content" *ngIf="post.Image" src="{{ post.Image }}">
+      <img class="content" *ngIf="post.Image.trim()" (click)="openViewer(post.Image)" src="{{ post.Image }}">
       <ion-grid fixed>
         <ion-row>
           <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="heart"></ion-icon>{{ post.likes.length }}</ion-button></ion-col>
@@ -41,6 +36,5 @@
         </ion-row>
       </ion-grid>
     </div>
-  </ion-list>
-  
+  </ion-list> 
 </ion-content>
