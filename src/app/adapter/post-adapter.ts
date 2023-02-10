@@ -11,9 +11,7 @@ export class PostAdapter implements Adapter<Post> {
 
   constructor(private domSanitizer: DomSanitizer) { }
 
-  adapt(item: any): Post {
-    item.SignUpDate = new Date(item.SignUpDate); 
-    //item.ProfilePicture = this.domSanitizer.bypassSecurityTrustResourceUrl(item.ProfilePicture);
+  adapt(item: any): Post {  
     return new Post(
       item.ID, item.AuthorID, item.DateCreated, item.Image, item.Text, item.users, item.likes, item.comments);
   }

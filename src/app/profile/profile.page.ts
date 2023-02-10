@@ -23,7 +23,6 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
       this.user = user;
-      console.log(this.user);
     });
     this.fetchPosts(0);
   }
@@ -46,7 +45,7 @@ export class ProfilePage implements OnInit {
   async fetchPosts(skip: number){
     this.api.getOwnPosts(skip).subscribe((data: any) => {  
       data.forEach((post: Post) => { 
-        this.posts.push(this.postAdapter.adapt(post))
+        this.posts.push(this.postAdapter.adapt(post))  
       });   
     }) 
   }
