@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular'; 
+import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
+import { PostAdapter } from '../adapter/post-adapter';
+import { Post } from '../models/post';
 import { User } from '../models/user';
+import { ApiService } from '../services/api.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -11,188 +14,18 @@ import { UserService } from '../services/user.service';
 })
 export class ProfilePage implements OnInit {
 
-  users = [
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    },
-    { 
-      profilePicture: "https://picsum.photos/200",
-      username: "Michael Prietl",
-      handle: "@Maikeru",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      date: "Jan 1, 2021",
-      retweets: 120,
-      likes: 450,
-      comments: 50
-    }
-  ]
-
   user: User;
+  posts: any = [];
+  counter_skip: number = 0;  
 
-  constructor(private modalController: ModalController, private userService: UserService) { }
+  constructor(private modalController: ModalController, private userService: UserService, private api: ApiService, private postAdapter: PostAdapter) { }
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
       this.user = user;
-      console.log(this.user) 
+      console.log(this.user);
     });
+    this.fetchPosts(0);
   }
 
   async openViewer(src: any) {
@@ -208,6 +41,22 @@ export class ProfilePage implements OnInit {
     });
 
     return await modal.present();
+  }
+
+  async fetchPosts(skip: number){
+    this.api.getOwnPosts(skip).subscribe((data: any) => {  
+      data.forEach((post: Post) => { 
+        this.posts.push(this.postAdapter.adapt(post))
+      });   
+    }) 
+  }
+
+  onIonInfinite(ev: Event) {
+    this.counter_skip += 15;
+    this.fetchPosts(this.counter_skip);
+    setTimeout(() => {
+      (ev as InfiniteScrollCustomEvent).target.complete();
+    }, 500);
   }
 
 }

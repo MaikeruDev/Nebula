@@ -32,6 +32,10 @@ export class ApiService {
     return this.http.post<any>(api_url + '/posts/getPosts', {skip: skip}, { headers: this.getHeader()})
   }
 
+  getOwnPosts(skip: any): Observable<any> {
+    return this.http.post<any>(api_url + '/posts/getOwnPosts', {skip: skip}, { headers: this.getHeader()})
+  }
+
   register(obj: any): Observable<any> {
     obj.password = this.crypto.set(obj.password); 
     return this.http.post<any>(api_url + "/registration/register", obj);

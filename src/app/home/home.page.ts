@@ -14,7 +14,6 @@ import { AuthService } from '../services/auth.service';
 export class HomePage implements OnInit {
 
   posts: any = [];
-  post: Post;
   counter_skip: number = 0;
   
   constructor(private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
@@ -29,9 +28,8 @@ export class HomePage implements OnInit {
 
   async fetchPosts(skip: number){
     this.api.getPosts(skip).subscribe((data: any) => {  
-      data.forEach((element: Post) => { 
-        this.posts.push(this.postAdapter.adapt(element))
-        console.log(this.postAdapter.adapt(element))
+      data.forEach((post: Post) => { 
+        this.posts.push(this.postAdapter.adapt(post))
       });   
     }) 
   }
@@ -57,10 +55,6 @@ export class HomePage implements OnInit {
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
-  }
-
-  async load(){
-    
   }
 
 }

@@ -21,7 +21,7 @@
     <div *ngFor="let post of posts">
       <ion-item lines="none"> 
         <ion-avatar slot="start">
-          <img src="{{ post?.User?.ProfilePicture }}" />
+          <img src="{{ post?.User?.ProfilePicture }}" (click)="openViewer(post?.User?.ProfilePicture)"/>
         </ion-avatar>
         <ion-title>{{ post?.User?.Username }}</ion-title>
         <ion-text>@{{ post?.User?.Handle }}</ion-text>

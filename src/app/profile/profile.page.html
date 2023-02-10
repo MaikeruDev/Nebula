@@ -20,7 +20,7 @@
   </ion-avatar>
 
   <div class="content">
-    <ion-title>{{ user?.Username }} <ion-badge *ngIf="user?.ID == 1" color="primary">Dev</ion-badge><ion-badge *ngIf="user?.ID == 1" color="warning">Pro</ion-badge><ion-badge *ngIf="user?.ID == 1" color="light">Day One</ion-badge></ion-title> 
+    <ion-title>{{ user?.Username }} <ion-badge *ngIf="user?.ID == 1 || user?.ID == 26" color="primary">Dev</ion-badge><ion-badge *ngIf="user?.ID == 1 || user?.ID == 26" color="warning">Pro</ion-badge><ion-badge *ngIf="user?.ID == 1 || user?.ID == 26" color="light">Day One</ion-badge></ion-title> 
     <ion-text>
       <p class="handle">@{{ user?.Handle }}</p>
     </ion-text> 
@@ -33,23 +33,26 @@
   </div>
 
   <ion-list>
-    <div *ngFor="let user of users">
+    <div *ngFor="let post of posts">
       <ion-item lines="none"> 
         <ion-avatar slot="start">
-          <img src="https://avatars.githubusercontent.com/u/78266557?v=4" (click)="openViewer('https://avatars.githubusercontent.com/u/78266557?v=4')" />
+          <img src="{{ post.User.ProfilePicture }}" (click)="openViewer(post.User.ProfilePicture)" />
         </ion-avatar>
-        <ion-title>{{ user.username }}</ion-title>
-        <ion-text>{{ user.handle }}</ion-text>
+        <ion-title>{{ post.User.Username }}</ion-title>
+        <ion-text>@{{ post.User.Handle }}</ion-text>
       </ion-item>  
-      <ion-text><p>{{ user.content }}</p></ion-text>
-      <img class="content" (click)="openViewer('https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e')" src="https://cdn.sstatic.net/Img/teams/teams-illo-free-sidebar-promo.svg?v=47faa659a05e">
-      <ion-grid fixed>
-        <ion-row>
-          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="heart"></ion-icon>56</ion-button></ion-col>
-          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="chatbox"></ion-icon>56</ion-button></ion-col>
-          <ion-col size="4" id="share"><ion-button expand="full" fill=""><ion-icon slot="start" name="share"></ion-icon></ion-button></ion-col>
-        </ion-row>
-      </ion-grid>
+      <ion-text><p>{{ post.User.Text }}</p></ion-text>
+        <img class="content" *ngIf="post.Image.trim()" (click)="openViewer(post.Image)" src="{{ post.Image }}">      
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="heart"></ion-icon>{{ post?.Likes?.length }}</ion-button></ion-col>
+            <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="chatbox"></ion-icon>{{ post?.Comments?.length }}</ion-button></ion-col>
+            <ion-col size="4" id="share"><ion-button expand="full" fill=""><ion-icon slot="start" name="share"></ion-icon></ion-button></ion-col>
+          </ion-row>
+        </ion-grid>
     </div>
   </ion-list>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll> 
 </ion-content>
