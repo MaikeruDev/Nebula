@@ -5,6 +5,7 @@ import { PostAdapter } from '../adapter/post-adapter';
 import { Post } from '../models/post';
 import { User } from '../models/user';
 import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class ProfilePage implements OnInit {
   posts: any = [];
   counter_skip: number = 0;  
 
-  constructor(private modalController: ModalController, private userService: UserService, private api: ApiService, private postAdapter: PostAdapter) { }
+  constructor(private auth: AuthService, private modalController: ModalController, private userService: UserService, private api: ApiService, private postAdapter: PostAdapter) { }
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
@@ -58,4 +59,7 @@ export class ProfilePage implements OnInit {
     }, 500);
   }
 
+  async logout(){
+    this.auth.logout();
+  }
 }

@@ -1,6 +1,6 @@
 <ion-content> 
   <ion-fab class="settings" vertical="top" horizontal="end" >
-    <ion-fab-button>
+    <ion-fab-button (click)="logout()">
       <ion-icon name="settings-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -25,7 +25,7 @@
       <p class="follow"><b>{{ user?.Following }}</b> Following <b>{{ user?.Followers }}</b> Followers</p>
     </ion-text> 
   </div>
-
+   
   <ion-list>
     <div *ngFor="let post of posts">
       <ion-item lines="none"> 

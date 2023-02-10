@@ -21,11 +21,7 @@ export class HomePage implements OnInit {
   ngOnInit(): void {
     this.fetchPosts(0); 
   } 
-
-  async logout(){
-    this.auth.logout();
-  }
-
+ 
   async fetchPosts(skip: number){
     this.api.getPosts(skip).subscribe((data: any) => {  
       data.forEach((post: Post) => { 

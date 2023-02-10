@@ -2,36 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 ion-header{
-  background: var(--ion-background-color, #fff);
-  padding: 5px 30px; 
-  ion-toolbar{ 
-    ion-avatar{ 
-      width: 35px; 
-      height: 35px;
-      margin: 10px;
-    }
-    ion-title{ 
-      font-family: 'M PLUS Rounded 1c', sans-serif;
-      font-size: 30px;
-      font-weight: 500;
-      color: black;
-    } 
-    ion-buttons{ 
-      ion-button#notification-btn {
-        position: relative;
-        ion-icon{
-          font-size: 25px;
-        }
-        #notification-badge {
-          position: absolute;
-          top: -3px;
-          right: -5px;
-          font-size: 10px;
-        }
-      }
-      #notification-btn::part(native) {
-        overflow: visible;
-      } 
+  ion-toolbar{
+    img{
+      width: 40px;
+      height: auto;
+      position: absolute;
+      left: 50%;
+      top: 5px;
+      transform: translateX(-50%);
     }
   }
 }
