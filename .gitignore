@@ -67,4 +67,5 @@ testem.log
 .DS_Store
 Thumbs.db
 
-*key.json
+*key.json 
+.vscode/settings.json

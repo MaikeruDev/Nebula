@@ -26,7 +26,11 @@ export class HomePage implements OnInit {
 
   async fetchPosts(skip: number){
     this.api.getPosts(skip).subscribe((data: any) => { 
-      this.posts.push(data);
+
+      data.forEach((element: any) => {
+        this.posts.push(element)
+      });  
+      
     })
   }
 
