@@ -6,7 +6,7 @@ import { User } from '../models/user';
 import { StorageService } from './storage.service';
 import { CryptoService } from './crypto.service';
 
-const api_url = "http://192.168.100.119:3100"
+const api_url = "http://localhost:3100"
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class ApiService {
   }
 
   getPosts(): Observable<any> {
-    return this.http.get<any>(api_url + '/posts/testPosts', { headers: this.getHeader() })
+    return this.http.get<any>(api_url + '/posts/getPosts', { headers: this.getHeader() })
   }
 
   register(obj: any): Observable<any> {
