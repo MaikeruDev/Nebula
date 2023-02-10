@@ -28,8 +28,8 @@ export class ApiService {
     return headers;
   }
 
-  getPosts(): Observable<any> {
-    return this.http.get<any>(api_url + '/posts/getPosts', { headers: this.getHeader() })
+  getPosts(skip: any): Observable<any> {
+    return this.http.post<any>(api_url + '/posts/getPosts', {skip: skip}, { headers: this.getHeader()})
   }
 
   register(obj: any): Observable<any> {
