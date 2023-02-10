@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
+import { PostAdapter } from '../adapter/post-adapter';
+import { Post } from '../models/post';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
 
@@ -12,12 +14,13 @@ import { AuthService } from '../services/auth.service';
 export class HomePage implements OnInit {
 
   posts: any = [];
+  post: Post;
   counter_skip: number = 0;
   
-  constructor(private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
+  constructor(private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
 
   ngOnInit(): void {
-    this.fetchPosts(0);
+    this.fetchPosts(0); 
   } 
 
   async logout(){
@@ -25,13 +28,12 @@ export class HomePage implements OnInit {
   }
 
   async fetchPosts(skip: number){
-    this.api.getPosts(skip).subscribe((data: any) => { 
-
-      data.forEach((element: any) => {
-        this.posts.push(element)
-      });  
-      
-    })
+    this.api.getPosts(skip).subscribe((data: any) => {  
+      data.forEach((element: Post) => { 
+        this.posts.push(this.postAdapter.adapt(element))
+        console.log(this.postAdapter.adapt(element))
+      });   
+    }) 
   }
 
   async openViewer(src: any) {

@@ -21,17 +21,17 @@
     <div *ngFor="let post of posts">
       <ion-item lines="none"> 
         <ion-avatar slot="start">
-          <img src="{{ post?.users?.ProfilePicture }}" />
+          <img src="{{ post?.User?.ProfilePicture }}" />
         </ion-avatar>
-        <ion-title>{{ post?.users?.Username }}</ion-title>
-        <ion-text>@{{ post?.users?.Handle }}</ion-text>
+        <ion-title>{{ post?.User?.Username }}</ion-title>
+        <ion-text>@{{ post?.User?.Handle }}</ion-text>
       </ion-item>  
       <ion-text><p>{{ post?.Text }}</p></ion-text>
       <img class="content" *ngIf="post?.Image?.trim()" (click)="openViewer(post?.Image)" src="{{ post?.Image }}">
       <ion-grid fixed>
         <ion-row>
-          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="heart"></ion-icon>{{ post?.likes?.length }}</ion-button></ion-col>
-          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="chatbox"></ion-icon>{{ post?.comments?.length }}</ion-button></ion-col>
+          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="heart"></ion-icon>{{ post?.Likes?.length }}</ion-button></ion-col>
+          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="chatbox"></ion-icon>{{ post?.Comments?.length }}</ion-button></ion-col>
           <ion-col size="4" id="share"><ion-button expand="full" fill=""><ion-icon slot="start" name="share"></ion-icon></ion-button></ion-col>
         </ion-row>
       </ion-grid>
