@@ -4,8 +4,51 @@
   </ion-toolbar>
 </ion-header>
  
-<ion-content>
-  <ion-list>
+<ion-content>  
+  <ion-list *ngIf="1 > posts.length">
+    <ion-title>Follow</ion-title>
+    <div>
+      <ion-item lines="none"> 
+        <ion-avatar slot="start">
+          <img src="../../assets/logo/logo_transparent.png" (click)="openViewer('../../assets/logo/logo_transparent.png')"/>
+        </ion-avatar>
+        <ion-title>12</ion-title>
+        <ion-text>@213</ion-text>
+        <ion-button expand="block" shape="round">
+          Follow
+        </ion-button>
+      </ion-item>  
+      <ion-text><p>132123123</p></ion-text>
+    </div>
+    <div>
+      <ion-item lines="none"> 
+        <ion-avatar slot="start">
+          <img src="../../assets/logo/logo_transparent.png" (click)="openViewer('../../assets/logo/logo_transparent.png')"/>
+        </ion-avatar>
+        <ion-title>12</ion-title>
+        <ion-text>@213</ion-text>
+        <ion-button fill="outline" expand="block" shape="round">
+          Followed
+        </ion-button>
+      </ion-item>  
+      <ion-text><p>132123123</p></ion-text>
+    </div>
+    <div>
+      <ion-item lines="none"> 
+        <ion-avatar slot="start">
+          <img src="../../assets/logo/logo_transparent.png" (click)="openViewer('../../assets/logo/logo_transparent.png')"/>
+        </ion-avatar>
+        <ion-title>12</ion-title>
+        <ion-text>@213</ion-text>
+        <ion-button expand="block" shape="round">
+          Follow
+        </ion-button>
+      </ion-item>  
+      <ion-text><p>132123123</p></ion-text>
+    </div>
+  </ion-list>
+
+  <ion-list *ngIf="posts != []">
     <div *ngFor="let post of posts">
       <ion-item lines="none"> 
         <ion-avatar slot="start">

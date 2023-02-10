@@ -35,6 +35,12 @@ ion-content{
           color: grey;
           font-family: 'Lato', sans-serif; 
         } 
+        ion-button{
+          --padding-top: 16px;
+          --padding-bottom: 16px;
+          --padding-start: 25px;
+          --padding-end: 25px;
+        }
       }
       ion-text{
         p{
