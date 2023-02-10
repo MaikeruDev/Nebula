@@ -41,7 +41,7 @@
         <ion-title>{{ post.User.Username }}</ion-title>
         <ion-text>@{{ post.User.Handle }}</ion-text>
       </ion-item>  
-      <ion-text><p>{{ post.User.Text }}</p></ion-text>
+      <ion-text><p>{{ post.Text }}</p></ion-text>
         <img class="content" *ngIf="post.Image.trim()" (click)="openViewer(post.Image)" src="{{ post.Image }}">      
         <ion-grid fixed>
           <ion-row>
