@@ -32,6 +32,7 @@
           <img src="{{ post?.User?.ProfilePicture }}" (click)="openViewer(post?.User?.ProfilePicture)"/>
         </ion-avatar>
         <ion-title>{{ post?.User?.Username }}</ion-title>
+        <ion-title class="postDate" slot="end">{{ post?.DateCreated | date: 'HH:mm · dd/MM/yyyy': 'GMT'}}</ion-title>
         <ion-text>@{{ post?.User?.Handle }}</ion-text>
       </ion-item>  
       <ion-text><p>{{ post?.Text }}</p></ion-text>
