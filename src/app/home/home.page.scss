@@ -17,7 +17,7 @@ ion-header{
 ion-content{
   ion-list{
     div{ 
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       padding-bottom: 5px;
       padding-top: 5px;
       ion-item{   
@@ -81,11 +81,13 @@ ion-content{
         z-index: 999;
         ion-text{  
           p{
+            margin-bottom: 0;
             margin-top: 0px;
             padding: 0 20px 0 72px;
           }
         }
         img.content{ 
+          margin-top: 10px;
           width: 90%;
           display: block; 
           padding: 0 20px 0 72px;
