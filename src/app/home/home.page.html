@@ -37,15 +37,17 @@
           <h3> · {{ post?.DateCreated | date: 'dd.MM.yy'}}</h3>
         </ion-item> 
       </ion-item>  
-      <ion-text><p>{{ post?.Text }}</p></ion-text>
-      <img class="content" *ngIf="post?.Image?.trim()" (click)="openViewer(post?.Image)" src="{{ post?.Image }}">
-      <ion-grid fixed>
-        <ion-row>
-          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="heart"></ion-icon>{{ post?.Likes?.length }}</ion-button></ion-col>
-          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="chatbox"></ion-icon>{{ post?.Comments?.length }}</ion-button></ion-col>
-          <ion-col size="4" id="share"><ion-button expand="full" fill=""><ion-icon slot="start" name="share"></ion-icon></ion-button></ion-col>
-        </ion-row>
-      </ion-grid>
+      <div>
+        <ion-text><p>{{ post?.Text }}</p></ion-text>
+        <img class="content" *ngIf="post?.Image?.trim()" (click)="openViewer(post?.Image)" src="{{ post?.Image }}">
+        <ion-grid fixed>
+          <ion-row>
+            <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="heart"></ion-icon>{{ post?.Likes?.length }}</ion-button></ion-col>
+            <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="chatbox"></ion-icon>{{ post?.Comments?.length }}</ion-button></ion-col>
+            <ion-col size="4" id="share"><ion-button expand="full" fill=""><ion-icon slot="start" name="share"></ion-icon></ion-button></ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
     </div>
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">

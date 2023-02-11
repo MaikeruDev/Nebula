@@ -17,10 +17,12 @@ ion-header{
 ion-content{
   ion-list{
     div{ 
-      border-bottom: 1px rgb(235, 235, 235) solid;
+      margin-bottom: 20px;
       padding-bottom: 5px;
       padding-top: 5px;
       ion-item{   
+        position: absolute;
+        width: 100%;
         ion-item{ 
           margin-top: -15px;
           --padding-end: 0px;
@@ -72,20 +74,26 @@ ion-content{
           --padding-end: 25px;
         }
       } 
-      ion-text{ 
-        p{
-          margin-top: 0px;
-          padding: 0 20px 0 72px;
+      div{ 
+        border-bottom: 1px rgb(235, 235, 235) solid;
+        position: relative;
+        top: 30px;
+        z-index: 999;
+        ion-text{  
+          p{
+            margin-top: 0px;
+            padding: 0 20px 0 72px;
+          }
         }
-      }
-      img.content{ 
-        width: 90%;
-        display: block; 
-        padding: 0 20px 0 72px;
-        padding-bottom: 5px;
-      }
-      ion-grid{ 
-        padding: 0px 25px 0px 60px; 
+        img.content{ 
+          width: 90%;
+          display: block; 
+          padding: 0 20px 0 72px;
+          padding-bottom: 5px;
+        }
+        ion-grid{ 
+          padding: 0px 25px 0px 60px; 
+        }
       }
     } 
   }
