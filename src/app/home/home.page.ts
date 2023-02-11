@@ -24,11 +24,12 @@ export class HomePage implements OnInit {
   } 
  
   async fetchPosts(skip: number){
+    
     this.api.getPosts(skip).subscribe((data: any) => {   //Get Posts from API
-      data.forEach((post: Post) => { 
+      data.data.forEach((post: Post) => { 
         this.posts.push(this.postAdapter.adapt(post))
       });   
-      console.log(this.posts)
+      
       if (this.posts.length == 0) this.no_posts = true //If User has no posts, show suggestions
       else this.no_posts = false
 

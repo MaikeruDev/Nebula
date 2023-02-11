@@ -52,4 +52,8 @@ export class ApiService {
     );
   }
 
+  searchUsers(searchTerm: string): Observable<any> {
+    return this.http.post<any>(api_url + '/user/searchUser', { searchTerm: searchTerm }, { headers: this.getHeader() })
+  }
+
 }

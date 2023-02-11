@@ -1,3 +1,4 @@
+import { Optional } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
 
 export class User {
@@ -9,9 +10,9 @@ export class User {
   public ProfilePicture: string;
   public Banner: SafeResourceUrl;
   public Bio: string;
+  public SignUpDate: Date;
   public Following: number;
   public Followers: number;
-  public SignUpDate: Date;
 
   constructor(
     id: number,
@@ -21,9 +22,9 @@ export class User {
     profileImage: string,
     banner: SafeResourceUrl,
     bio: string,
+    creationDate: Date,
     following: number,
-    followers: number,
-    creationDate: Date
+    followers: number
   ) {
     this.ID = id;
     this.Email = email;
@@ -32,8 +33,8 @@ export class User {
     this.ProfilePicture = profileImage;
     this.Banner = banner;
     this.Bio = bio;
-    this.Following = following,
-    this.Followers = followers,
     this.SignUpDate = creationDate; 
+    this.Following = following;
+    this.Followers = followers;
   }
 }

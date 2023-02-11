@@ -45,7 +45,7 @@ export class ProfilePage implements OnInit {
 
   async fetchPosts(skip: number){
     this.api.getOwnPosts(skip).subscribe((data: any) => {  
-      data.forEach((post: Post) => { 
+      data.data.forEach((post: Post) => { 
         this.posts.push(this.postAdapter.adapt(post))  
       });   
     }) 
