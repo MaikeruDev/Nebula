@@ -31,7 +31,7 @@
           <img src="{{ user?.ProfilePicture }}"/>
         </ion-avatar>
         <ion-title>{{ user.Username }}</ion-title>
-        <ion-text>{{ user.Handle }}</ion-text>
+        <ion-text>@{{ user.Handle }}</ion-text>
         <ion-button *ngIf="user.Followers == 0" fill="solid" expand="block" shape="round">
           Follow
         </ion-button>
