@@ -45,7 +45,7 @@ ion-content{
             width: 100%;
         }
     }
-    ion-avatar{
+    ion-avatar.headerProfilePic{
         width: 20vw;
         height: 20vw;
         position: relative;  
@@ -96,56 +96,96 @@ ion-content{
         } 
     }
     ion-list{ 
-        div{
-          border-bottom: 1px rgb(235, 235, 235) solid;
-          padding-bottom: 50px;
-          padding-top: 5px;
-          ion-item{  
-            ion-avatar{
-                width: 50px; 
-                height: 50px;
-                margin: 10px;
-                margin-left: 0;
-                margin-right: 5px;
-            }
-            ion-title{
-              margin-bottom: 15px;
-              padding-left: 8px;
-              font-family: 'Lato', sans-serif;
-              font-weight: 700;
-            }
-            ion-text{
-              position: absolute;
-              left: 8px;
-              bottom: 12px;
-              font-size: 12px;
-              color: grey;
-              font-family: 'Lato', sans-serif; 
-            } 
-          }
-          ion-text{
-            p{
-              margin-top: 0;
-              padding: 0 20px 0 80px;
-            }
-          }
-          img.content{
-            width: 90%;
-            display: block; 
-            padding: 0 20px 0 80px;
+        div{  
+            margin-bottom: 10px;
             padding-bottom: 5px;
-          }
-          ion-grid{
-            padding: 0px 25px 0px 80px;
-            ion-row{
-                ion-col{
-                    ion-button{
-                        color: black;
-                    }
+            padding-top: 5px;
+            ion-item{   
+              position: absolute;
+              width: 100%;
+              ion-item{ 
+                margin-top: -15px;
+                --padding-end: 0px;
+                --inner-padding-end: 0px;
+                h1{
+                  padding-left: 8px;
+                  font-family: 'Lato', sans-serif;
+                  font-weight: 700;
+                  font-size: 16px;
+                  margin: 0px;
+                  padding: 0;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  margin-left: 7px;
+                  max-width: 120px;
+                }
+                h2{
+                  font-size: 14px;
+                  font-family: 'Lato', sans-serif;
+                  color: grey;
+                  margin: 0px;
+                  margin-left: 5px; 
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  max-width: 120px;
+                }
+                h3{ 
+                  width: 100%;
+                  width: auto;
+                  text-align: right; 
+                  font-size: 14px;
+                  font-weight: 400;
+                  color: grey;
+                  font-family: 'Lato', sans-serif; 
+                  margin-top: 0px;
+                  margin-bottom: 0px; 
+                  margin-left: 4px;
                 } 
+              }
+              ion-avatar{
+                margin-right: 8px;
+              }
+              ion-button{
+                --padding-top: 16px;
+                --padding-bottom: 16px;
+                --padding-start: 25px;
+                --padding-end: 25px;
+              }
+            } 
+            div{ 
+              border-bottom: 1px rgb(235, 235, 235) solid;
+              position: relative;
+              top: 30px;
+              z-index: 999;
+              ion-text{  
+                p{
+                  margin-bottom: 0;
+                  margin-top: 0px;
+                  padding: 0 20px 0 72px;
+                }
+              }
+              img.content{ 
+                margin-top: 10px;
+                width: 90%;
+                display: block; 
+                padding: 0 20px 0 72px;
+                padding-bottom: 5px;
+              }
+              ion-grid{ 
+                padding: 0px 15px 40px 72px; 
+                ion-row{
+                  ion-col{
+                    ion-button {
+                      font-size: 13px;
+                      color: black;
+                    }
+                  }
+                }
+              }
             }
-          }
-        } 
+          } 
       }
 }
 
