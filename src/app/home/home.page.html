@@ -30,10 +30,12 @@
       <ion-item lines="none"> 
         <ion-avatar slot="start">
           <img src="{{ post?.User?.ProfilePicture }}" (click)="openViewer(post?.User?.ProfilePicture)"/>
-        </ion-avatar>
-        <ion-title>{{ post?.User?.Username }}</ion-title>
-        <ion-title class="postDate" slot="end">{{ post?.DateCreated | date: 'HH:mm · dd/MM/yyyy': 'GMT'}}</ion-title>
-        <ion-text>@{{ post?.User?.Handle }}</ion-text>
+        </ion-avatar> 
+        <ion-item lines="none" class="ion-no-padding">
+          <h1>daniebeler</h1>
+          <h2>@{{ post?.User?.Handle }}</h2> 
+          <h3> · {{ post?.DateCreated | date: 'dd.MM.yy'}}</h3>
+        </ion-item> 
       </ion-item>  
       <ion-text><p>{{ post?.Text }}</p></ion-text>
       <img class="content" *ngIf="post?.Image?.trim()" (click)="openViewer(post?.Image)" src="{{ post?.Image }}">
