@@ -56,4 +56,8 @@ export class ApiService {
     return this.http.post<any>(api_url + '/user/searchUser', { searchTerm: searchTerm }, { headers: this.getHeader() })
   }
 
+  getRandomUsers(amount: number): Observable<any> {
+    return this.http.post<any>(api_url + '/user/getRandomUsers', { amount: amount }, { headers: this.getHeader() })
+  }
+
 }
