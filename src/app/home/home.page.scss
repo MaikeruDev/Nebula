@@ -94,7 +94,14 @@ ion-content{
           padding-bottom: 5px;
         }
         ion-grid{ 
-          padding: 0px 25px 0px 60px; 
+          padding: 0px 38px 0px 60px; 
+          ion-row{
+            ion-col{
+              ion-button {
+                font-size: 13px;
+              }
+            }
+          }
         }
       }
     } 
