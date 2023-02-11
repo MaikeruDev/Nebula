@@ -1,4 +1,10 @@
 ion-content{
+    .background-svg{
+        position: absolute; 
+        scale: 180%;
+        bottom: 5%;
+        z-index: -2;
+    }
     div.logo{ 
         ion-title{
             position: relative;
@@ -8,6 +14,10 @@ ion-content{
             font-size: 5vw; 
         } 
         img{  
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
             mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 77%, rgba(0,0,0,0.5186275193671219) 80%, rgba(0,0,0,0) 100%);
         }
     }
@@ -19,20 +29,26 @@ ion-content{
             font-size: 3.2vw;
             height: 5vh;
             margin: 0 50px; 
+            font-weight: bold;
             font-family: 'Lato', sans-serif;
         }
         p{
-            color: grey;
+            color: rgb(187, 187, 187);
             font-size: 3vw;
+            cursor: default;
             span{
-                color: var(--ion-color-primary);
+                color: rgb(235, 235, 235);
                 font-weight: bold;
+                
+            }
+            span:hover{
+                cursor: pointer;
             }
         }
     }
     
 }
- 
+
 .invalid-input{
     border-bottom: var(--ion-color-danger) 1.5px solid;
 }

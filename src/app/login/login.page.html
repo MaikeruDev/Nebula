@@ -1,14 +1,16 @@
 <ion-content>
   <div class="logo">
     <img src="../../assets/logo/loop_animation.svg">
-    <ion-title class="ion-text-center">Find out what's going on.</ion-title>
+    <ion-title class="ion-text-center" style="cursor: default;">Find out what's going on.</ion-title>
   </div>
   <div class="content">
     <ion-button id="open-modal-register" color="dark" shape="round" expand="full">
       Create Account
     </ion-button>
-    <p class="ion-text-center">Already have an Account? <span id="open-modal-login">Log in</span></p>
+    <p class="ion-text-center">Already have an account? <span id="open-modal-login">Log in</span></p>
   </div>
+  <img class="background-svg" src="../../assets/background_waves.svg">
+
   
   <!-- REGISTER MODAL -->
   <ion-modal class="register" trigger="open-modal-register" #register_modal>
