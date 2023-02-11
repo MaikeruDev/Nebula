@@ -17,7 +17,7 @@ export class SearchPage implements OnInit {
   noUserFound: boolean = false;
 
   ngOnInit() {
-    this.getRandomUsers(3);
+    this.getRandomUsers(3); 
   }
 
   getRandomUsers(amount: number){

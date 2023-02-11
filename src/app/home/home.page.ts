@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { PostAdapter } from '../adapter/post-adapter';
+import { UserAdapter } from '../adapter/user-adapter';
 import { Post } from '../models/post';
+import { User } from '../models/user';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
 
@@ -14,14 +16,24 @@ import { AuthService } from '../services/auth.service';
 export class HomePage implements OnInit {
 
   posts: any = [];
+  randomUsers: any = [];
   counter_skip: number = 0;
   no_posts: boolean = false;
   
-  constructor(private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
+  constructor(private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
 
   ngOnInit(): void {
     this.fetchPosts(0);  
+    this.getRandomUsers(3);
   } 
+
+  getRandomUsers(amount: number){
+    this.api.getRandomUsers(amount).subscribe((data: any) => {
+      data.data.forEach((user: User) => { 
+        this.randomUsers.push(this.userAdapter.adapt(user))
+      });   
+    });
+  }
  
   async fetchPosts(skip: number){
     

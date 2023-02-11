@@ -32,8 +32,11 @@
         </ion-avatar>
         <ion-title>{{ user.Username }}</ion-title>
         <ion-text>{{ user.Handle }}</ion-text>
-        <ion-button expand="block" shape="round">
+        <ion-button *ngIf="user.Followers == 0" fill="solid" expand="block" shape="round">
           Follow
+        </ion-button>
+        <ion-button *ngIf="user.Followers == 1" fill="outline" expand="block" shape="round">
+          Followed
         </ion-button>
       </ion-item>  
       <ion-text><p>{{ user.Bio }}</p></ion-text>

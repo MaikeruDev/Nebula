@@ -56,6 +56,9 @@ ion-content{
                 --padding-bottom: 16px;
                 --padding-start: 25px;
                 --padding-end: 25px;
+                position: absolute;
+                right: 5px;
+                top: 2px
             }
           }
           ion-text{
