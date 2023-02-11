@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { PostAdapter } from '../adapter/post-adapter';
@@ -22,9 +22,19 @@ export class HomePage implements OnInit {
   
   constructor(private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
 
-  ngOnInit(): void {
+  onScroll(event: any) { 
+    var nav = document.querySelector(".toolbar"); 
+    if(event.detail.currentY>0){
+      nav?.classList.add("toolbar-shadow");
+    }else{
+      nav?.classList.remove("toolbar-shadow");
+    }
+  };
+  
+  ngOnInit(): void { 
     this.fetchPosts(0);  
     this.getRandomUsers(3);
+
   } 
 
   getRandomUsers(amount: number){
