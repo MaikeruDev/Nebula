@@ -15,18 +15,23 @@ export class HomePage implements OnInit {
 
   posts: any = [];
   counter_skip: number = 0;
+  no_posts: boolean = false;
   
   constructor(private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
 
   ngOnInit(): void {
-    this.fetchPosts(0); 
+    this.fetchPosts(0);  
   } 
  
   async fetchPosts(skip: number){
-    this.api.getPosts(skip).subscribe((data: any) => {  
+    this.api.getPosts(skip).subscribe((data: any) => {   //Get Posts from API
       data.forEach((post: Post) => { 
         this.posts.push(this.postAdapter.adapt(post))
       });   
+      console.log(this.posts)
+      if (this.posts.length == 0) this.no_posts = true //If User has no posts, show suggestions
+      else this.no_posts = false
+
     }) 
   }
 

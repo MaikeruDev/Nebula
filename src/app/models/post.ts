@@ -1,4 +1,5 @@
 import { SafeResourceUrl } from '@angular/platform-browser';
+import { Comment } from './comment';
 import { User } from './user';
 
 export class Post {
@@ -10,7 +11,7 @@ export class Post {
   public Text: string;  
   public User: User;
   public Likes: Object;
-  public Comments: Object;
+  public Comments: Comment;
 
   constructor(
     ID: number,
@@ -20,7 +21,7 @@ export class Post {
     Text: string, 
     User: User,
     Likes: Object,
-    Comments: Object
+    Comments: Comment
   ) {
     this.ID = ID;
     this.AuthorID = AuthorID;
