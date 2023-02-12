@@ -17,3 +17,10 @@ ion-tab-bar {
       --background: transparent;
     }
   }
+
+  ion-avatar{
+    height: 35px; width: 35px;
+    img{ 
+      pointer-events: none;
+    }
+  }

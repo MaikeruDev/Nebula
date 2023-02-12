@@ -42,7 +42,7 @@ ion-content{
     div.banner{
         width: 100%;  
         img{
-            width: 100%;
+            width: 100%; 
         }
     }
     ion-avatar.headerProfilePic{
@@ -51,7 +51,8 @@ ion-content{
         position: relative;  
         margin: -11vw 0px 0px 15px; 
         border: 4px var(--ion-background-color, #fff) solid; 
-        img{ background-color: #fff;
+        img{ 
+          background-color: #fff; 
         }
     }
     div.content{
@@ -146,6 +147,9 @@ ion-content{
               }
               ion-avatar{
                 margin-right: 8px;
+                img{
+                  pointer-events: stroke;
+                }
               }
               ion-button{
                 --padding-top: 16px;

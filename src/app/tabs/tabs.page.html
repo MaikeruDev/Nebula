@@ -9,7 +9,10 @@
     </ion-tab-button>
 
     <ion-tab-button tab="profile">
-      <ion-icon name="person"></ion-icon> 
+      <!-- <ion-icon name="person"></ion-icon>  -->
+      <ion-avatar>
+        <img src="{{ user?.ProfilePicture }}" />
+      </ion-avatar>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

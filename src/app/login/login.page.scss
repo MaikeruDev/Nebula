@@ -18,6 +18,7 @@ ion-content{
             -khtml-user-drag: none;
             -moz-user-drag: none;
             -o-user-drag: none;
+            pointer-events: none;
             mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 77%, rgba(0,0,0,0.5186275193671219) 80%, rgba(0,0,0,0) 100%);
         }
     }
