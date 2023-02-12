@@ -28,9 +28,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 ion-button{ 
-    --ripple-color: transparent; 
-    --box-shadow:none;
-  }
+  --ripple-color: transparent; 
+  --box-shadow:none;
+}
 
 ion-modal.register, ion-modal.login{ 
   ion-header{
@@ -61,30 +61,30 @@ ion-modal.register, ion-modal.login{
       font-family: 'Lato', sans-serif;
       font-weight: 700;
     }
-      ion-item{
-        --background: transparent;
-        color: rgba(255, 255, 255, 1);
-        margin: 10px 10px;
-        padding-top: 10px; 
-        @keyframes slidein {
-          0%   {margin-left:1500px;}
-          100% {margin-left:0px;}
-        }
-        ion-label{
-          animation-duration: .5s;
-          display: block;
-        }
-        ion-input{
-          --placeholder-opacity: 1;
-        }
+    ion-item{
+      --background: transparent;
+      color: rgba(255, 255, 255, 1);
+      margin: 10px 10px;
+      padding-top: 10px; 
+      @keyframes slidein {
+        0%   {margin-left:1500px;}
+        100% {margin-left:0px;}
       }
-      ion-button{
-        float: right;
-        font-size: 12px;
+      ion-label{
+        animation-duration: .5s;
+        display: block;
       }
-      ion-item.item-has-focus>ion-label{
-        color: white !important;
+      ion-input{
+        --placeholder-opacity: 1;
       }
+    }
+    ion-button{
+      float: right;
+      font-size: 12px;
+    }
+    ion-item.item-has-focus>ion-label{
+      color: white !important;
+    }
   } 
 }
 
