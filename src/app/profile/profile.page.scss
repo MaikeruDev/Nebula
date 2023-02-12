@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/chirp-2'); 
 
 ion-content{
     ion-fab.back{
@@ -166,6 +167,7 @@ ion-content{
               z-index: 999;
               ion-text{  
                 p{
+                  font-family: 'Chirp', sans-serif;
                   margin-bottom: 0;
                   margin-top: 0px;
                   padding: 0 20px 0 72px;
