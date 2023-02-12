@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
+import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -11,12 +12,16 @@ export class TabsPage implements OnInit {
 
   user: User
 
-  constructor(private userService: UserService,) { }
+  constructor(private userService: UserService, private auth: AuthService) { }
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
       this.user = user;
     });
+  }
+
+  async logout(){
+    this.auth.logout();
   }
 
 }

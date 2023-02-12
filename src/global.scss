@@ -34,7 +34,14 @@ ion-button{
 
 ion-modal.register, ion-modal.login{ 
   ion-header{
+    position: absolute;
+    width: 100%;
     ion-toolbar{
+      background: transparent;
+      --background: transparent;
+      ion-button{
+        color: white;
+      }
       img{
         width: 40px;
         height: auto;
@@ -46,26 +53,42 @@ ion-modal.register, ion-modal.login{
     }
   }
   ion-content{ 
+    --background: url('../src/assets/svg-backgrounds/stacked-waves-haikei.svg');
     ion-title{
+      color: white;
+      margin-top: 35px;
       font-size: 25px;
       font-family: 'Lato', sans-serif;
       font-weight: 700;
     }
       ion-item{
-          margin: 10px 10px;
-          padding-top: 10px; 
-          @keyframes slidein {
-            0%   {margin-left:1500px;}
-            100% {margin-left:0px;}
-          }
-          ion-label{
-            animation-duration: .5s;
-            display: block;
-          }
+        --background: transparent;
+        color: rgba(255, 255, 255, 1);
+        margin: 10px 10px;
+        padding-top: 10px; 
+        @keyframes slidein {
+          0%   {margin-left:1500px;}
+          100% {margin-left:0px;}
+        }
+        ion-label{
+          animation-duration: .5s;
+          display: block;
+        }
+        ion-input{
+          --placeholder-opacity: 1;
+        }
       }
       ion-button{
         float: right;
         font-size: 12px;
       }
+      ion-item.item-has-focus>ion-label{
+        color: white !important;
+      }
   } 
+}
+
+ion-label{
+  color: white !important;
+  --color: white !important;
 }
