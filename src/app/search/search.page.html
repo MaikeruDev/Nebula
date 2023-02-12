@@ -23,7 +23,7 @@
     </ion-item>  
   </ion-list>
 
-  <ion-list *ngIf="users.length == 0 && noUserFound == false" id="suggestions">
+  <ion-list *ngIf="users.length == 0 && noUserFound == false && randomUsers != []" id="suggestions">
     <ion-title>Follow</ion-title>
     <div *ngFor="let user of randomUsers">
       <ion-item lines="none"> 

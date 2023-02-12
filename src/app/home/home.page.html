@@ -11,6 +11,9 @@
 </ion-header>
  
 <ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">  
+  <ion-refresher style="margin-top: 55px"slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-list *ngIf="no_posts == true">
     <ion-title>Follow</ion-title>
     <div *ngFor="let user of randomUsers">
@@ -56,7 +59,7 @@
       </div>
     </div>
   </ion-list>
-  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+  <ion-infinite-scroll *ngIf="!refreshOngoing" (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll> 
 </ion-content>

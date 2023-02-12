@@ -28,6 +28,13 @@ export class ProfilePage implements OnInit {
     this.fetchPosts(0);
   }
 
+  async handleRefresh(event: any) {
+    setTimeout(() => {
+
+      event.target.complete();
+    }, 1500);
+  };
+
   async openViewer(src: any) {
     const modal = await this.modalController.create({
       component: ViewerModalComponent,
