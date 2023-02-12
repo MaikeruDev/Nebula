@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500&display=swap'); 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/chirp-2'); 
 
 .toolbar-shadow{  
 }
@@ -122,7 +123,8 @@ ion-content{
         top: 30px;
         z-index: 999;
         ion-text{  
-          p{
+          p{  
+            font-family: 'Chirp', sans-serif;
             margin-bottom: 0;
             margin-top: 0px;
             padding: 0 20px 0 72px;
