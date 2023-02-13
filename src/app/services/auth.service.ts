@@ -45,7 +45,13 @@ export class AuthService {
   }
 
   updateAuthenticationState(token: any) {
-    if(token) this.authenticationState.next('user'); 
+    console.log(token.id)
+    if (token.id == 1 || token.id == 2) {
+      this.authenticationState.next('admin');
+    } else {
+      this.authenticationState.next('user'); 
+    }
+    //if(token) this.authenticationState.next('user'); 
   }
 
   async storeToken(token: any) {

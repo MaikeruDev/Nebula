@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule),
     canActivate: [AuthGuard],
     data: {
-      roles: ['user']
+      roles: ['user', 'admin']
     }
   }, 
   {
@@ -29,7 +29,7 @@ const routes: Routes = [
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule),
     canActivate: [AuthGuard],
     data: {
-      roles: ['user']
+      roles: ['user', 'admin']
     }
   },
   {
@@ -37,7 +37,7 @@ const routes: Routes = [
     loadChildren: () => import('./stats/stats.module').then( m => m.StatsPageModule),
     canActivate: [AuthGuard],
     data: {
-      roles: ['user']
+      roles: ['admin']
     }
   },
 

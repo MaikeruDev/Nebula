@@ -37,7 +37,9 @@ ion-modal.register, ion-modal.login{
     }
   }
   ion-content{ 
-    --background: url('../src/assets/svg-backgrounds/stacked-waves-haikei.svg');
+    --background: none;
+    background: url('../src/assets/svg-backgrounds/stacked-waves-haikei.svg') no-repeat center center fixed;
+    background-size: cover !important; 
     ion-title{
       color: white;
       margin-top: 35px;
