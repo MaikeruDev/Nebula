@@ -16,12 +16,12 @@ const routes: Routes = [
       {
         path: 'search',
         loadChildren: () => import('../search/search.module').then(m => m.SearchPageModule),
-        title: "Search"
+        title: "Search Users"
       },  
       {
         path: 'profile',
         loadChildren: () => import('../profile/profile.module').then(m => m.ProfilePageModule),
-        title: "Profile"
+        title: "My Profile"
       }, 
       {
         path: 'notifications',
