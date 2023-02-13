@@ -21,21 +21,25 @@ export class SearchPage implements OnInit {
   }
 
   getRandomUsers(amount: number){
-    this.api.getRandomUsers(amount).subscribe((data: any) => {
+    this.api.getRandomUsers(amount).subscribe(async (data: any) => {
       data.data.forEach((user: User) => { 
         this.randomUsers.push(this.userAdapter.adapt(user))
-      });   
+      });
     });
   }
 
-  onSearchChange(event: any){
+  async delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
+  async onSearchChange(event: any){
     const query = event.target.value.toLowerCase();
     this.users = [];
     if(query){
-      this.api.searchUsers(query).subscribe((data: any) => {
+      this.api.searchUsers(query).subscribe(async (data: any) => {
         data.data.forEach((user: User) => {
           this.users.push(this.userAdapter.adapt(user))
-        }); 
+        });  
         if(data.data.length == 0) this.noUserFound = true;
         else this.noUserFound = false;
       })

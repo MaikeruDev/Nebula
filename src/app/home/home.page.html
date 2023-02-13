@@ -11,6 +11,13 @@
 </ion-header>
  
 <ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">  
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <ion-refresher style="margin-top: 55px"slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
