@@ -47,6 +47,8 @@ ion-content{
             bottom: -100000000px;
         } 
         label{  
+            font-size: 20pt; 
+            padding: 30px;
             padding-top: 26px !important;
             ion-icon.image{
                 margin-top: -5px;
@@ -58,14 +60,31 @@ ion-content{
             }
         }
     }
-    ion-textarea{
+    div.input-area{
         position: absolute;
         width: 75vw;
         height: 500px;
         top: 70px; 
         left: 80px; 
-        z-index: 999;
-    } 
+        z-index: 999; 
+        max-width: 350px;
+        div.image-container{
+            position: relative;
+            img{
+                position: relative;
+                width: 200px;
+                left: 50%;
+                top: 5px;
+                transform: translate(-50%);
+            }
+            ion-icon{
+                position: absolute;
+                top: -10px;
+                right: 40px; 
+            }
+        }
+    }
+
     .file-input__input {
         width: 0.1px;
         height: 0.1px;
@@ -96,7 +115,6 @@ ion-content{
     
     
     .file-input{
-        text-align: center;
-        margin-top: 2vh;
+        text-align: center; 
     }
 }

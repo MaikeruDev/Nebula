@@ -12,7 +12,7 @@
  
 <ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">  
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab (click)="newPost()" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

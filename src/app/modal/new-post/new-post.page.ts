@@ -89,8 +89,8 @@ export class NewPostPage implements OnInit {
     console.log(ev)
   }
 
-  cancelPost(){
-    this.nav.back()
+  cancelPost(){ 
+    this.modalController.dismiss()
   }
 
 }

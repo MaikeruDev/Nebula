@@ -3,6 +3,8 @@ import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController } from '@
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { PostAdapter } from '../adapter/post-adapter';
 import { UserAdapter } from '../adapter/user-adapter';
+import { NewPostPageModule } from '../modal/new-post/new-post.module';
+import { NewPostPage } from '../modal/new-post/new-post.page';
 import { Post } from '../models/post';
 import { User } from '../models/user';
 import { ApiService } from '../services/api.service';
@@ -37,14 +39,23 @@ export class HomePage implements OnInit {
     this.getRandomUsers(3);
   } 
 
+  async newPost(){
+    const modal = await this.modalController.create({
+      component: NewPostPage,  
+    });
 
-  async handleRefresh(event: any) {
+    await modal.present().then(() => {
+      this.handleRefresh()
+    });
+  }
+
+  async handleRefresh(event?: any) {
     this.refreshing = true;
     this.no_posts = true;
     this.counter_skip = 0;
     this.posts = [];
     this.fetchPosts(0).then(() => {
-      event.target.complete();        //Stop the loading animation when the reload is done 
+      if(event) event.target.complete();        //Stop the loading animation when the reload is done 
     });
   };
 
