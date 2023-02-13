@@ -19,6 +19,7 @@ export class HomePage implements OnInit {
   randomUsers: any = [];
   counter_skip: number = 0;
   no_posts: boolean = false;
+  refreshing: boolean = false;
   
   constructor(private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
 
@@ -32,12 +33,13 @@ export class HomePage implements OnInit {
   };
   
   ngOnInit(): void { 
-    this.fetchPosts(0);  
+    this.fetchPosts(0);
     this.getRandomUsers(3);
   } 
 
   async handleRefresh(event: any) {
-    this.no_posts = false;
+    this.refreshing = true;
+    this.no_posts = true;
     this.counter_skip = 0;
     this.posts = [];
     this.fetchPosts(0).then(() => {
@@ -59,7 +61,10 @@ export class HomePage implements OnInit {
         this.posts.push(this.postAdapter.adapt(post))
       });    
       if (this.posts.length == 0) this.no_posts = true //If User has no posts, show suggestions
-      else this.no_posts = false
+      else {
+        this.no_posts = false
+      } 
+      this.refreshing = false;
     }) 
   }
 

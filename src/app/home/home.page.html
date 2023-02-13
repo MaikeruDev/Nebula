@@ -21,7 +21,8 @@
   <ion-refresher style="margin-top: 55px"slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-list *ngIf="no_posts == true">
+
+  <ion-list *ngIf="no_posts == true && refreshing == false">
     <ion-title>Follow</ion-title>
     <div *ngFor="let user of randomUsers">
       <ion-item lines="none"> 
