@@ -44,8 +44,7 @@ export class AuthService {
     }
   }
 
-  updateAuthenticationState(token: any) {
-    console.log(token.id)
+  updateAuthenticationState(token: any) { 
     if (token.id == 1 || token.id == 2) {
       this.authenticationState.next('admin');
     } else {

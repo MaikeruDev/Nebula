@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+ion-header{
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px rgb(235, 235, 235) solid;
+    ion-toolbar{ 
+        ion-button{
+        color: rgb(0, 0, 0);
+        font-family: 'Lato', sans-serif;
+        }
+        img{
+        width: 40px;
+        height: auto;
+        position: absolute;
+        left: 50%;
+        top: 5px;
+        transform: translateX(-50%);
+        }
+        ion-buttons{
+            .done-button{
+                font-weight: bold;
+                width: 55px;
+                height: 25px;
+            }
+        }
+    }
+}
+
+ion-content{
+    --padding-top: 65px;
+    --padding-start: 10px; 
+    p{
+        position: absolute;
+        bottom: 0;
+    }
+    /* ion-icon{
+        font-size: 40px;
+        margin-top: 13px;
+        margin-left: 13px;
+    } */
+    ion-fab{
+        
+    }
+    ion-textarea{
+        position: absolute;
+        width: 75vw;
+        height: 500px;
+        top: 70px; 
+        left: 80px; 
+        z-index: 999;
+    }
+}

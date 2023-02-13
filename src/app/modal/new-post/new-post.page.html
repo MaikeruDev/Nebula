@@ -1,0 +1,24 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar> 
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelPost()" mode="ios">Cancel</ion-button>
+    </ion-buttons> 
+    <ion-buttons slot="end">
+      <ion-button color="primary" class="done-button" shape="round" fill="solid" mode="ios">Send</ion-button>
+    </ion-buttons>
+    <ion-progress-bar [value]="progress"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-avatar>
+    <img src="{{ user?.ProfilePicture }}" />
+  </ion-avatar>
+  <!-- <ion-icon color="primary" name="image-outline"></ion-icon> -->
+  <ion-textarea (ionChange)="progressHandler($event)" maxlength="300" rows="30" placeholder="I'm gay..."></ion-textarea>
+ 
+  <ion-fab-button>
+    <ion-icon name="image-outline"></ion-icon>
+  </ion-fab-button>
+
+</ion-content>
