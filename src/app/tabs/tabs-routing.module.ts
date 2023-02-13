@@ -29,6 +29,11 @@ const routes: Routes = [
         title: "Notifications"
       }, 
       {
+        path: 'settings',
+        loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule),
+        title: "Settings"
+      }, 
+      {
         path: '',
         redirectTo: '/feed',
         pathMatch: 'full'

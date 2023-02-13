@@ -6,7 +6,7 @@ import { User } from '../models/user';
 import { StorageService } from './storage.service';
 import { CryptoService } from './crypto.service';
 
-const api_url = "http://localhost:3100"
+const api_url = "http://192.168.8.106:3100"
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +20,7 @@ export class ApiService {
 
   getHeader(): HttpHeaders {
     const headers = new HttpHeaders({
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       'Content-Type': 'application/json; charset=utf-8',
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       Authorization: 'Bearer ' + this.storageService.getToken()
     });
     return headers;

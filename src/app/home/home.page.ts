@@ -19,7 +19,6 @@ export class HomePage implements OnInit {
   randomUsers: any = [];
   counter_skip: number = 0;
   no_posts: boolean = false;
-  refreshOngoing: boolean = false;
   
   constructor(private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
 
@@ -39,18 +38,15 @@ export class HomePage implements OnInit {
 
   async handleRefresh(event: any) {
     this.no_posts = false;
-    this.refreshOngoing = true;
     this.counter_skip = 0;
     this.posts = [];
-    this.fetchPosts(0);
-    setTimeout(() => {
-      this.refreshOngoing = false;
-      event.target.complete();
-    }, 1500);
+    this.fetchPosts(0).then(() => {
+      event.target.complete();        //Stop the loading animation when the reload is done 
+    });
   };
 
   getRandomUsers(amount: number){
-    this.api.getRandomUsers(amount).subscribe((data: any) => {
+    this.api.getRandomUsers(amount).subscribe((data: any) => {  //Get random Users from API
       data.data.forEach((user: User) => { 
         this.randomUsers.push(this.userAdapter.adapt(user))
       });   
@@ -83,8 +79,8 @@ export class HomePage implements OnInit {
   }
 
   onIonInfinite(ev: Event) {
-    this.counter_skip += 15;
-    this.fetchPosts(this.counter_skip);
+    this.counter_skip += 15;              //Every time the user reaches the last loaded post, the API
+    this.fetchPosts(this.counter_skip);   //will look for more posts to load
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
