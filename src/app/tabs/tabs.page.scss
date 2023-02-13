@@ -24,3 +24,12 @@ ion-tab-bar {
       pointer-events: none;
     }
   }
+
+  @media only screen and (min-width: 1300px) {
+    ion-tabs{
+      ion-tab-bar{
+        margin-left: -35%;
+        width: 30%;
+      }
+    }
+  }

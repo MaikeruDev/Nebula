@@ -70,3 +70,18 @@ ion-label{
   color: white !important;
   --color: white !important;
 }
+
+@media only screen and (min-width: 1300px) {
+  body{
+    margin-left: 35%;
+    background-color: rgb(221, 221, 221);
+  }
+  ion-content{
+    position: absolute;
+    width: 30%;
+  }
+  ion-tabs{
+    position: relative;
+    width: 30%;
+  }
+}
