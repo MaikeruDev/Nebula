@@ -37,6 +37,7 @@ export class HomePage implements OnInit {
     this.getRandomUsers(3);
   } 
 
+
   async handleRefresh(event: any) {
     this.refreshing = true;
     this.no_posts = true;
