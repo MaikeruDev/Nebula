@@ -10,6 +10,72 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
-    <ion-button class="logout-button-center" color="primary" mode="ios" (click)="logout()">LOGOUT</ion-button>
+<ion-content > 
+    <!-- Profile Settings -->
+    <ion-list>
+      <ion-list-header>
+        <ion-title class="ion-text-center">Profile Settings</ion-title>
+      </ion-list-header>
+
+      <ion-item lines="none"> 
+        <ion-button>
+          Edit
+        </ion-button> 
+        <img style="width: 100%; height: 100%;" src="https://media.discordapp.net/attachments/888439452605767750/1073689020330147981/nebula_banner_upsize.png?width=810&height=270" alt="">
+      </ion-item> 
+
+      <ion-avatar>
+        <ion-button>
+          Edit
+        </ion-button> 
+        <img src="https://avatars.githubusercontent.com/u/78266557?v=4" />
+      </ion-avatar> 
+
+      <ion-item lines="none" class="lesser-margin-top">
+        <ion-label>Username</ion-label>
+        <ion-input placeholder="Username"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>Handle</ion-label>
+        <ion-input placeholder="Handle"></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label class="no-baseline">Bio</ion-label>
+        <ion-textarea placeholder="Write something interesting."></ion-textarea> 
+      </ion-item>
+    </ion-list>
+
+    <!-- Account Settings -->
+    <ion-list>
+      <ion-list-header>
+        <ion-title class="ion-text-center">Account Settings</ion-title>
+      </ion-list-header> 
+ 
+      <ion-item lines="none" class="single-input">
+        <ion-label>Email</ion-label>
+        <ion-input placeholder="Email"></ion-input>
+      </ion-item>
+ 
+      <ion-button fill="" expand="block" shape="round">
+        Change Password
+      </ion-button> 
+ 
+    </ion-list>
+
+    <!-- Danger Zone -->
+    <ion-list class="danger-zone">
+      <ion-list-header>
+        <ion-title class="ion-text-center" color="danger">Danger Zone</ion-title>
+      </ion-list-header>
+ 
+      <ion-button (click)="logout()" expand="block" fill="clear" color="dark">
+        Sign out
+      </ion-button> 
+
+      <ion-button (click)="logout()" expand="block" color="dark">
+        Delete Account
+      </ion-button> 
+    </ion-list>
 </ion-content>

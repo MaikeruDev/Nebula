@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
 ion-header{
     position: absolute;
     width: 100%;
     border-bottom: 1px rgb(235, 235, 235) solid;
-    ion-toolbar{
-        background: transparent;
-        --background: transparent;
+    ion-toolbar{ 
         ion-button{
         color: rgb(0, 0, 0);
+        font-family: 'Lato', sans-serif;
         }
         img{
         width: 40px;
@@ -31,6 +32,70 @@ ion-content{
         bottom: 15px;
         left: 50%;
         transform: translate(-50%);
+    }
+    ion-list:first-of-type{ 
+        margin-top: 50px; 
+    }
+    ion-list.danger-zone{
+        padding: 0 10px;
+    }
+    ion-list{ 
+        border-bottom: 1px rgb(235, 235, 235) solid;
+        ion-list-header{
+            padding: 0;
+        }
+        ion-title{
+            font-family: 'Lato', sans-serif;
+        }
+        ion-avatar{
+            background: white;
+            position: relative;
+            top: -8.5vw;
+            left: 30px;
+            border: white 3px solid;
+            width: 18vw;
+            height: 18vw;
+            z-index: 999;
+            ion-button{
+                position: absolute;
+                top: 90%;
+                left: 50%;
+                transform: translate(-50%, -50%);  
+                font-size: 10px;
+                height: 2vh; 
+            } 
+        }
+        ion-item{
+            border-top: 1px rgb(235, 235, 235) solid;
+            ion-button{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                opacity: 1;
+                width: 70px;
+                height: 30px;
+            }
+            img{
+                opacity: 0.5;
+            }
+            ion-label{
+                color: black !important;
+                width: 90px;
+            }
+            ion-label.no-baseline{
+                align-self: normal;
+            }
+            ion-textarea{
+                margin-top: 0;
+            }
+        }
+        ion-item.single-input{
+            border-bottom: 1px rgb(235, 235, 235) solid;
+        }
+        ion-item.lesser-margin-top{
+            margin-top: -20px;
+        }
     }
 }
 
