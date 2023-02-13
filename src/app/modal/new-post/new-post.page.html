@@ -19,7 +19,7 @@
     <ion-textarea (ionChange)="progressHandler($event)" maxlength="300" [autoGrow]="true" placeholder="I'm gay..."></ion-textarea>
     <div class="image-container">
       <img src="{{ resizedImage }}" (click)="openViewer(resizedImage)" class="file-input" *ngIf="image != ''" >
-      <ion-icon name="close" (click)="removeImage()" *ngIf="resizedImage != ''"></ion-icon>  <!-- *ngIf="resizedImage != ''" -->
+      <ion-icon color="primary" name="close" (click)="removeImage()" *ngIf="resizedImage != ''"></ion-icon>  <!-- *ngIf="resizedImage != ''" -->
     </div>
   </div>
  
