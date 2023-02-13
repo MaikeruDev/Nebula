@@ -1,9 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>settings</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar> 
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelSettings()" mode="ios">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Settings</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="primary" class="done-button" mode="ios">Save</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content >
+    <ion-button class="logout-button-center" color="primary" mode="ios" (click)="logout()">LOGOUT</ion-button>
 </ion-content>

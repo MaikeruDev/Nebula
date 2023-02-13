@@ -1,4 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsPage implements OnInit {
 
-  constructor() { }
+  constructor(private location: Location, private auth: AuthService) { }
 
   ngOnInit() {
+  }
+
+  cancelSettings(){
+    this.location.back();
+  }
+
+  async logout(){
+    this.auth.logout();
   }
 
 }

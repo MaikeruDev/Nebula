@@ -28,11 +28,11 @@ const routes: Routes = [
         loadChildren: () => import('../notifications/notifications.module').then(m => m.NotificationsPageModule),
         title: "Notifications"
       }, 
-      {
+/*       {
         path: 'settings',
         loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule),
         title: "Settings"
-      }, 
+      },  */
       {
         path: '',
         redirectTo: '/feed',

@@ -50,21 +50,15 @@ ion-modal.register, ion-modal.login{
       color: rgba(255, 255, 255, 1);
       margin: 10px 10px;
       padding-top: 10px; 
-      @keyframes slidein {
-        0%   {margin-left:1500px;}
-        100% {margin-left:0px;}
-      }
-      ion-label{
-        animation-duration: .5s;
-        display: block;
-      }
       ion-input{
         --placeholder-opacity: 1;
       }
     }
     ion-button{
       float: right;
-      font-size: 12px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-right: 25px;
     }
     ion-item.item-has-focus>ion-label{
       color: white !important;

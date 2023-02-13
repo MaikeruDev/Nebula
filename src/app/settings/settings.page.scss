@@ -1,0 +1,36 @@
+ion-header{
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px rgb(235, 235, 235) solid;
+    ion-toolbar{
+        background: transparent;
+        --background: transparent;
+        ion-button{
+        color: rgb(0, 0, 0);
+        }
+        img{
+        width: 40px;
+        height: auto;
+        position: absolute;
+        left: 50%;
+        top: 5px;
+        transform: translateX(-50%);
+        }
+        ion-buttons{
+            .done-button{
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+ion-content{
+    .logout-button-center{
+        position: absolute;
+        width: 40%;
+        bottom: 15px;
+        left: 50%;
+        transform: translate(-50%);
+    }
+}
+
