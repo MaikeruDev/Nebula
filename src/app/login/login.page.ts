@@ -19,7 +19,6 @@ export class LoginPage implements OnInit {
   @ViewChild('login_modal') login_modal: IonModal;
 
   registerForm: FormGroup;
-
   loginForm: FormGroup;
 
   constructor(private alert: AlertService, public api: ApiService, private auth: AuthService) {
