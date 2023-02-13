@@ -18,7 +18,19 @@
   <ion-textarea (ionChange)="progressHandler($event)" maxlength="300" rows="30" placeholder="I'm gay..."></ion-textarea>
  
   <ion-fab-button>
-    <ion-icon name="image-outline"></ion-icon>
+    <label for="image-input" style="font-size: 20pt; padding: 30px">
+      <ion-icon class="image" name="images-outline"></ion-icon>
+    </label> 
+    <input (change)="imageChangeEvent($event)" type="file" name="file-input" id="image-input" class="hideInput" accept="image/png, image/jpeg"/>
   </ion-fab-button>
+  <ion-fab-button disabled="true">
+    <label for="input" style="font-size: 20pt; padding: 30px">
+      <ion-icon class="gif" src="../../../assets/icon/gif.svg"></ion-icon>
+    </label> 
+    <input id="input" type="file" class="hideInput" (change)="changeListener($event)">
+  </ion-fab-button>
+ 
+  <img src="{{ resizedImage }}" (click)="openViewer(resizedImage)" class="file-input" style="position: relative; left: 10px; top: 5px; width: 50px;" *ngIf="image != ''">
+  <ion-icon name="close" style="position: absolute; left: 65px; top: 235px" *ngIf="resizedImage != ''" (click)="removeImage()"></ion-icon>
 
 </ion-content>
