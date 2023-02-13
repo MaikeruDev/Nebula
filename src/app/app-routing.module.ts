@@ -23,7 +23,11 @@ const routes: Routes = [
     data: {
       roles: ['none']
     }
+  },  {
+    path: 'notifications',
+    loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
   },
+
 ];
 
 @NgModule({
