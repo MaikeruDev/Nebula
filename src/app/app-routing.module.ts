@@ -23,17 +23,22 @@ const routes: Routes = [
     data: {
       roles: ['none']
     }
-  },  {
-    path: 'notifications',
-    loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
-  },
+  }, 
   {
     path: 'settings',
-    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule),
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['user']
+    }
   },
   {
     path: 'stats',
-    loadChildren: () => import('./stats/stats.module').then( m => m.StatsPageModule)
+    loadChildren: () => import('./stats/stats.module').then( m => m.StatsPageModule),
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['user']
+    }
   },
 
 ];
