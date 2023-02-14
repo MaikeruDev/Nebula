@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-new-post',
@@ -17,12 +18,19 @@ export class NewPostPage implements OnInit {
   image: any = ""
   resizedImage: any = ""
 
-  constructor(private modalController: ModalController, private auth: AuthService, private nav: NavController, private userService: UserService) { }
+  textarea_value: any = ""
+
+  constructor(private api: ApiService, private modalController: ModalController, private auth: AuthService, private nav: NavController, private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
       this.user = user;
     });
+  }
+
+  async sendMessage(){ 
+    if(this.textarea_value.trim() !== "") this.api.newPost({Text: this.textarea_value, Image: this.resizedImage}).subscribe()
+    return this.modalController.dismiss('confirm');
   }
 
   async openViewer(src: any) {
@@ -61,7 +69,7 @@ export class NewPostPage implements OnInit {
       image.src = reader.result as string;
       this.image = reader.result;
       image.onload = async() => {
-        this.compressImage(this.image, (image.width / image.width) * 512, (image.height / image.width) * 512).then(compressed => {
+        this.compressImage(this.image, (image.width / image.width) * 256, (image.height / image.width) * 256).then(compressed => {
           this.resizedImage = compressed;
         })
       }
@@ -84,13 +92,9 @@ export class NewPostPage implements OnInit {
       img.onerror = error => rej(error);
     })
   }
-
-  changeListener(ev: any){
-    console.log(ev)
-  }
-
+ 
   cancelPost(){ 
-    this.modalController.dismiss()
+    this.modalController.dismiss('cancel')
   }
 
 }

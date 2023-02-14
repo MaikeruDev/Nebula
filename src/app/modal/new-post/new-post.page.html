@@ -4,7 +4,7 @@
       <ion-button (click)="cancelPost()" mode="ios">Cancel</ion-button>
     </ion-buttons> 
     <ion-buttons slot="end">
-      <ion-button color="primary" class="done-button" shape="round" fill="solid" mode="ios">Send</ion-button>
+      <ion-button (click)="sendMessage()" color="primary" class="done-button" shape="round" fill="solid" mode="ios">Send</ion-button>
     </ion-buttons>
     <ion-progress-bar [value]="progress"></ion-progress-bar>
   </ion-toolbar>
@@ -16,7 +16,7 @@
   </ion-avatar> 
 
   <div class=input-area>
-    <ion-textarea (ionChange)="progressHandler($event)" maxlength="300" [autoGrow]="true" placeholder="I'm gay..."></ion-textarea>
+    <ion-textarea [(ngModel)]="textarea_value" (ionChange)="progressHandler($event)" maxlength="300" [autoGrow]="true" placeholder="I'm gay..."></ion-textarea>
     <div class="image-container">
       <img src="{{ resizedImage }}" (click)="openViewer(resizedImage)" class="file-input" *ngIf="image != ''" >
       <ion-icon color="primary" name="close" (click)="removeImage()" *ngIf="resizedImage != ''"></ion-icon>  <!-- *ngIf="resizedImage != ''" -->
@@ -33,7 +33,7 @@
     <label for="input">
       <ion-icon class="gif" src="../../../assets/icon/gif.svg"></ion-icon>
     </label> 
-    <input id="input" type="file" class="hideInput" (change)="changeListener($event)">
+    <input id="input" type="file" class="hideInput">
   </ion-fab-button>
    
 </ion-content>

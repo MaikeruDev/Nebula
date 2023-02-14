@@ -4,9 +4,9 @@ import { map, Observable } from 'rxjs';
 import { UserAdapter } from '../adapter/user-adapter';
 import { User } from '../models/user';
 import { StorageService } from './storage.service';
-import { CryptoService } from './crypto.service';
+import { CryptoService } from './crypto.service'; 
 
-const api_url = "http://192.168.100.119:3100"
+const api_url = "http://michael.prietl.com:3100"
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +38,9 @@ export class ApiService {
     return this.http.post<any>(api_url + '/posts/getOwnPosts', {skip: skip}, { headers: this.getHeader()})
   }
 
-  newPost(obj: any): Observable<any> {
-    return this.http.post<any>(api_url + '/posts/newPost', obj, { headers: this.getHeader()})
+  newPost(obj: any) {   
+ 
+    return this.http.post<any>(api_url + '/posts/newPost', obj, { headers: this.getHeader().append('Content-Type', '; multipart/form-data; charset=utf-8') })
   }
 
   register(obj: any): Observable<any> {
