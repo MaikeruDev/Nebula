@@ -7,6 +7,7 @@ import { StorageService } from './storage.service';
 import { CryptoService } from './crypto.service'; 
 
 const api_url = "http://michael.prietl.com:3100"
+const api_url = "http://localhost:3100"
 
 @Injectable({
   providedIn: 'root'
