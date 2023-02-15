@@ -13,7 +13,6 @@ const api_url = "http://michael.prietl.com:3100"
 })
 export class ApiService {
 
-
   constructor(public http: HttpClient, private crypto: CryptoService, private storageService: StorageService, private userAdapter: UserAdapter) {
     
   }
