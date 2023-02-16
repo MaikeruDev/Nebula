@@ -21,44 +21,43 @@
         <ion-button>
           Edit
         </ion-button> 
-        <img style="width: 100%; height: 100%;" src="https://media.discordapp.net/attachments/888439452605767750/1073689020330147981/nebula_banner_upsize.png?width=810&height=270" alt="">
+        <img style="width: 100%; height: 100%;" src="{{user?.Banner}}" alt="">
       </ion-item> 
 
       <ion-avatar>
         <ion-button>
           Edit
         </ion-button> 
-        <img src="https://avatars.githubusercontent.com/u/78266557?v=4" />
+        <img src="{{user?.ProfilePicture}}">
       </ion-avatar> 
 
       <ion-item lines="none" class="lesser-margin-top">
         <ion-label>Username</ion-label>
-        <ion-input placeholder="Username"></ion-input>
+        <ion-input placeholder="{{ user?.Username }}"></ion-input>
       </ion-item>
 
       <ion-item lines="none">
         <ion-label>Handle</ion-label>
-        <ion-input placeholder="Handle"></ion-input>
+        <ion-input placeholder="{{ user?.Handle }}"></ion-input>
       </ion-item>
 
       <ion-item lines="none">
         <ion-label class="no-baseline">Bio</ion-label>
-        <ion-textarea placeholder="Write something interesting."></ion-textarea> 
+        <ion-textarea placeholder="{{ user?.Bio }}"></ion-textarea> 
       </ion-item>
     </ion-list>
 
     <!-- Account Settings -->
-    <ion-list>
+    <ion-list class="account-settings">
       <ion-list-header>
         <ion-title class="ion-text-center">Account Settings</ion-title>
       </ion-list-header> 
+
+      <ion-button fill="outline" expand="block" color="dark">
+        Change Email
+      </ion-button> 
  
-      <ion-item lines="none" class="single-input">
-        <ion-label>Email</ion-label>
-        <ion-input placeholder="Email"></ion-input>
-      </ion-item>
- 
-      <ion-button fill="" expand="block" shape="round">
+      <ion-button fill="outline" expand="block" color="dark">
         Change Password
       </ion-button> 
  
@@ -70,7 +69,7 @@
         <ion-title class="ion-text-center">Danger Zone</ion-title>
       </ion-list-header>
  
-      <ion-button (click)="logout()" expand="block" fill="clear" color="dark">
+      <ion-button (click)="logout()" expand="block" fill="outline" color="dark">
         Sign out
       </ion-button> 
 

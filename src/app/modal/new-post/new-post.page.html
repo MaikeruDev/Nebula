@@ -16,7 +16,7 @@
   </ion-avatar> 
 
   <div class=input-area>
-    <ion-textarea [(ngModel)]="textarea_value" (ionChange)="progressHandler($event)" maxlength="300" [autoGrow]="true" placeholder="I'm gay..."></ion-textarea>
+    <ion-textarea [(ngModel)]="textarea_value" (ionChange)="progressHandler($event)" maxlength="300" [autoGrow]="true" placeholder="Type something.."></ion-textarea>
     <div class="image-container">
       <img src="{{ resizedImage }}" (click)="openViewer(resizedImage)" class="file-input" *ngIf="image != ''" >
       <ion-icon color="primary" name="close" (click)="removeImage()" *ngIf="resizedImage != ''"></ion-icon>  <!-- *ngIf="resizedImage != ''" -->

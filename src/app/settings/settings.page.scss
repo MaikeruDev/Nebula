@@ -37,15 +37,21 @@ ion-content{
         margin-top: 50px; 
     }
     ion-list.danger-zone{
-        padding: 0 10px;
+        padding: 0 16px;
+    }
+    ion-list.account-settings{
+        padding: 0 16px;
     }
     ion-list{ 
-        border-bottom: 1px rgb(235, 235, 235) solid;
+        border-bottom: 2px rgb(235, 235, 235) solid;
         ion-list-header{
             padding: 0;
         }
         ion-title{
             font-family: 'Lato', sans-serif;
+        }
+        ion-button{
+            
         }
         ion-avatar{
             background: white;
