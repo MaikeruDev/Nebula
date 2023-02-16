@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title class="ion-text-center">Settings</ion-title>
     <ion-buttons slot="end">
-      <ion-button color="primary" class="done-button" mode="ios">Save</ion-button>
+      <ion-button (click)="checkSettings()" color="primary" class="done-button" mode="ios">Save</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -30,22 +30,23 @@
         </ion-button> 
         <img src="{{user?.ProfilePicture}}">
       </ion-avatar> 
+      <form [formGroup]="changeSettingsForm">
+        <ion-item lines="none" class="lesser-margin-top">
+          <ion-label>Username</ion-label>
+          <ion-input formControlName="username" placeholder="{{ user?.Username }}"></ion-input>
+        </ion-item>
 
-      <ion-item lines="none" class="lesser-margin-top">
-        <ion-label>Username</ion-label>
-        <ion-input placeholder="{{ user?.Username }}"></ion-input>
-      </ion-item>
-
-      <ion-item lines="none">
-        <ion-label>Handle</ion-label>
-        <ion-input placeholder="{{ user?.Handle }}"></ion-input>
-      </ion-item>
-
-      <ion-item lines="none">
-        <ion-label class="no-baseline">Bio</ion-label>
-        <ion-textarea placeholder="{{ user?.Bio }}"></ion-textarea> 
-      </ion-item>
-    </ion-list>
+        <ion-item lines="none">
+          <ion-label>Handle</ion-label>
+          <ion-input formControlName="handle" placeholder="{{ user?.Handle }}"></ion-input>
+        </ion-item>
+        
+        <ion-item lines="none">
+          <ion-label class="no-baseline">Bio</ion-label>
+          <ion-textarea formControlName="bio" placeholder="{{ user?.Bio }}"></ion-textarea> 
+        </ion-item>
+      </form>
+      </ion-list>
 
     <!-- Account Settings -->
     <ion-list class="account-settings">
