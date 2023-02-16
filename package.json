@@ -32,6 +32,7 @@
     "crypto-js": "^3.3.0",
     "firebase": "^9.17.1",
     "ionicons": "^6.0.3",
+    "ngx-image-cropper": "^6.3.2",
     "ngx-ionic-image-viewer": "^0.7.5",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

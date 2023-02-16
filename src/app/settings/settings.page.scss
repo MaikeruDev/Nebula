@@ -66,6 +66,10 @@ ion-content{
                 transform: translate(-50%, -50%);  
                 font-size: 10px;
                 height: 2vh; 
+                .hideInput{
+                    position: absolute;
+                    bottom: -100000000px;
+                } 
             } 
         }
         ion-item{
