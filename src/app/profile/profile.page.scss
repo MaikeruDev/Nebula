@@ -84,8 +84,9 @@ ion-content{
                 font-family: 'Lato', sans-serif;
                 font-weight: 500;
                 margin: 0;
-                padding-top: 5px;
-                padding-left: 20px; 
+                padding-top: 15px;
+                padding-bottom: 3px;
+                padding-left: 22px; 
             }
             p.follow{
                 font-family: 'Lato', sans-serif;
@@ -99,6 +100,15 @@ ion-content{
                     margin-left: 5px;
                 }
             }
+            p.joined{
+              font-family: 'Lato', sans-serif;
+              font-weight: 500;
+              margin: 0;
+              padding-top: 5px;
+              padding-left: 25px; 
+              color: rgb(83, 83, 83); 
+              font-size: 13px;
+          }
         } 
     }
     ion-list{ 
