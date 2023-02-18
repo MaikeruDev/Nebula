@@ -1,19 +1,22 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ApiService } from '../services/api.service';
+import { HomePage } from '../home/home.page';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
+  providers: [HomePage]
 })
-export class SettingsPage implements OnInit {
 
+export class SettingsPage implements OnInit {
+ 
   user: any = []; 
 
   profilePictureImageChangedEvent: string = '';
@@ -25,13 +28,13 @@ export class SettingsPage implements OnInit {
 
   changeSettingsForm: FormGroup;
 
-  constructor(private api: ApiService, private location: Location, private auth: AuthService, private nav: NavController, private userService: UserService) {
+  constructor(private feed: HomePage, private api: ApiService, private location: Location, private auth: AuthService, private nav: NavController, private userService: UserService) {
     this.changeSettingsForm = new FormGroup({
       username: new FormControl<string | null>('', [Validators.required, Validators.minLength(3)]), 
       handle: new FormControl<string | null>('', [Validators.required, Validators.minLength(3)]),
       bio: new FormControl<string | null>(''),
     });
-   }
+   } 
 
    get username() {return this.changeSettingsForm.get('username');} 
    get handle() {return this.changeSettingsForm.get('handle');} 
@@ -56,9 +59,9 @@ export class SettingsPage implements OnInit {
     });
   }
 
-  cancelSettings(){ 
-    this.nav.back();
-  }
+  async cancelSettings(){ 
+    this.nav.back(); 
+  } 
 
   editProfilePicture(event: any){ 
     this.editPfp = true   
@@ -95,8 +98,10 @@ export class SettingsPage implements OnInit {
   } 
 
   saveSettings(){ 
+    if(this.changeSettingsForm.valid)
     this.api.updateProfileSettings({Bio: this.changeSettingsForm.value.bio, Handle: this.changeSettingsForm.value.handle, Username: this.changeSettingsForm.value.username, Banner: this.user.Banner, ProfilePicture: this.user.ProfilePicture}).subscribe(data => {
-      this.nav.back();
+      this.nav.back(); 
+      this.feed.handleRefresh()
     })
   }
 

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
+import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController, ViewWillEnter, ViewDidEnter } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { PostAdapter } from '../adapter/post-adapter';
 import { UserAdapter } from '../adapter/user-adapter';
@@ -33,7 +33,7 @@ export class HomePage implements OnInit {
       nav?.classList.remove("toolbar-shadow");
     }
   };
-  
+   
   ngOnInit(): void { 
     this.fetchPosts(0);
     this.getRandomUsers(3);
@@ -56,7 +56,7 @@ export class HomePage implements OnInit {
 
   }
 
-  async handleRefresh(event?: any) {
+  async handleRefresh(event?: any) { 
     this.refreshing = true;
     this.no_posts = true;
     this.counter_skip = 0;

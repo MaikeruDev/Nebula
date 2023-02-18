@@ -8,6 +8,7 @@ import { SettingsPageRoutingModule } from './settings-routing.module';
 
 import { SettingsPage } from './settings.page';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { HomePageModule } from '../home/home.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     IonicModule,
     SettingsPageRoutingModule,
     ReactiveFormsModule,
-    ImageCropperModule
+    ImageCropperModule,
+    HomePageModule
   ],
   declarations: [SettingsPage]
 })
