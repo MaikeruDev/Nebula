@@ -39,12 +39,7 @@ const routes: Routes = [
     data: {
       roles: ['admin']
     }
-  },
-  {
-    path: 'new-post',
-    loadChildren: () => import('./modal/new-post/new-post.module').then( m => m.NewPostPageModule)
-  },
-
+  },  
 
 ];
 
