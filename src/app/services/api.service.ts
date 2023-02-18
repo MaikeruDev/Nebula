@@ -37,9 +37,14 @@ export class ApiService {
     return this.http.post<any>(api_url + '/posts/getOwnPosts', {skip: skip}, { headers: this.getHeader()})
   }
 
-  newPost(obj: any) {   
- 
+  newPost(obj: any) {    
     return this.http.post<any>(api_url + '/posts/newPost', obj, { headers: this.getHeader().append('Content-Type', '; multipart/form-data; charset=utf-8') })
+  }
+
+  updateProfileSettings(obj: any){
+    return this.http.post<any>(api_url + '/user/updateProfileSettings', obj, { headers: this.getHeader()}).pipe(
+      map(data => data.data)
+    );
   }
 
   register(obj: any): Observable<any> {

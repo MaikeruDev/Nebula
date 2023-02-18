@@ -1,16 +1,27 @@
 <ion-header class="ion-no-border">
   <ion-toolbar> 
     <ion-buttons slot="start">
-      <ion-button (click)="cancelSettings()" mode="ios">Cancel</ion-button>
+      <ion-button *ngIf="!editPfp && !editBanner" (click)="cancelSettings()" mode="ios">Cancel</ion-button>
+      <ion-button *ngIf="editPfp || editBanner" (click)="cancelCrop()" mode="ios">Cancel</ion-button>
     </ion-buttons>
     <ion-title class="ion-text-center">Settings</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="checkSettings()" color="primary" class="done-button" mode="ios">Save</ion-button>
+      <ion-button *ngIf="!editPfp && !editBanner" (click)="saveSettings()" color="primary" class="done-button" mode="ios">Save</ion-button>
+      <ion-button *ngIf="editPfp && croppedImage" (click)="uploadProfilePicture()" color="primary" class="done-button" mode="ios">Save</ion-button>
+      <ion-button *ngIf="editBanner && croppedImage" (click)="uploadBanner()" color="primary" class="done-button" mode="ios">Save</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content > 
+<ion-content *ngIf="editPfp" class="crop-content"> 
+  <image-cropper backgroundColor="white" [imageChangedEvent]="profilePictureImageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="1 / 1" format="png" [resizeToWidth]="512" (imageCropped)="imageCropped($event)"></image-cropper>
+</ion-content>
+
+<ion-content *ngIf="editBanner" class="crop-content"> 
+  <image-cropper backgroundColor="white" [imageChangedEvent]="bannerImageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="3 / 1" format="png" [resizeToWidth]="1200" (imageCropped)="imageCropped($event)"></image-cropper>
+</ion-content>
+
+<ion-content *ngIf="!editPfp && !editBanner"> 
     <!-- Profile Settings -->
     <ion-list>
       <ion-list-header>
@@ -19,8 +30,11 @@
 
       <ion-item lines="none"> 
         <ion-button>
-          Edit
-        </ion-button> 
+          <label for="image-input-banner">
+            Edit
+          </label> 
+          <input (change)="editBannerPicture($event)" type="file" name="file-input" id="image-input-banner" class="hideInput" accept="image/png, image/jpeg"/>      
+        </ion-button>  
         <img style="width: 100%; height: 100%;" src="{{user?.Banner}}" alt="">
       </ion-item> 
 
@@ -29,9 +43,9 @@
           <label for="image-input">
             Edit
           </label> 
-          <input (change)="pfpChangeEvent($event)" type="file" name="file-input" id="image-input" class="hideInput" accept="image/png, image/jpeg"/>      
-        </ion-button> 
-        <img src="{{resizedPP}}">
+          <input (change)="editProfilePicture($event)" type="file" name="file-input" id="image-input" class="hideInput" accept="image/png, image/jpeg"/>      
+        </ion-button>  
+        <img src="{{ user?.ProfilePicture }}">
       </ion-avatar> 
       <form [formGroup]="changeSettingsForm">
         <ion-item lines="none" class="lesser-margin-top">

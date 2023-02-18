@@ -49,6 +49,7 @@ ion-content{
         }
         ion-title{
             font-family: 'Lato', sans-serif;
+            font-weight: 800;
         }
         ion-avatar{
             background: white;
@@ -82,6 +83,10 @@ ion-content{
                 opacity: 1;
                 width: 70px;
                 height: 30px;
+                .hideInput{
+                    position: absolute;
+                    bottom: -100000000px;
+                } 
             }
             img{
                 opacity: 0.5;
@@ -106,3 +111,14 @@ ion-content{
     }
 }
 
+ion-content.crop-content{
+    --padding-top: 100px;
+    image-cropper{
+        width: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-height: 90%;
+    }
+} 
