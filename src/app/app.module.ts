@@ -9,16 +9,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SharedComponent } from './components/components.module';
+
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot({mode: "md", navAnimation: iosTransitionAnimation, swipeBackEnabled: false}), AppRoutingModule, HttpClientModule, ReactiveFormsModule],
+  imports: [SharedComponent, BrowserModule, IonicModule.forRoot({mode: "md", navAnimation: iosTransitionAnimation, swipeBackEnabled: false}), AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
-
-
-
-
-
