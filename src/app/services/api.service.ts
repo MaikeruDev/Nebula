@@ -47,7 +47,7 @@ export class ApiService {
 
   updateProfileSettings(obj: any){
     return this.http.post<any>(api_url + '/user/updateProfileSettings', obj, { headers: this.getHeader()}).pipe(
-      map(data => data.data)
+      map(data => data)
     );
   }
 
