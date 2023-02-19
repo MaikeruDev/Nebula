@@ -16,7 +16,7 @@ export class UserAdapter implements Adapter<User> {
     return new User(
       item.ID, item.Email, item.Username, item.Handle, item.ProfilePicture,
       item.Banner, item.Bio,
-      item.SignUpDate, item?.relationships_relationships_FollowerIDTousers?.length, item?.relationships_relationships_FollowedIDTousers?.length
+      item.SignUpDate, item?.relationships_relationships_FollowerIDTousers?.length, item?.relationships_relationships_FollowedIDTousers?.length, item?.Following
     );
   }
 }

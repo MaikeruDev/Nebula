@@ -13,6 +13,7 @@ export class User {
   public SignUpDate: Date;
   public Following: number;
   public Followers: number;
+  public Self_Following: boolean;
 
   constructor(
     id: number,
@@ -24,7 +25,8 @@ export class User {
     bio: string,
     creationDate: Date,
     following: number,
-    followers: number
+    followers: number,
+    self_following: boolean,
   ) {
     this.ID = id;
     this.Email = email;
@@ -36,5 +38,6 @@ export class User {
     this.SignUpDate = creationDate; 
     this.Following = following;
     this.Followers = followers;
+    this.Self_Following = self_following;
   }
 }
