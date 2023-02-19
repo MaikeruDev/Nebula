@@ -3,19 +3,21 @@ ion-tab-button {
     --color-selected: var(--ion-color-primary);
 }
 
-ion-tab-bar { 
-  padding-bottom: 0;
+ion-tab-bar {  
+    border: none;
+    padding-bottom: 0;
     opacity: 1;
     position: absolute;
     top: 0%;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%); 
     width: 100%;
     --background: rgb(255, 255, 255);
-    box-shadow: 0px 0px 12px -5px black;
+    box-shadow: 0px 0px 12px -7px black;
   
     ion-tab-button {
       --background: transparent;
+      --ripple-color: transparent;
     }
   }
 
