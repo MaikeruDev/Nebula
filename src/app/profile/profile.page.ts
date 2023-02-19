@@ -44,7 +44,7 @@ export class ProfilePage implements OnInit {
     this.counter_skip = 0;
     this.posts = [];
     this.fetchPosts(0).then(() => {
-      if(event) event.target.complete();        //Stop the loading animation when the reload is done 
+      if(event) event.target.complete();
     });
   };
 
