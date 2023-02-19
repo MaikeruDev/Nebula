@@ -1,6 +1,7 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit } from '@angular/core';
 import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController, ViewWillEnter, ViewDidEnter, NavController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
+import { debounceTime, first, Subject, Subscription } from 'rxjs';
 import { PostAdapter } from '../adapter/post-adapter';
 import { UserAdapter } from '../adapter/user-adapter';
 import { NewPostPageModule } from '../modal/new-post/new-post.module';
@@ -49,10 +50,13 @@ export class HomePage implements OnInit {
       }, 500)
     }); 
 
-  }
+  } 
 
+  test = new Subject()
+ 
   like_change(post: Post){
-
+    if(post.Liked) post.Liked = false;
+    else post.Liked = true;
   }
 
   async handleRefresh(event?: any) { 
@@ -76,8 +80,7 @@ export class HomePage implements OnInit {
   async fetchPosts(skip: number){ 
     this.api.getPosts(skip).subscribe(async (data: any) => {   //Get Posts from API
       data.data.forEach((post: Post) => { 
-        this.posts.push(this.postAdapter.adapt(post))
-        console.log(this.postAdapter.adapt(post))
+        this.posts.push(this.postAdapter.adapt(post)) 
       });    
       if (this.posts.length == 0) this.no_posts = true //If User has no posts, show suggestions
       else {
