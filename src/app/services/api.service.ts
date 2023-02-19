@@ -5,6 +5,7 @@ import { UserAdapter } from '../adapter/user-adapter';
 import { User } from '../models/user';
 import { StorageService } from './storage.service';
 import { CryptoService } from './crypto.service'; 
+import { Post } from '../models/post';
 
 const api_url = "https://michael.prietl.com:3100" 
 
@@ -43,6 +44,14 @@ export class ApiService {
 
   newPost(obj: any) {    
     return this.http.post<any>(api_url + '/posts/newPost', obj, { headers: this.getHeader().append('Content-Type', '; multipart/form-data; charset=utf-8') })
+  }
+
+  likePost(post: Post){
+    return this.http.post<any>(api_url + '/posts/likePost', post, { headers: this.getHeader().append('Content-Type', '; multipart/form-data; charset=utf-8') })
+  }
+
+  unlikePost(post: Post){
+    return this.http.post<any>(api_url + '/posts/unlikePost', post, { headers: this.getHeader().append('Content-Type', '; multipart/form-data; charset=utf-8') })
   }
 
   updateProfileSettings(obj: any){

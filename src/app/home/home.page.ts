@@ -54,9 +54,17 @@ export class HomePage implements OnInit {
 
   test = new Subject()
  
-  like_change(post: Post){
-    if(post.Liked) post.Liked = false;
-    else post.Liked = true;
+  like_change(post: Post, index: number){
+    if(post.Liked){
+      this.posts[index].Liked = false
+      this.posts[index].Likes.splice(0, 1)
+      this.api.unlikePost(post).subscribe()
+    } 
+    else {
+      this.posts[index].Liked = true
+      this.posts[index].Likes.push({})
+      this.api.likePost(post).subscribe()
+    }
   }
 
   async handleRefresh(event?: any) { 
