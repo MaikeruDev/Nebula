@@ -5,7 +5,7 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: '',
     component: TabsPage,
     children: [
       {
@@ -35,14 +35,14 @@ const routes: Routes = [
       },  */
       {
         path: '',
-        redirectTo: '/tabs/feed',
+        redirectTo: '/feed',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/feed',
+    redirectTo: '/feed',
     pathMatch: 'full'
   }
 ];
