@@ -186,12 +186,20 @@ ion-content{
                   padding: 0 20px 0 72px;
                 }
               }
-              img.content{ 
+              /* img.content{ 
                 margin-top: 10px;
                 width: 90%;
                 display: block; 
                 padding: 0 20px 0 72px;
                 padding-bottom: 5px;
+              } */
+              img.content{ 
+                margin-top: 10px;
+                width: 68%;
+                display: block;  
+                padding-bottom: 5px;
+                border-radius: 20px;
+                margin-left: 72px
               }
               ion-grid{ 
                 padding: 0px 15px 40px 72px; 

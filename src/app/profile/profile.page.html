@@ -3,7 +3,8 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <div class="banner">
-    <img (click)="openViewer(user.Banner)" src="{{user?.Banner}}">
+    <img (click)="openViewer(user.Banner)" *ngIf="user?.Banner" src="{{ user?.Banner }}">
+    <img (click)="openViewer(user.Banner)" *ngIf="!user?.Banner" src="http://michael.prietl.com/nebula-logo.png">
   </div>
 
   <ion-avatar class="headerProfilePic">

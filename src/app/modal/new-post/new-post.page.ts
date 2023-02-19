@@ -29,8 +29,10 @@ export class NewPostPage implements OnInit {
   }
 
   async sendMessage(){ 
+    var str = this.textarea_value
+    str = str.replace(/\s{2,}/g, ' ');
     if(this.textarea_value.trim() !== "") this.api.newPost({Text: this.textarea_value, Image: this.resizedImage}).subscribe()
-    return this.modalController.dismiss('confirm');
+    return this.modalController.dismiss('confirm'); 
   }
 
   async openViewer(src: any) {

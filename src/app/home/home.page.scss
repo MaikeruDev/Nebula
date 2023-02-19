@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 @import url('https://fonts.cdnfonts.com/css/chirp-2'); 
 
-ion-header{
+/* ion-header{
   display:none;
   position: absolute;
   background-size: cover;
@@ -45,9 +45,13 @@ ion-header{
       } 
     }
   }
-}
+} */
 
 ion-content{
+  ion-fab{
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
   ion-list{ 
     margin-top: 60px;
     div{  
@@ -124,12 +128,21 @@ ion-content{
             padding: 0 20px 0 72px;
           }
         }
-        img.content{ 
+        /* img.content{  OLD IMG
           margin-top: 10px;
           width: 90%;
           display: block; 
           padding: 0 20px 0 72px;
           padding-bottom: 5px;
+          border-radius: 50px;
+        } */
+        img.content{ 
+          margin-top: 10px;
+          width: 68%;
+          display: block;  
+          padding-bottom: 5px;
+          border-radius: 20px;
+          margin-left: 72px
         }
         ion-grid{ 
           padding: 0px 38px 0px 60px; 
