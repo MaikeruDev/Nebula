@@ -37,6 +37,10 @@ export class ApiService {
     return this.http.post<any>(api_url + '/posts/getOwnPosts', {skip: skip}, { headers: this.getHeader()})
   }
 
+  getUsersPosts(skip: any, userID: number){
+    return this.http.post<any>(api_url + '/posts/getUsersPosts', {skip: skip, userID: userID}, { headers: this.getHeader()})
+  }
+
   newPost(obj: any) {    
     return this.http.post<any>(api_url + '/posts/newPost', obj, { headers: this.getHeader().append('Content-Type', '; multipart/form-data; charset=utf-8') })
   }

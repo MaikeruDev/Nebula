@@ -44,7 +44,7 @@
 
   <ion-list *ngIf="posts != []">
     <div *ngFor="let post of posts">
-      <ion-item lines="none"> 
+      <ion-item lines="none" (click)="visitUser(post?.User)"> 
         <ion-avatar slot="start">
           <img src="{{ post?.User?.ProfilePicture }}" (click)="openViewer(post?.User?.ProfilePicture)"/>
         </ion-avatar> 

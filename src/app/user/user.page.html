@@ -1,0 +1,64 @@
+<ion-content> 
+  <ion-refresher style="margin-top: 55px"slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-fab (click)="back()" vertical="top" horizontal="left" class="back">
+    <ion-fab-button>
+      <ion-icon name="arrow-back"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div class="banner">
+    <img (click)="openViewer(user.Banner)" *ngIf="user?.Banner" src="{{ user?.Banner }}">
+    <img (click)="openViewer(user.Banner)" *ngIf="!user?.Banner" src="http://michael.prietl.com/nebula-logo.png">
+  </div>
+
+  <ion-avatar class="headerProfilePic">
+    <img (click)="openViewer(user?.ProfilePicture)" src="{{user?.ProfilePicture}}">
+  </ion-avatar>
+
+  <div class="content">
+    <ion-title>{{ user?.Username }} <ion-badge *ngIf="user?.ID == 1 || user?.ID == 2" color="primary">Dev</ion-badge><ion-badge *ngIf="user?.ID == 1 || user?.ID == 2" style="background-color: #007e84">Pro</ion-badge><ion-badge *ngIf="user?.ID == 1 || user?.ID == 2" style="background-color: #000000">Day One</ion-badge></ion-title> 
+    <ion-text>
+      <p class="handle">@{{ user?.Handle }}</p>
+    </ion-text> 
+    <ion-text>
+      <p class="bio">{{ user?.Bio }}</p>
+    </ion-text> 
+    <ion-text>
+      <p class="follow"><b>{{ user?.Following }}</b> Following ·<b>{{ user?.Followers }}</b> Followers</p>
+      <p class="joined">Joined {{ user?.SignUpDate | date: 'd. MMMM yyyy'}}</p>
+    </ion-text> 
+  </div>
+   
+  <ion-list>
+    <div *ngFor="let post of posts">
+      <ion-item lines="none"> 
+        <ion-avatar slot="start">
+          <img src="{{ post?.User?.ProfilePicture }}" (click)="openViewer(post?.User?.ProfilePicture)"/>
+        </ion-avatar> 
+        <ion-item lines="none" class="ion-no-padding">
+          <h1>{{ post?.User?.Username }}</h1>
+          <h2>@{{ post?.User?.Handle }}</h2> 
+          <h3> · {{ post?.DateCreated | date: 'dd.MM.yy'}}</h3>
+          <ion-icon slot="end" name="ellipsis-horizontal-outline"></ion-icon> 
+        </ion-item> 
+      </ion-item>  
+      <div>
+        <ion-text><p>{{ post?.Text }}</p></ion-text>
+        <img class="content" *ngIf="post?.Image?.trim()" (click)="openViewer(post?.Image)" src="{{ post?.Image }}">
+        <ion-grid fixed class="ion-no-padding">
+          <ion-row>
+            <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="heart-outline"></ion-icon>{{ post?.Likes?.length }}</ion-button></ion-col>
+            <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="chatbox-outline"></ion-icon>{{ post?.Comments?.length }}</ion-button></ion-col>
+            <ion-col size="4" id="share"><ion-button expand="full" fill=""><ion-icon slot="start" name="share-outline"></ion-icon></ion-button></ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll> 
+</ion-content>

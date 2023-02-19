@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController, ViewWillEnter, ViewDidEnter } from '@ionic/angular';
+import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController, ViewWillEnter, ViewDidEnter, NavController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { PostAdapter } from '../adapter/post-adapter';
 import { UserAdapter } from '../adapter/user-adapter';
@@ -19,13 +19,13 @@ export class HomePage implements OnInit {
 
   posts: any = [];
   randomUsers: any = [];
-  
+
   counter_skip: number = 0;
 
   no_posts: boolean = false;
   refreshing: boolean = false;
   
-  constructor(private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
+  constructor(private nav: NavController, private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
  
   ngOnInit(): void { 
     this.fetchPosts(0);
@@ -93,6 +93,14 @@ export class HomePage implements OnInit {
     });
 
     return await modal.present();
+  }
+
+  visitUser(user: User){
+    this.nav.navigateForward('/user', {
+      state: {
+        user: user
+      }
+    })
   }
 
   onIonInfinite(ev: Event) {
