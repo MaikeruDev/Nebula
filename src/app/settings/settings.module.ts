@@ -17,8 +17,7 @@ import { HomePageModule } from '../home/home.module';
     IonicModule,
     SettingsPageRoutingModule,
     ReactiveFormsModule,
-    ImageCropperModule,
-    HomePageModule
+    ImageCropperModule
   ],
   declarations: [SettingsPage]
 })
