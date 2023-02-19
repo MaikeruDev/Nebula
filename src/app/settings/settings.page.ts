@@ -40,13 +40,7 @@ export class SettingsPage implements OnInit {
    get username() {return this.changeSettingsForm.get('username');} 
    get handle() {return this.changeSettingsForm.get('handle');} 
    get bio() {return this.changeSettingsForm.get('bio');} 
-
-   login_confirm() {  
-    if (this.changeSettingsForm.valid) { 
-      console.log("pensi");
-    }
-  } 
-
+ 
   async ngOnInit() {
     await this.userService.getCurrentUser().subscribe(user => {
       this.user = user;
@@ -54,8 +48,7 @@ export class SettingsPage implements OnInit {
       try{
         this.changeSettingsForm.setValue({username: user?.Username, handle: user?.Handle, bio: user?.Bio});
       }
-      catch(err){
-        console.log("Everything works fine.");
+      catch(err){ 
       }
     });
   }

@@ -25,6 +25,7 @@ export class SearchPage implements OnInit {
     this.api.getRandomUsers(amount).subscribe(async (data: any) => {
       data.data.forEach((user: User) => { 
         this.randomUsers.push(this.userAdapter.adapt(user))
+        console.log(this.userAdapter.adapt(user))
       });
     });
   }
@@ -33,8 +34,7 @@ export class SearchPage implements OnInit {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
-  visitUser(user: User){
-    console.log(user)
+  visitUser(user: User){ 
     this.nav.navigateForward('/user', {
       state: {
         user: user

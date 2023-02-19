@@ -26,8 +26,7 @@ export class UserPage implements OnInit {
 
   constructor(private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, public router: Router, private nav: NavController, private modalController: ModalController) {
     if (router.getCurrentNavigation()?.extras.state) { 
-      this.user = this.router.getCurrentNavigation().extras.state.user
-      console.log(this.user)
+      this.user = this.router.getCurrentNavigation().extras.state.user 
     }
     else{
       this.nav.back()
