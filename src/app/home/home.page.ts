@@ -100,7 +100,7 @@ export class HomePage implements OnInit {
   visitUser(user: User){
     this.nav.navigateForward('/user', {
       state: {
-        user: user
+        user: this.userAdapter.adapt(user)
       }
     })
   }

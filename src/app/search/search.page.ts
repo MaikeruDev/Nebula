@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { UserAdapter } from '../adapter/user-adapter'; 
 import { User } from '../models/user';
 import { ApiService } from '../services/api.service';
@@ -10,7 +11,7 @@ import { ApiService } from '../services/api.service';
 })
 export class SearchPage implements OnInit {
 
-  constructor(private api: ApiService, private userAdapter: UserAdapter) { }
+  constructor(private nav: NavController, private api: ApiService, private userAdapter: UserAdapter) { }
 
   users: any = [];
   randomUsers: any = [];
@@ -30,6 +31,15 @@ export class SearchPage implements OnInit {
 
   async delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
+  visitUser(user: User){
+    console.log(user)
+    this.nav.navigateForward('/user', {
+      state: {
+        user: user
+      }
+    })
   }
 
   async onSearchChange(event: any){

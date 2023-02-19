@@ -7,7 +7,7 @@
 <ion-content>
   <ion-list *ngIf="users.length > 0" id="userList"> 
     <div *ngFor="let user of users">
-      <ion-item lines="none"> 
+      <ion-item lines="none" (click)="visitUser(user)"> 
         <ion-avatar slot="start">
           <img src="{{ user?.ProfilePicture }}"/>
         </ion-avatar>
@@ -26,7 +26,7 @@
   <ion-list *ngIf="users.length == 0 && noUserFound == false && randomUsers != []" id="suggestions">
     <ion-title>Follow</ion-title>
     <div *ngFor="let user of randomUsers">
-      <ion-item lines="none"> 
+      <ion-item lines="none" (click)="visitUser(user)">  <!-- FIX FOLLOW ANZAHL -->
         <ion-avatar slot="start">
           <img src="{{ user?.ProfilePicture }}"/>
         </ion-avatar>
