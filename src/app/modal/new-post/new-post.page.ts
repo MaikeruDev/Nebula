@@ -71,7 +71,7 @@ export class NewPostPage implements OnInit {
       image.src = reader.result as string;
       this.image = reader.result;
       image.onload = async() => {
-        this.compressImage(this.image, (image.width / image.width) * 512, (image.height / image.width) * 512).then(compressed => {
+        this.compressImage(this.image, (image.width / image.width) * 1024, (image.height / image.width) * 1024).then(compressed => {
           this.resizedImage = compressed;
         })
       }

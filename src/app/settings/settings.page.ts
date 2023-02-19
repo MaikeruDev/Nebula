@@ -7,6 +7,7 @@ import { UserService } from '../services/user.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ApiService } from '../services/api.service';
 import { HomePage } from '../home/home.page';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-settings',
@@ -28,13 +29,13 @@ export class SettingsPage implements OnInit {
 
   changeSettingsForm: FormGroup;
 
-  constructor(private feed: HomePage, private api: ApiService, private location: Location, private auth: AuthService, private nav: NavController, private userService: UserService) {
+  constructor(private alert: AlertService, private feed: HomePage, private api: ApiService, private location: Location, private auth: AuthService, private nav: NavController, private userService: UserService) {
     this.changeSettingsForm = new FormGroup({
       username: new FormControl<string | null>('', [Validators.required, Validators.minLength(3)]), 
       handle: new FormControl<string | null>('', [Validators.required, Validators.minLength(3)]),
       bio: new FormControl<string | null>(''),
     });
-   } 
+   }  
 
    get username() {return this.changeSettingsForm.get('username');} 
    get handle() {return this.changeSettingsForm.get('handle');} 
@@ -99,11 +100,17 @@ export class SettingsPage implements OnInit {
 
   saveSettings(){ 
     if(this.changeSettingsForm.valid)
-    this.api.updateProfileSettings({Bio: this.changeSettingsForm.value.bio, Handle: this.changeSettingsForm.value.handle, Username: this.changeSettingsForm.value.username, Banner: this.user.Banner, ProfilePicture: this.user.ProfilePicture}).subscribe(data => {
-      this.nav.back();  
+    this.api.updateProfileSettings({Bio: this.changeSettingsForm.value.bio, Handle: this.changeSettingsForm.value.handle.replaceAll(' ', ''), Username: this.changeSettingsForm.value.username, Banner: this.user.Banner, ProfilePicture: this.user.ProfilePicture}).subscribe(data => {
+      
+      if(data.status == "Error"){
+        this.alert.ok("Error", data.errors)
+      }
+      else{
+        this.nav.back();  
+      }
+      
     })
-  }
-
+  } 
 
   async logout(){
     this.auth.logout();

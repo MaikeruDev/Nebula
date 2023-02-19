@@ -3,6 +3,10 @@
 @import url('https://fonts.cdnfonts.com/css/chirp-2'); 
 
 ion-content{
+    ion-fab.new{
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
     ion-fab.back{
         left: 20px;
         top: 20px;
@@ -41,7 +45,7 @@ ion-content{
         --border-radius: 50%; 
     }
     div.banner{
-      margin-top: 57px;
+      margin-top: 56px;
         width: 100%;  
         img{
             width: 100%; 
@@ -159,6 +163,12 @@ ion-content{
                   margin-bottom: 0px; 
                   margin-left: 4px;
                 } 
+                ion-icon.ellipsis{
+                  position: absolute;
+                  right: -5px;
+                  top: 6px;
+                  font-size: 18px;
+                }
               }
               ion-avatar{
                 margin-right: 8px;
