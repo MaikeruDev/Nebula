@@ -46,12 +46,7 @@ const routes: Routes = [
     data: {
       roles: ['user', 'admin']
     }
-  },  {
-    path: 'test',
-    loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
-  },
-
- 
+  }, 
 
 ];
 
