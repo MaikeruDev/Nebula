@@ -40,11 +40,13 @@ export class HomePage implements OnInit {
     await modal.present()
 
     modal.onWillDismiss().then((data) => { 
-      this.refreshing = true;
-      this.no_posts = true;
-      this.counter_skip = 0;
-      this.posts = [];
-      this.fetchPosts(0)
+      setTimeout(() => { 
+        this.refreshing = true;
+        this.no_posts = true;
+        this.counter_skip = 0;
+        this.posts = [];
+        this.fetchPosts(0)
+      }, 500)
     }); 
 
   }

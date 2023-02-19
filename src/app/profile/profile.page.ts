@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { PostAdapter } from '../adapter/post-adapter';
+import { NewPostPage } from '../modal/new-post/new-post.page';
 import { Post } from '../models/post';
 import { User } from '../models/user';
 import { ApiService } from '../services/api.service';
@@ -76,6 +77,25 @@ export class ProfilePage implements OnInit {
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
+  }
+
+  async newPost(){
+    const modal = await this.modalController.create({
+      component: NewPostPage,  
+    });
+
+    await modal.present()
+
+    modal.onWillDismiss().then((data) => { 
+      setTimeout(() => { 
+        this.refreshing = true;
+        this.no_posts = true;
+        this.counter_skip = 0;
+        this.posts = [];
+        this.fetchPosts(0)
+      }, 500)
+    }); 
+
   }
 
   async logout(){
