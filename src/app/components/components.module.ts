@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-import { PostComponent } from './post/post.component';
+import { FollowSuggestionComponent } from './follow-suggestion/follow-suggestion.component';
 
 @NgModule({
   imports: [
@@ -12,8 +12,8 @@ import { PostComponent } from './post/post.component';
     IonicModule,   
   ],
   exports: [
-    PostComponent
+    FollowSuggestionComponent
   ],
-  declarations: [PostComponent],
+  declarations: [FollowSuggestionComponent],
 })
 export class ComponentsModule {}

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PostComponent } from './post.component';
+import { FollowSuggestionComponent } from './follow-suggestion.component';
 
-describe('PostComponent', () => {
-  let component: PostComponent;
-  let fixture: ComponentFixture<PostComponent>;
+describe('FollowSuggestionComponent', () => {
+  let component: FollowSuggestionComponent;
+  let fixture: ComponentFixture<FollowSuggestionComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostComponent ],
+      declarations: [ FollowSuggestionComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PostComponent);
+    fixture = TestBed.createComponent(FollowSuggestionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

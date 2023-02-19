@@ -1,0 +1,17 @@
+<ion-title>Follow</ion-title>
+<div *ngFor="let user of randomUsers">
+  <ion-item lines="none" (click)="visitUser(user)">  <!-- FIX FOLLOW ANZAHL -->
+    <ion-avatar slot="start">
+      <img src="{{ user?.ProfilePicture }}"/>
+    </ion-avatar>
+    <ion-title>{{ user.Username }}</ion-title>
+    <ion-text>@{{ user.Handle }}</ion-text>
+    <ion-button *ngIf="user.Followers == 0" fill="solid" expand="block" shape="round">
+      Follow
+    </ion-button>
+    <ion-button *ngIf="user.Followers == 1" fill="outline" expand="block" shape="round">
+      Followed
+    </ion-button>
+  </ion-item>  
+  <ion-text><p>{{ user.Bio }}</p></ion-text>
+</div>
