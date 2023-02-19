@@ -34,10 +34,13 @@
                 "glob": "_redirects",
                 "input": "src/",
                 "output": "./"
-              }
+              },
+              "src/manifest.webmanifest"
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss"],
-            "scripts": []
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -119,7 +122,8 @@
                 "glob": "_redirects",
                 "input": "src/",
                 "output": "./"
-              }
+              },
+              "src/manifest.webmanifest"
             ],
             "styles": ["src/theme/variables.scss", "src/global.scss"],
             "scripts": []
