@@ -1,10 +1,9 @@
 import { Component, EventEmitter, HostListener, OnInit } from '@angular/core';
 import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController, ViewWillEnter, ViewDidEnter, NavController } from '@ionic/angular';
-import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
-import { debounceTime, first, Subject, Subscription } from 'rxjs';
+import { ViewerModalComponent } from 'ngx-ionic-image-viewer'; 
 import { PostAdapter } from '../adapter/post-adapter';
 import { UserAdapter } from '../adapter/user-adapter';
-import { NewPostPageModule } from '../modal/new-post/new-post.module';
+import { NewPostPageModule } from '../modal/new-post/new-post.module'; // Needed
 import { NewPostPage } from '../modal/new-post/new-post.page';
 import { Post } from '../models/post';
 import { User } from '../models/user';
@@ -28,6 +27,36 @@ export class HomePage implements OnInit {
   
   constructor(private nav: NavController, private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
  
+  ionViewDidEnter() {
+    if(this.posts.length < 1){
+      return
+    }
+
+    var temp_posts: any[] = []
+    
+    this.api.getOwnPosts(0).subscribe((data: any) => {  
+      data.data.forEach((post: Post) => { 
+        temp_posts.push(this.postAdapter.adapt(post))  
+      });   
+      // Update the original array with the updated values
+      this.posts = this.posts.map((obj: any, index: any) => { 
+        console.log(obj)
+        // Compare each property of the object with the corresponding property of the updated object
+        // If the property is different, set the new value, otherwise keep the original value
+        return { 
+          ...obj,
+          Comments: obj.Comments === temp_posts[index].Comments ? obj.Comments : temp_posts[index].Comments,
+          Likes: obj.Likes === temp_posts[index].Likes ? obj.Likes : temp_posts[index].Likes,
+          Liked: obj.Liked === temp_posts[index].Liked ? obj.Liked : temp_posts[index].Liked,
+        };
+      });
+    })  
+  }
+
+  trackByFn(index: any, item: any) {
+    return item.ID; // return a unique identifier for each item in the array
+  }
+
   ngOnInit(): void { 
     this.fetchPosts(0);
     this.getRandomUsers(3);
@@ -50,9 +79,7 @@ export class HomePage implements OnInit {
       }, 500)
     }); 
 
-  } 
-
-  test = new Subject()
+  }  
  
   like_change(post: Post, index: number){
     if(post.Liked){

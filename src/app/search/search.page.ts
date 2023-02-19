@@ -24,8 +24,7 @@ export class SearchPage implements OnInit {
   getRandomUsers(amount: number){
     this.api.getRandomUsers(amount).subscribe(async (data: any) => {
       data.data.forEach((user: User) => { 
-        this.randomUsers.push(this.userAdapter.adapt(user))
-        console.log(this.userAdapter.adapt(user))
+        this.randomUsers.push(this.userAdapter.adapt(user)) 
       });
     });
   }

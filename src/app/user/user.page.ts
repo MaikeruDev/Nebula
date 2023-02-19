@@ -55,6 +55,19 @@ export class UserPage implements OnInit {
     }) 
   }
 
+  like_change(post: Post, index: number){
+    if(post.Liked){
+      this.posts[index].Liked = false
+      this.posts[index].Likes.splice(0, 1)
+      this.api.unlikePost(post).subscribe()
+    } 
+    else {
+      this.posts[index].Liked = true
+      this.posts[index].Likes.push({})
+      this.api.likePost(post).subscribe()
+    }
+  }
+
   onIonInfinite(ev: Event) {
     this.counter_skip += 15;
     this.fetchPosts(this.counter_skip);

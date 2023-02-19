@@ -28,6 +28,36 @@ export class ProfilePage implements OnInit {
 
   constructor(private auth: AuthService, private modalController: ModalController, private userService: UserService, private api: ApiService, private postAdapter: PostAdapter) { }
 
+  ionViewDidEnter() {
+    if(this.posts.length < 1){
+      return
+    }
+
+    var temp_posts: any[] = []
+    
+    this.api.getOwnPosts(0).subscribe((data: any) => {  
+      data.data.forEach((post: Post) => { 
+        temp_posts.push(this.postAdapter.adapt(post))  
+      });   
+      // Update the original array with the updated values
+      this.posts = this.posts.map((obj: any, index: any) => { 
+        console.log(obj)
+        // Compare each property of the object with the corresponding property of the updated object
+        // If the property is different, set the new value, otherwise keep the original value
+        return { 
+          ...obj,
+          Comments: obj.Comments === temp_posts[index].Comments ? obj.Comments : temp_posts[index].Comments,
+          Likes: obj.Likes === temp_posts[index].Likes ? obj.Likes : temp_posts[index].Likes,
+          Liked: obj.Liked === temp_posts[index].Liked ? obj.Liked : temp_posts[index].Liked,
+        };
+      });
+    })  
+  }
+
+  trackByFn(index: any, item: any) {
+    return item.ID; // return a unique identifier for each item in the array
+  }
+
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
       this.user = user;
@@ -69,6 +99,19 @@ export class ProfilePage implements OnInit {
         this.posts.push(this.postAdapter.adapt(post))  
       });   
     }) 
+  }
+
+  like_change(post: Post, index: number){
+    if(post.Liked){
+      this.posts[index].Liked = false
+      this.posts[index].Likes.splice(0, 1)
+      this.api.unlikePost(post).subscribe()
+    } 
+    else {
+      this.posts[index].Liked = true
+      this.posts[index].Likes.push({})
+      this.api.likePost(post).subscribe()
+    }
   }
 
   onIonInfinite(ev: Event) {
