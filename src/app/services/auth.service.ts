@@ -78,7 +78,7 @@ export class AuthService {
         this.updateAuthenticationState(this.decodedUserToken);
         this.userService.fetchUserFromApi(this.getUserFromToken().id);
         modal.dismiss()
-        this.router.navigate(['/feed']);
+        this.router.navigate(['/tabs/feed']);
       }
 
     }),
@@ -96,7 +96,7 @@ export class AuthService {
         this.updateAuthenticationState(this.decodedUserToken);
         this.userService.fetchUserFromApi(this.getUserFromToken().id);
         modal.dismiss()
-        this.router.navigate(['/feed']);
+        this.router.navigate(['/tabs/feed']);
       }
       else {
         this.alert.ok('Ooops', res.errors[0]);
