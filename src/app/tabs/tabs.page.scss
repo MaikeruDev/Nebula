@@ -3,8 +3,9 @@ ion-tab-button {
     --color-selected: var(--ion-color-primary);
 }
 
-ion-tab-bar {
-    opacity: 1;
+ion-tab-bar { 
+  padding-bottom: 0;
+    opacity: 0.7;
     position: absolute;
     top: 0%;
     left: 50%;
