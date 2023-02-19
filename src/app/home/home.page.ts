@@ -19,21 +19,14 @@ export class HomePage implements OnInit {
 
   posts: any = [];
   randomUsers: any = [];
+  
   counter_skip: number = 0;
+
   no_posts: boolean = false;
   refreshing: boolean = false;
   
   constructor(private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
-
-  onScroll(event: any) { 
-    var nav = document.querySelector(".toolbar"); 
-    if(event.detail.currentY>0){
-      nav?.classList.add("toolbar-shadow");
-    }else{
-      nav?.classList.remove("toolbar-shadow");
-    }
-  };
-   
+ 
   ngOnInit(): void { 
     this.fetchPosts(0);
     this.getRandomUsers(3);

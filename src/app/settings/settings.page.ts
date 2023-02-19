@@ -100,8 +100,7 @@ export class SettingsPage implements OnInit {
   saveSettings(){ 
     if(this.changeSettingsForm.valid)
     this.api.updateProfileSettings({Bio: this.changeSettingsForm.value.bio, Handle: this.changeSettingsForm.value.handle, Username: this.changeSettingsForm.value.username, Banner: this.user.Banner, ProfilePicture: this.user.ProfilePicture}).subscribe(data => {
-      this.nav.back(); 
-      this.feed.handleRefresh()
+      this.nav.back();  
     })
   }
 

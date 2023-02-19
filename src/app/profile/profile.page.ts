@@ -17,8 +17,13 @@ import { UserService } from '../services/user.service';
 export class ProfilePage implements OnInit {
 
   user: User;
+
   posts: any = [];
+
   counter_skip: number = 0;  
+
+  refreshing: boolean = false
+  no_posts: boolean = false
 
   constructor(private auth: AuthService, private modalController: ModalController, private userService: UserService, private api: ApiService, private postAdapter: PostAdapter) { }
 
@@ -29,11 +34,17 @@ export class ProfilePage implements OnInit {
     this.fetchPosts(0);
   }
 
-  async handleRefresh(event: any) {
-    setTimeout(() => {
-
-      event.target.complete();
-    }, 1500);
+  async handleRefresh(event?: any) { 
+    this.userService.getCurrentUser().subscribe(user => {
+      this.user = user;
+    });
+    this.refreshing = true;
+    this.no_posts = true;
+    this.counter_skip = 0;
+    this.posts = [];
+    this.fetchPosts(0).then(() => {
+      if(event) event.target.complete();        //Stop the loading animation when the reload is done 
+    });
   };
 
   async openViewer(src: any) {

@@ -60,13 +60,18 @@ ion-content{
             width: 18vw;
             height: 18vw;
             z-index: 999;
+            img{
+                opacity: 0.5;
+                z-index: 800;
+            } 
             ion-button{
+                z-index: 999;
                 position: absolute;
                 top: 90%;
-                left: 50%;
+                left: 45%;
                 transform: translate(-50%, -50%);  
                 font-size: 10px;
-                height: 2vh; 
+                height: 2vh;
                 label{
                     position: relative;
                     padding: 5px 7px 5px 7px;
