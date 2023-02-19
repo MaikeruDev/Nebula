@@ -13,6 +13,6 @@ export class PostAdapter implements Adapter<Post> {
 
   adapt(item: any): Post {  
     return new Post(
-      item.ID, item.AuthorID, item.DateCreated, item.Image, item.Text, item.users, item.likes, item.comments);
+      item.ID, item.AuthorID, item.DateCreated, item.Image, item.Text, item.users, item.likes, item.comments, item.liked);
   }
 }

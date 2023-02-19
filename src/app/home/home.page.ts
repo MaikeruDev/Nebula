@@ -51,6 +51,10 @@ export class HomePage implements OnInit {
 
   }
 
+  like_change(post: Post){
+
+  }
+
   async handleRefresh(event?: any) { 
     this.refreshing = true;
     this.no_posts = true;
@@ -73,6 +77,7 @@ export class HomePage implements OnInit {
     this.api.getPosts(skip).subscribe(async (data: any) => {   //Get Posts from API
       data.data.forEach((post: Post) => { 
         this.posts.push(this.postAdapter.adapt(post))
+        console.log(this.postAdapter.adapt(post))
       });    
       if (this.posts.length == 0) this.no_posts = true //If User has no posts, show suggestions
       else {

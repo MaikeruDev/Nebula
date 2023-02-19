@@ -12,6 +12,7 @@ export class Post {
   public User: User;
   public Likes: Object;
   public Comments: Comment;
+  public Liked: boolean;
 
   constructor(
     ID: number,
@@ -21,7 +22,8 @@ export class Post {
     Text: string, 
     User: User,
     Likes: Object,
-    Comments: Comment
+    Comments: Comment,
+    liked: boolean,
   ) {
     this.ID = ID;
     this.AuthorID = AuthorID;
@@ -29,7 +31,8 @@ export class Post {
     this.Image = Image;
     this.Text = Text;
     this.User = User;
-    this.Likes = Likes
-    this.Comments = Comments
+    this.Likes = Likes;
+    this.Comments = Comments;
+    this.Liked = liked;
   }
 }

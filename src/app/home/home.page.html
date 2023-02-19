@@ -59,7 +59,7 @@
         <img class="content" *ngIf="post?.Image?.trim()" (click)="openViewer(post?.Image)" src="{{ post?.Image }}">
         <ion-grid fixed class="ion-no-padding">
           <ion-row>
-            <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="heart-outline"></ion-icon>{{ post?.Likes?.length }}</ion-button></ion-col>
+            <ion-col size="4"><ion-button (click)="like_change(post)" expand="full" fill=""><ion-icon slot="start" [name]="post?.Liked ? 'heart' : 'heart-outline'" [ngStyle]="post?.Liked ? {'color': 'var(--ion-color-primary)'} : {'color': 'var(--ion-color-dark)'}"></ion-icon>{{ post?.Likes?.length }}</ion-button></ion-col>
             <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="chatbox-outline"></ion-icon>{{ post?.Comments?.length }}</ion-button></ion-col>
             <ion-col size="4" id="share"><ion-button expand="full" fill=""><ion-icon slot="start" name="share-outline"></ion-icon></ion-button></ion-col>
           </ion-row>
