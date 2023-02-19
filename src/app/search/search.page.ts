@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserAdapter } from '../adapter/user-adapter';
+import { UserAdapter } from '../adapter/user-adapter'; 
 import { User } from '../models/user';
 import { ApiService } from '../services/api.service';
 

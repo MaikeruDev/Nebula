@@ -6,15 +6,15 @@ import { IonicModule } from '@ionic/angular';
 
 import { SearchPageRoutingModule } from './search-routing.module';
 
-import { SearchPage } from './search.page';
+import { SearchPage } from './search.page';  
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SearchPageRoutingModule
+    SearchPageRoutingModule,   
   ],
-  declarations: [SearchPage]
+  declarations: [SearchPage],
 })
 export class SearchPageModule {}

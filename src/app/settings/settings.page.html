@@ -28,13 +28,13 @@
         <ion-title class="ion-text-center">Profile Settings</ion-title>
       </ion-list-header>
 
-      <ion-item lines="none"> 
+      <ion-item lines="none">  
         <ion-button>
           <label for="image-input-banner">
             Edit
           </label> 
           <input (change)="editBannerPicture($event)" type="file" name="file-input" id="image-input-banner" class="hideInput" accept="image/png, image/jpeg"/>      
-        </ion-button>  
+        </ion-button>   
         <img style="width: 100%; height: 100%;" src="{{user?.Banner}}" alt="">
       </ion-item> 
 
