@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { UserPageRoutingModule } from './user-routing.module';
 
 import { UserPage } from './user.page';
-import { DebounceClickDirective } from '../directive/debounce-click.directive';
+import { DebounceClickUserDirective } from '../directive/debounce-click-user.directive';
 
 @NgModule({
   imports: [
@@ -16,6 +16,6 @@ import { DebounceClickDirective } from '../directive/debounce-click.directive';
     IonicModule,
     UserPageRoutingModule
   ],
-  declarations: [UserPage, DebounceClickDirective]
+  declarations: [UserPage, DebounceClickUserDirective]
 })
 export class UserPageModule {}

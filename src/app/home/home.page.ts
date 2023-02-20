@@ -16,8 +16,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit, AfterViewInit {
-
+export class HomePage implements OnInit {
   posts: any = [];
   randomUsers: any = [];
 
@@ -30,13 +29,13 @@ export class HomePage implements OnInit, AfterViewInit {
    
     router.events.forEach((event) => {
       if(event instanceof NavigationStart && event.url == "/tabs/feed") { //If our site gets called again
-        this.ngAfterViewInit()                                            //Update Data
+        this.ionViewDidEnter()                                            //Update Data
       }
     });
 
   }
   
-  ngAfterViewInit() { 
+  ionViewDidEnter() { 
     if(this.posts.length < 1){
       return
     }
