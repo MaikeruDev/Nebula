@@ -38,6 +38,7 @@ export class PostPage implements OnInit {
     });
     this.api.getPost(this.PostID, 0).subscribe(post => {
       this.post = this.postAdapter.adapt(post);  
+      console.log(post)
     })
     //this.loadPost(0)  
   }

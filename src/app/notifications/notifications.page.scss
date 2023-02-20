@@ -5,12 +5,27 @@ ion-content{
         margin-top: 56px;
         div{
             ion-item{
+                ion-avatar{
+                    width: 40px;
+                    height: 40px;
+                    img{
+                        width: 40px;
+                        height: 40px;
+                        max-width: unset;
+                    }
+                }
                 ion-text{
                     font-family: 'Lato', sans-serif; 
                     margin-left: 15px;
-                    span{
-                        color: grey;
-                        font-size: 12px;
+                    p{
+                        span.time{
+                            color: grey;
+                            font-size: 12px;
+                        }
+                        span.name{
+                            color: var(--ion-color-primary);
+                            font-weight: 700;
+                        }
                     }
                 }
             }

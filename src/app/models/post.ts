@@ -15,6 +15,7 @@ export class Post {
   public Likes: any[];
   public Comments: any;
   public Liked: boolean;
+  public CommentCount: number;
 
   constructor(
     ID: number,
@@ -26,6 +27,7 @@ export class Post {
     Likes: any[],
     Comments: any,
     liked: boolean,
+    commentsCount: number,
     private userAdapter: UserAdapter,
     private commentAdapter: CommentAdapter
   ) {
@@ -41,5 +43,6 @@ export class Post {
       this.Comments.push(this.commentAdapter.adapt(comment));
     });
     this.Liked = liked;
+    this.CommentCount = commentsCount;
   }
 }

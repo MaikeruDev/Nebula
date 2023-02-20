@@ -26,8 +26,8 @@ export class ApiService {
     return headers;
   }
 
-  getNotifications(): Observable<any> {
-    return this.http.get<any>(api_url + '/user/getNotifications', { headers: this.getHeader()}).pipe(
+  getNotifications(skip: number): Observable<any> {
+    return this.http.post<any>(api_url + '/user/getNotifications', { skip: skip }, { headers: this.getHeader()}).pipe(
       map(data => data.data)
     );
   }

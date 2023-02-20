@@ -1,24 +1,24 @@
 <ion-content>
   <ion-list>
-    <div *ngFor="let notification of notifications">
+    <div *ngFor="let notification of notifications; let i = index;" [attr.data-index]="i">
       <ion-item *ngIf="notification.Type == 'follower'">
-        <ion-avatar>
+        <ion-avatar (click)="visitUser(notification.Sender)">
           <img src="{{ notification.Sender.ProfilePicture }}" />
         </ion-avatar>
-        <ion-text><p>{{ notification.Sender.Handle }} {{ notification.Message }} <br> <span>{{ notification.DateCreated | timeAgo }}</span></p></ion-text>
-        <ion-button *ngIf="!notification.Sender.Self_Following" slot="end" expand="block" fill="clear" shape="round">
+        <ion-text><p><span class="name">{{ notification.Sender.Handle }}</span> {{ notification.Message }} <br> <span class="time">{{ notification.DateCreated | timeAgo }}</span></p></ion-text>
+        <ion-button (click)="follow_change(i)" *ngIf="!notification.Sender.Self_Following" slot="end" expand="block" fill="clear" shape="round">
           Follow
         </ion-button>
-        <ion-button *ngIf="notification.Sender.Self_Following" slot="end" expand="block" fill="clear" shape="round">
+        <ion-button (click)="follow_change(i)" *ngIf="notification.Sender.Self_Following" slot="end" expand="block" fill="clear" shape="round">
           Unfollow
         </ion-button>
       </ion-item>
 
       <ion-item *ngIf="notification.Type == 'like'">
-        <ion-avatar>
+        <ion-avatar (click)="visitUser(notification.Sender)">
           <img src="{{ notification.Sender.ProfilePicture }}" />
         </ion-avatar>
-        <ion-text><p>{{ notification.Sender.Handle }} {{ notification.Message }} <br> <span>{{ notification.DateCreated | timeAgo }}</span></p></ion-text>
+        <ion-text><p><span class="name">{{ notification.Sender.Handle }}</span> {{ notification.Message }} <br> <span class="time">{{ notification.DateCreated | timeAgo }}</span></p></ion-text>
         <ion-button (click)="openPost(notification.PostID)" fill="clear" slot="end">
           <ion-icon slot="end" name="arrow-forward"></ion-icon>
           Show
@@ -26,4 +26,8 @@
       </ion-item>
     </div>
   </ion-list>
+
+  <ion-infinite-scroll *ngIf="!no_notifications" (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll> 
 </ion-content>
