@@ -31,8 +31,7 @@ export class HomePage implements OnInit {
       if(event instanceof NavigationStart && event.url == "/tabs/feed") { //If our site gets called again
         this.ionViewDidEnter()                                            //Update Data
       }
-    });
-
+    }); 
   }
   
   ionViewDidEnter() { 
@@ -64,15 +63,7 @@ export class HomePage implements OnInit {
     return item.ID; // return a unique identifier for each item in the array
   }
 
-  ngOnInit(): void {  
-    this.platform.resume.subscribe((result)=>{
-      console.log("resume")
-    });
-  
-    this.platform.pause.subscribe((result)=>{
-      console.log("pause")
-    });
-
+  ngOnInit(): void {   
     this.fetchPosts(0);
     this.getRandomUsers(3);
   } 

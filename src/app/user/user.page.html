@@ -10,31 +10,31 @@
   </ion-fab>
 
   <div class="banner">
-    <img (click)="openViewer(user.Banner)" *ngIf="user?.Banner" src="{{ user?.Banner }}">
-    <img (click)="openViewer(user.Banner)" *ngIf="!user?.Banner" src="http://michael.prietl.com/nebula-logo.png">
+    <img (click)="openViewer(visit_user.Banner)" *ngIf="visit_user?.Banner" src="{{ visit_user?.Banner }}">
+    <img (click)="openViewer(visit_user.Banner)" *ngIf="!visit_user?.Banner" src="http://michael.prietl.com/nebula-logo.png">
   </div>
 
   <ion-avatar class="headerProfilePic">
-    <img (click)="openViewer(user?.ProfilePicture)" src="{{user?.ProfilePicture}}">
+    <img (click)="openViewer(visit_user?.ProfilePicture)" src="{{visit_user?.ProfilePicture}}">
   </ion-avatar>
 
   <div class="content">
-    <ion-title>{{ user?.Username }} <ion-badge *ngIf="user?.ID == 1 || user?.ID == 2" color="primary">Dev</ion-badge><ion-badge *ngIf="user?.ID == 1 || user?.ID == 2" style="background-color: #007e84">Pro</ion-badge><ion-badge *ngIf="user?.ID == 1 || user?.ID == 2" style="background-color: #000000">Day One</ion-badge></ion-title> 
+    <ion-title>{{ visit_user?.Username }} <ion-badge *ngIf="visit_user?.ID == 1 || visit_user?.ID == 2" color="primary">Dev</ion-badge><ion-badge *ngIf="visit_user?.ID == 1 || visit_user?.ID == 2" style="background-color: #007e84">Pro</ion-badge><ion-badge *ngIf="visit_user?.ID == 1 || visit_user?.ID == 2" style="background-color: #000000">Day One</ion-badge></ion-title> 
     <ion-text>
-      <p class="handle">@{{ user?.Handle }}</p>
+      <p class="handle">@{{ visit_user?.Handle }}</p>
     </ion-text> 
-    <ion-button *ngIf="user?.Self_Following == false" fill="solid" expand="block" shape="round">
+    <ion-button appDebounceClick (debounceClick)="follow_change()" [debounceTime]="500" *ngIf="visit_user?.Self_Following == false && visit_user?.ID != user?.ID" fill="solid" expand="block" shape="round">
       Follow
     </ion-button>
-    <ion-button *ngIf="user?.Self_Following == true" fill="outline" expand="block" shape="round">
+    <ion-button appDebounceClick (debounceClick)="follow_change()" [debounceTime]="500" *ngIf="visit_user?.Self_Following == true && visit_user?.ID != user?.ID" fill="outline" expand="block" shape="round">
       Followed
     </ion-button>
     <ion-text>
-      <p class="bio">{{ user?.Bio }}</p>
+      <p class="bio">{{ visit_user?.Bio }}</p>
     </ion-text> 
     <ion-text>
-      <p class="follow"><b>{{ user?.Following }}</b> Following ·<b>{{ user?.Followers }}</b> Followers</p>
-      <p class="joined">Joined {{ user?.SignUpDate | date: 'd. MMMM yyyy'}}</p>
+      <p class="follow"><b>{{ visit_user?.Following }}</b> Following ·<b>{{ visit_user?.Followers }}</b> Followers</p>
+      <p class="joined">Joined {{ visit_user?.SignUpDate | date: 'd. MMMM yyyy'}}</p>
     </ion-text> 
   </div>
    

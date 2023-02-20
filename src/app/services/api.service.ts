@@ -47,11 +47,11 @@ export class ApiService {
   }
 
   likePost(post: Post){
-    return this.http.post<any>(api_url + '/posts/likePost', post, { headers: this.getHeader().append('Content-Type', '; multipart/form-data; charset=utf-8') })
+    return this.http.post<any>(api_url + '/posts/likePost', post, { headers: this.getHeader()})
   }
 
   unlikePost(post: Post){
-    return this.http.post<any>(api_url + '/posts/unlikePost', post, { headers: this.getHeader().append('Content-Type', '; multipart/form-data; charset=utf-8') })
+    return this.http.post<any>(api_url + '/posts/unlikePost', post, { headers: this.getHeader()})
   }
 
   updateProfileSettings(obj: any){
@@ -68,6 +68,14 @@ export class ApiService {
   login(email: string, password: string): Observable<any>{ 
     password = this.crypto.set(password);  
     return this.http.post<any>(api_url + '/registration/login', { email, password });
+  }
+
+  follow(user: User){
+    return this.http.post<any>(api_url + '/user/follow', user, { headers: this.getHeader()})
+  }
+
+  unfollow(user: User){
+    return this.http.post<any>(api_url + '/user/unfollow', user, { headers: this.getHeader()})
   }
 
   getUserById(id: number): Observable<User> {

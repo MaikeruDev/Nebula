@@ -40,8 +40,7 @@ export class ProfilePage implements OnInit {
         temp_posts.push(this.postAdapter.adapt(post))  
       });   
       // Update the original array with the updated values
-      this.posts = this.posts.map((obj: any, index: any) => { 
-        console.log(obj)
+      this.posts = this.posts.map((obj: any, index: any) => {  
         // Compare each property of the object with the corresponding property of the updated object
         // If the property is different, set the new value, otherwise keep the original value
         return { 
@@ -52,6 +51,10 @@ export class ProfilePage implements OnInit {
         };
       });
     })  
+ 
+    this.userService.getCurrentUser().subscribe(user => {
+      this.user = user;
+    });
   }
 
   trackByFn(index: any, item: any) {

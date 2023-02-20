@@ -9,10 +9,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module'; 
-import { ServiceWorkerModule } from '@angular/service-worker'; 
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { DebounceClickFollowSuggestionDirective } from './directive/debounce-click-follow-suggestion.directive'; 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DebounceClickFollowSuggestionDirective],
   imports: [BrowserModule, IonicModule.forRoot({mode: "md", navAnimation: iosTransitionAnimation, swipeBackEnabled: false}), AppRoutingModule, HttpClientModule, ReactiveFormsModule, ServiceWorkerModule.register('ngsw-worker.js', {
   enabled: !isDevMode(),
   // Register the ServiceWorker as soon as the application is stable

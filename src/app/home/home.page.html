@@ -22,7 +22,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-list *ngIf="no_posts == true && refreshing == false">
+  <ion-list class="follow-suggestion" *ngIf="no_posts == true && refreshing == false">
     <app-follow-suggestion [randomUsers]="randomUsers"></app-follow-suggestion>
   </ion-list>
 

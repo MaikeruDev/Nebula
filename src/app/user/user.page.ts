@@ -7,6 +7,7 @@ import { UserAdapter } from '../adapter/user-adapter';
 import { Post } from '../models/post';
 import { User } from '../models/user';
 import { ApiService } from '../services/api.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -16,6 +17,7 @@ import { ApiService } from '../services/api.service';
 export class UserPage implements OnInit {
 
   user: User
+  visit_user: User
 
   posts: any = []
 
@@ -26,9 +28,9 @@ export class UserPage implements OnInit {
   no_posts: boolean = false;
   refreshing: boolean = false;
 
-  constructor(private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, public router: Router, private nav: NavController, private modalController: ModalController) {
+  constructor(private userService: UserService, private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, public router: Router, private nav: NavController, private modalController: ModalController) {
     if (router.getCurrentNavigation()?.extras.state) { 
-      this.user = this.router.getCurrentNavigation().extras.state.user,
+      this.visit_user = this.router.getCurrentNavigation().extras.state.user,
       this.return_page = this.router.getCurrentNavigation().extras.state.page 
     }
     else{
@@ -37,6 +39,9 @@ export class UserPage implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.getCurrentUser().subscribe(user => {
+      this.user = user;
+    });
     this.fetchPosts(0)
   }
 
@@ -51,7 +56,7 @@ export class UserPage implements OnInit {
   }; 
 
   async fetchPosts(skip: number){
-    this.api.getUsersPosts(skip, this.user.ID).subscribe((data: any) => {  
+    this.api.getUsersPosts(skip, this.visit_user.ID).subscribe((data: any) => {  
       data.data.forEach((post: Post) => { 
         this.posts.push(this.postAdapter.adapt(post))  
       });   
@@ -68,6 +73,17 @@ export class UserPage implements OnInit {
       this.posts[index].Liked = true
       this.posts[index].Likes.push({})
       this.api.likePost(post).subscribe()
+    }
+  }
+
+  follow_change(){
+    if(this.visit_user.Self_Following){
+      this.visit_user.Self_Following = false 
+      this.api.unfollow(this.visit_user).subscribe()
+    } 
+    else {
+      this.visit_user.Self_Following = true 
+      this.api.follow(this.visit_user).subscribe()
     }
   }
 
