@@ -20,17 +20,17 @@ export class TimeAgoPipe implements PipeTransform {
               'week': 604800,
               'day': 86400,
               'hour': 3600,
-              'minute': 60,
-              'second': 1
+              'min': 60,
+              'sec': 1
           };
           let counter;
           for (const i in intervals) {
               counter = Math.floor(seconds / intervals[i]);
               if (counter > 0)
                   if (counter === 1) {
-                      return counter + ' ' + i + ' ago.'; // singular (1 day ago)
+                      return counter + ' ' + i + ''; // singular (1 day ago)
                   } else {
-                      return counter + ' ' + i + 's ago.'; // plural (2 days ago)
+                      return counter + ' ' + i + 's'; // plural (2 days ago)
                   }
           }
         }else { // if it's more than 1 day ago

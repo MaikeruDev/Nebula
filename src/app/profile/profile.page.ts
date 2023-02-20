@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController } from '@ionic/angular';
+import { NavigationStart, Router } from '@angular/router';
+import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController, NavController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { PostAdapter } from '../adapter/post-adapter';
 import { NewPostPage } from '../modal/new-post/new-post.page';
@@ -26,7 +27,13 @@ export class ProfilePage implements OnInit {
   refreshing: boolean = false
   no_posts: boolean = false
 
-  constructor(private auth: AuthService, private modalController: ModalController, private userService: UserService, private api: ApiService, private postAdapter: PostAdapter) { }
+  constructor(private router: Router, private nav: NavController, private auth: AuthService, private modalController: ModalController, private userService: UserService, private api: ApiService, private postAdapter: PostAdapter) {
+    router.events.forEach((event) => {
+      if(event instanceof NavigationStart && event.url == "/tabs/profile") { //If our site gets called again
+        this.ionViewDidEnter()                                              //Update Data
+      }
+    }); 
+  }
 
   ionViewDidEnter() {
     if(this.posts.length < 1){
@@ -57,6 +64,19 @@ export class ProfilePage implements OnInit {
     });
   }
 
+  openPost(event: Event, post: Post){
+    const target = event.target as HTMLElement;
+    console.log(target.className.includes("comment"))
+    if (target.tagName.toLowerCase() === 'img' || target.tagName.toLowerCase() === 'ion-button' && !target.className.includes("comment")) {
+      return;
+    }
+    this.nav.navigateForward('/post', {
+      state: {
+        PostID: post.ID
+      }
+    })
+  }
+  
   trackByFn(index: any, item: any) {
     return item.ID; // return a unique identifier for each item in the array
   }

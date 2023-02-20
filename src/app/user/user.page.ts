@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { InfiniteScrollCustomEvent, ModalController, NavController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { PostAdapter } from '../adapter/post-adapter';
@@ -36,6 +36,40 @@ export class UserPage implements OnInit {
     else{
       this.nav.back() 
     }
+    router.events.forEach((event) => {
+      if(event instanceof NavigationStart && event.url == "/user") {      //If our site gets called again
+        this.ionViewDidEnter()                                            //Update Data
+      }
+    }); 
+  }
+
+  ionViewDidEnter() {
+    if(this.posts.length < 1){
+      return
+    }
+
+    var temp_posts: any[] = []
+    
+    this.api.getUsersPosts(0, this.visit_user.ID).subscribe((data: any) => {  
+      data.data.forEach((post: Post) => { 
+        temp_posts.push(this.postAdapter.adapt(post))  
+      });   
+      // Update the original array with the updated values
+      this.posts = this.posts.map((obj: any, index: any) => {  
+        // Compare each property of the object with the corresponding property of the updated object
+        // If the property is different, set the new value, otherwise keep the original value
+        return { 
+          ...obj,
+          Comments: obj.Comments === temp_posts[index].Comments ? obj.Comments : temp_posts[index].Comments,
+          Likes: obj.Likes === temp_posts[index].Likes ? obj.Likes : temp_posts[index].Likes,
+          Liked: obj.Liked === temp_posts[index].Liked ? obj.Liked : temp_posts[index].Liked,
+        };
+      });
+    })  
+ 
+    this.userService.getCurrentUser().subscribe(user => {
+      this.user = user;
+    });
   }
 
   ngOnInit() {
@@ -74,6 +108,19 @@ export class UserPage implements OnInit {
       this.posts[index].Likes.push({})
       this.api.likePost(post).subscribe()
     }
+  }
+
+  openPost(event: Event, post: Post){
+    const target = event.target as HTMLElement;
+    console.log(target.className.includes("comment"))
+    if (target.tagName.toLowerCase() === 'img' || target.tagName.toLowerCase() === 'ion-button' && !target.className.includes("comment")) {
+      return;
+    }
+    this.nav.navigateForward('/post', {
+      state: {
+        PostID: post.ID
+      }
+    })
   }
 
   follow_change(){
