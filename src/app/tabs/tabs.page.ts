@@ -20,7 +20,7 @@ export class TabsPage implements OnInit {
   constructor(private api: ApiService, private userService: UserService, private auth: AuthService, private nav: NavController, private router: Router) { }
 
   ionTabsDidChange(event: any){ 
-    if(event.tab == "notifications") this.api.hasNewNotifications().subscribe(res => this.notifications = res)
+    /* if(event.tab == "notifications")  */this.api.hasNewNotifications().subscribe(res => this.notifications = res)
   }
 
   ngOnInit() {
