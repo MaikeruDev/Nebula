@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { InfiniteScrollCustomEvent, ModalController, NavController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { PostAdapter } from '../adapter/post-adapter';
-import { UserAdapter } from '../adapter/user-adapter';
+import { UserAdapter } from '../adapter/user-adapter'; 
 import { Post } from '../models/post';
 import { User } from '../models/user';
 import { ApiService } from '../services/api.service';
@@ -19,6 +19,8 @@ export class UserPage implements OnInit {
 
   posts: any = []
 
+  return_page: string;
+
   counter_skip: number = 0;
 
   no_posts: boolean = false;
@@ -26,10 +28,11 @@ export class UserPage implements OnInit {
 
   constructor(private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, public router: Router, private nav: NavController, private modalController: ModalController) {
     if (router.getCurrentNavigation()?.extras.state) { 
-      this.user = this.router.getCurrentNavigation().extras.state.user 
+      this.user = this.router.getCurrentNavigation().extras.state.user,
+      this.return_page = this.router.getCurrentNavigation().extras.state.page
     }
     else{
-      this.nav.back()
+      this.nav.back() 
     }
   }
 
@@ -77,7 +80,7 @@ export class UserPage implements OnInit {
   }
 
   back(){
-    this.nav.back()
+    this.nav.back();
   }
 
   async openViewer(src: any) {

@@ -1,5 +1,6 @@
-import { Component, EventEmitter, HostListener, OnInit } from '@angular/core';
-import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController, ViewWillEnter, ViewDidEnter, NavController } from '@ionic/angular';
+import { AfterViewInit, Component, EventEmitter, HostListener, OnInit } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
+import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController, ViewWillEnter, ViewDidEnter, NavController, Platform } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer'; 
 import { PostAdapter } from '../adapter/post-adapter';
 import { UserAdapter } from '../adapter/user-adapter';
@@ -15,7 +16,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, AfterViewInit {
 
   posts: any = [];
   randomUsers: any = [];
@@ -25,22 +26,29 @@ export class HomePage implements OnInit {
   no_posts: boolean = false;
   refreshing: boolean = false;
   
-  constructor(private nav: NavController, private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {}
- 
-  ionViewDidEnter() {
+  constructor(private router: Router, public platform: Platform, private nav: NavController, private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {
+   
+    router.events.forEach((event) => {
+      if(event instanceof NavigationStart && event.url == "/tabs/feed") { //If our site gets called again
+        this.ngAfterViewInit()                                            //Update Data
+      }
+    });
+
+  }
+  
+  ngAfterViewInit() { 
     if(this.posts.length < 1){
       return
     }
 
     var temp_posts: any[] = []
     
-    this.api.getOwnPosts(0).subscribe((data: any) => {  
+    this.api.getPosts(0).subscribe((data: any) => {  
       data.data.forEach((post: Post) => { 
         temp_posts.push(this.postAdapter.adapt(post))  
       });   
       // Update the original array with the updated values
-      this.posts = this.posts.map((obj: any, index: any) => { 
-        console.log(obj)
+      this.posts = this.posts.map((obj: any, index: any) => {  
         // Compare each property of the object with the corresponding property of the updated object
         // If the property is different, set the new value, otherwise keep the original value
         return { 
@@ -57,7 +65,15 @@ export class HomePage implements OnInit {
     return item.ID; // return a unique identifier for each item in the array
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {  
+    this.platform.resume.subscribe((result)=>{
+      console.log("resume")
+    });
+  
+    this.platform.pause.subscribe((result)=>{
+      console.log("pause")
+    });
+
     this.fetchPosts(0);
     this.getRandomUsers(3);
   } 
