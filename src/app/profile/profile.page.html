@@ -42,7 +42,7 @@
         <ion-item lines="none" class="ion-no-padding">
           <h1>{{ post?.User?.Username }}</h1>
           <h2>@{{ post?.User?.Handle }}</h2> 
-          <h3> · {{ post?.DateCreated | date: 'dd.MM.yy'}}</h3>
+          <h3> · {{ post?.DateCreated | timeAgo }}</h3>
           <ion-icon slot="end" name="ellipsis-horizontal-outline" class="ellipsis"></ion-icon> <!-- ionic popover for dropdown -->
         </ion-item> 
       </ion-item>  

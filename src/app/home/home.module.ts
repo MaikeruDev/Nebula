@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { DebounceClickDirective } from '../directive/debounce-click.directive';
+import { SharedModule } from '../pipes/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { DebounceClickDirective } from '../directive/debounce-click.directive';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    SharedModule
   ],
   declarations: [HomePage, DebounceClickDirective]
 })

@@ -75,9 +75,24 @@ ion-content{
             position: relative;
             top: 30px;
             z-index: 999;
+            padding-bottom: 0;
+            h2{
+                position: relative;
+                left: 65px;
+                top: -5px;
+                font-size: 12px;
+                font-family: 'Lato', sans-serif;
+                color: grey;
+                margin: 0px;
+                margin-left: 5px; 
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                max-width: 120px;
+            }
             ion-text{  
             p{  
-                font-family: 'Chirp', sans-serif;
+                font-family: 'Lato', sans-serif;
                 margin-bottom: 0;
                 margin-top: 0px;
                 padding: 0 20px 0 72px;
@@ -98,6 +113,13 @@ ion-content{
             padding-bottom: 5px;
             border-radius: 20px;
             margin-left: 72px
+            }
+            ion-text.time{ 
+                color: grey;
+                font-size: 14px; 
+                p{
+                    padding-top: 10px;
+                }
             }
             ion-grid{ 
                 padding: 0px 38px 0px 60px; 

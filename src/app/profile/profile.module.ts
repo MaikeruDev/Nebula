@@ -6,6 +6,7 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 import { ProfilePage } from './profile.page';
 import { ComponentsModule } from 'src/app/components/components.module'; 
 import { DebounceClickProfileDirective } from '../directive/debounce-click-profile.directive';
+import { SharedModule } from '../pipes/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { DebounceClickProfileDirective } from '../directive/debounce-click-profi
     FormsModule,
     IonicModule,
     ProfilePageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    SharedModule
   ],
   declarations: [ProfilePage, DebounceClickProfileDirective]
 })

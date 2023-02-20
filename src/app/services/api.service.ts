@@ -67,6 +67,10 @@ export class ApiService {
     return this.http.post<any>(api_url + '/posts/newPost', obj, { headers: this.getHeader().append('Content-Type', '; multipart/form-data; charset=utf-8') })
   }
 
+  newComment(obj: any) {    
+    return this.http.post<any>(api_url + '/posts/newComment', obj, { headers: this.getHeader()})
+  }
+
   likePost(post: Post){
     return this.http.post<any>(api_url + '/posts/likePost', post, { headers: this.getHeader()})
   }
