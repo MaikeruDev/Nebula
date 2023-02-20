@@ -92,7 +92,12 @@ export class PostPage implements OnInit {
     if (this.comment_input.trim().length > 0){
       var str = this.comment_input
       str = str.replace(/\s{2,}/g, ' '); 
-      this.api.newComment({Text: str, post: this.post}).subscribe(); 
+      this.api.newComment({Text: str, post: this.post}).subscribe(res => {
+        this.post.Comments = []
+        this.post.CommentCount += 1
+        this.loadPost(0)
+        this.comment_input = ""
+      }); 
     }
   }
 

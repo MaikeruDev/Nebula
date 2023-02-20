@@ -68,7 +68,9 @@ export class ApiService {
   }
 
   newComment(obj: any) {    
-    return this.http.post<any>(api_url + '/posts/newComment', obj, { headers: this.getHeader()})
+    return this.http.post<any>(api_url + '/posts/newComment', obj, { headers: this.getHeader()}).pipe(
+      map(data => data)
+    );
   }
 
   likePost(post: Post){
