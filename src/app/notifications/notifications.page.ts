@@ -33,6 +33,15 @@ export class NotificationsPage implements OnInit {
     }) 
   }
 
+  async handleRefresh(event?: any) {  
+    this.no_notifications = true;
+    this.counter_skip = 0;
+    this.notifications = [];
+    this.loadNotifications(0)
+    if(event) event.target.complete();
+  };
+
+
   follow_change(index: number){
     if(this.notifications[index].Sender.Self_Following){
       this.notifications[index].Sender.Self_Following = false 
