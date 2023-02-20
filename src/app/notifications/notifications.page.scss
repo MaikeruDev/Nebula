@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+ion-content{
+    ion-list{
+        ion-item{
+            ion-text{
+                font-family: 'Lato', sans-serif; 
+                margin-left: 15px;
+                span{
+                    color: grey;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
