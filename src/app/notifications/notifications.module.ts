@@ -6,16 +6,17 @@ import { IonicModule } from '@ionic/angular';
 
 import { NotificationsPageRoutingModule } from './notifications-routing.module';
 
-import { NotificationsPage } from './notifications.page';
-import { TimeAgoPipe } from '../pipes/time-ago.pipe';
+import { NotificationsPage } from './notifications.page'; 
+import { SharedModule } from '../pipes/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NotificationsPageRoutingModule
+    NotificationsPageRoutingModule,
+    SharedModule
   ],
-  declarations: [NotificationsPage, TimeAgoPipe]
+  declarations: [NotificationsPage]
 })
 export class NotificationsPageModule {}

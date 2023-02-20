@@ -7,16 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { PostPageRoutingModule } from './post-routing.module';
 
 import { PostPage } from './post.page';
-import { DebounceClickPostDirective } from '../directive/debounce-click-post.directive';
-import { TimeAgoPipe } from '../pipes/time-ago.pipe';
+import { DebounceClickPostDirective } from '../directive/debounce-click-post.directive'; 
+import { SharedModule } from '../pipes/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PostPageRoutingModule
+    PostPageRoutingModule,
+    SharedModule
   ],
-  declarations: [PostPage, DebounceClickPostDirective, TimeAgoPipe]
+  declarations: [PostPage, DebounceClickPostDirective]
 })
 export class PostPageModule {}
