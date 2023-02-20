@@ -68,6 +68,23 @@ export class HomePage implements OnInit {
     this.getRandomUsers(3);
   } 
 
+  openPost(event: Event, post: Post){
+    const target = event.target as HTMLElement;
+    console.log(target.className.includes("comment"))
+    if (target.tagName.toLowerCase() === 'img' || target.tagName.toLowerCase() === 'ion-button' && !target.className.includes("comment")) {
+      return;
+    }
+    this.nav.navigateForward('/post', {
+      state: {
+        PostID: post.ID
+      }
+    })
+  }
+
+  share(){
+    
+  }
+
   async newPost(){
     const modal = await this.modalController.create({
       component: NewPostPage,  

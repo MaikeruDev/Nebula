@@ -20,6 +20,10 @@ export class NotificationsPage implements OnInit {
 
   counter_skip: number = 0;
 
+  ionViewDidEnter() {
+    if(this.notifications.length > 0)this.handleRefresh()
+  } 
+
   ngOnInit() {
     this.loadNotifications(0)
   }
