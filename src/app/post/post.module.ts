@@ -8,6 +8,7 @@ import { PostPageRoutingModule } from './post-routing.module';
 
 import { PostPage } from './post.page';
 import { DebounceClickPostDirective } from '../directive/debounce-click-post.directive';
+import { TimeAgoPipe } from '../pipes/time-ago.pipe';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { DebounceClickPostDirective } from '../directive/debounce-click-post.dir
     IonicModule,
     PostPageRoutingModule
   ],
-  declarations: [PostPage, DebounceClickPostDirective]
+  declarations: [PostPage, DebounceClickPostDirective, TimeAgoPipe]
 })
 export class PostPageModule {}

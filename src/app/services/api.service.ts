@@ -45,8 +45,8 @@ export class ApiService {
     return this.http.post<any>(api_url + '/posts/getPosts', {skip: skip}, { headers: this.getHeader()})
   }
   
-  getPost(PostID: number): Observable<any> {
-    return this.http.post<any>(api_url + '/posts/getPost', {PostID: PostID}, { headers: this.getHeader()}).pipe(
+  getPost(PostID: number, skip: number): Observable<any> {
+    return this.http.post<any>(api_url + '/posts/getPost', {PostID: PostID, skip: skip}, { headers: this.getHeader()}).pipe(
       map(data => data.data)
     );
   }

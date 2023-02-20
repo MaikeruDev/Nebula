@@ -52,9 +52,13 @@
       <ion-item lines="none" class="ion-no-padding">
         <h1>{{ comment?.User?.Username }}</h1>
         <h2>@{{ comment?.User?.Handle }}</h2> 
-        <h3> · {{ comment?.DateCreated | date: 'dd.MM.yy'}}</h3>
+        <h3> · {{ comment?.DateCreated | timeAgo }}</h3>
       </ion-item>  
       <ion-text><p>{{ comment?.Text }}</p></ion-text>  
     </ion-item>   
   </div>
+
+  <ion-infinite-scroll *ngIf="post?.Comments" (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll> 
 </ion-content>

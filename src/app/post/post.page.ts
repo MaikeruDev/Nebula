@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController, ModalController, NavController } from '@ionic/angular';
+import { AlertController, InfiniteScrollCustomEvent, ModalController, NavController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { PostAdapter } from '../adapter/post-adapter';
 import { UserAdapter } from '../adapter/user-adapter';
@@ -17,6 +17,7 @@ import { UserService } from '../services/user.service';
 export class PostPage implements OnInit {
 
   PostID: number;
+  counter_skip: number = 0
 
   post: Post;
 
@@ -35,10 +36,18 @@ export class PostPage implements OnInit {
     this.userService.getCurrentUser().subscribe(user => {
       this.user = user; 
     });
-    this.api.getPost(this.PostID).subscribe(post => {
-      this.post = this.postAdapter.adapt(post); 
-      console.log(this.post);
-    })  
+    this.api.getPost(this.PostID, 0).subscribe(post => {
+      this.post = this.postAdapter.adapt(post);  
+    })
+    //this.loadPost(0)  
+  }
+
+  loadPost(skip: number){
+    this.api.getPost(this.PostID, skip).subscribe(post => { 
+      this.postAdapter.adapt(post).Comments.forEach((comment: Comment) => {
+        this.post.Comments.push(comment)
+      });  
+    })
   }
 
   async openViewer(src: any) {
@@ -78,6 +87,14 @@ export class PostPage implements OnInit {
   }
 
   async comment(){ 
+  }
+
+  onIonInfinite(ev: Event) {
+    this.counter_skip += 15;              
+    this.loadPost(this.counter_skip);    
+    setTimeout(() => {
+      (ev as InfiniteScrollCustomEvent).target.complete();
+    }, 500);
   }
 
   back(){
