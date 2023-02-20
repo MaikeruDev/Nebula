@@ -23,6 +23,12 @@
     <ion-text>
       <p class="handle">@{{ user?.Handle }}</p>
     </ion-text> 
+    <ion-button *ngIf="user?.Self_Following == false" fill="solid" expand="block" shape="round">
+      Follow
+    </ion-button>
+    <ion-button *ngIf="user?.Self_Following == true" fill="outline" expand="block" shape="round">
+      Followed
+    </ion-button>
     <ion-text>
       <p class="bio">{{ user?.Bio }}</p>
     </ion-text> 
