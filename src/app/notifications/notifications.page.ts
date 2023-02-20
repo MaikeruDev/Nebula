@@ -18,8 +18,7 @@ export class NotificationsPage implements OnInit {
     this.api.getNotifications().subscribe(data => {
       data.forEach((notification: Notification) => {
         this.notifications.push(this.notificationAdapter.adapt(notification))
-      });
-      console.log(this.notifications)
+      }); 
     })
   }
 
