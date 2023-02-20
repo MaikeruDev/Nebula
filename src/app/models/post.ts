@@ -1,4 +1,6 @@
 import { SafeResourceUrl } from '@angular/platform-browser';
+import { CommentAdapter } from '../adapter/comment-adapter';
+import { UserAdapter } from '../adapter/user-adapter';
 import { Comment } from './comment';
 import { User } from './user';
 
@@ -11,7 +13,7 @@ export class Post {
   public Text: string;  
   public User: User;
   public Likes: Object;
-  public Comments: Comment;
+  public Comments: any;
   public Liked: boolean;
 
   constructor(
@@ -22,17 +24,22 @@ export class Post {
     Text: string, 
     User: User,
     Likes: Object,
-    Comments: Comment,
+    Comments: any,
     liked: boolean,
+    private userAdapter: UserAdapter,
+    private commentAdapter: CommentAdapter
   ) {
     this.ID = ID;
     this.AuthorID = AuthorID;
     this.DateCreated = DateCreated;
     this.Image = Image;
     this.Text = Text;
-    this.User = User;
+    this.User = this.userAdapter.adapt(User);
     this.Likes = Likes;
-    this.Comments = Comments;
+    this.Comments = []
+    Comments.forEach((comment: Comment) => {
+      this.Comments.push(this.commentAdapter.adapt(comment));
+    });
     this.Liked = liked;
   }
 }

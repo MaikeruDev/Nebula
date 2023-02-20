@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { NotificationAdapter } from '../adapter/notification-adapter';
 import { Notification } from '../models/notification';
 import { ApiService } from '../services/api.service';
@@ -10,7 +11,7 @@ import { ApiService } from '../services/api.service';
 })
 export class NotificationsPage implements OnInit {
 
-  constructor(private api: ApiService, private notificationAdapter: NotificationAdapter) { }
+  constructor(private nav: NavController, private api: ApiService, private notificationAdapter: NotificationAdapter) { }
 
   notifications: any = []
 
@@ -19,6 +20,14 @@ export class NotificationsPage implements OnInit {
       data.forEach((notification: Notification) => {
         this.notifications.push(this.notificationAdapter.adapt(notification))
       }); 
+    })
+  }
+
+  openPost(PostID: number){
+    this.nav.navigateForward('/post', {
+      state: {
+        PostID: PostID
+      }
     })
   }
 

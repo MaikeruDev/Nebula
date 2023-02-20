@@ -2,13 +2,16 @@
 
 ion-content{
     ion-list{
-        ion-item{
-            ion-text{
-                font-family: 'Lato', sans-serif; 
-                margin-left: 15px;
-                span{
-                    color: grey;
-                    font-size: 12px;
+        margin-top: 56px;
+        div{
+            ion-item{
+                ion-text{
+                    font-family: 'Lato', sans-serif; 
+                    margin-left: 15px;
+                    span{
+                        color: grey;
+                        font-size: 12px;
+                    }
                 }
             }
         }

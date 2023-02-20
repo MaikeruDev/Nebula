@@ -1,33 +1,29 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>notifications</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-list *ngFor="let notification of notifications">
-    <ion-item *ngIf="notification.Type == 'follower'">
-      <ion-avatar>
-        <img src="{{ notification.Sender.ProfilePicture }}" />
-      </ion-avatar>
-      <ion-text><p>{{ notification.Sender.Handle }} {{ notification.Message }} <br> <span>{{ notification.DateCreated | timeAgo }}</span></p></ion-text>
-      <ion-button *ngIf="!notification.Sender.Self_Following" slot="end" expand="block" fill="clear" shape="round">
-        Follow
-      </ion-button>
-      <ion-button *ngIf="notification.Sender.Self_Following" slot="end" expand="block" fill="clear" shape="round">
-        Unfollow
-      </ion-button>
-    </ion-item>
+  <ion-list>
+    <div *ngFor="let notification of notifications">
+      <ion-item *ngIf="notification.Type == 'follower'">
+        <ion-avatar>
+          <img src="{{ notification.Sender.ProfilePicture }}" />
+        </ion-avatar>
+        <ion-text><p>{{ notification.Sender.Handle }} {{ notification.Message }} <br> <span>{{ notification.DateCreated | timeAgo }}</span></p></ion-text>
+        <ion-button *ngIf="!notification.Sender.Self_Following" slot="end" expand="block" fill="clear" shape="round">
+          Follow
+        </ion-button>
+        <ion-button *ngIf="notification.Sender.Self_Following" slot="end" expand="block" fill="clear" shape="round">
+          Unfollow
+        </ion-button>
+      </ion-item>
 
-    <ion-item *ngIf="notification.Type == 'like'">
-      <ion-avatar>
-        <img src="{{ notification.Sender.ProfilePicture }}" />
-      </ion-avatar>
-      <ion-text><p>{{ notification.Sender.Handle }} {{ notification.Message }} <br> <span>{{ notification.DateCreated | timeAgo }}</span></p></ion-text>
-      <ion-button fill="clear" slot="end">
-        <ion-icon slot="end" name="arrow-forward"></ion-icon>
-        Show
-      </ion-button>
-    </ion-item>
+      <ion-item *ngIf="notification.Type == 'like'">
+        <ion-avatar>
+          <img src="{{ notification.Sender.ProfilePicture }}" />
+        </ion-avatar>
+        <ion-text><p>{{ notification.Sender.Handle }} {{ notification.Message }} <br> <span>{{ notification.DateCreated | timeAgo }}</span></p></ion-text>
+        <ion-button (click)="openPost(notification.PostID)" fill="clear" slot="end">
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+          Show
+        </ion-button>
+      </ion-item>
+    </div>
   </ion-list>
 </ion-content>

@@ -30,8 +30,8 @@ export class UserPage implements OnInit {
 
   constructor(private userService: UserService, private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, public router: Router, private nav: NavController, private modalController: ModalController) {
     if (router.getCurrentNavigation()?.extras.state) { 
-      this.visit_user = this.router.getCurrentNavigation().extras.state.user,
-      this.return_page = this.router.getCurrentNavigation().extras.state.page 
+      this.visit_user = this.router?.getCurrentNavigation()?.extras?.state?.user,
+      this.return_page = this.router?.getCurrentNavigation()?.extras?.state?.page 
     }
     else{
       this.nav.back() 

@@ -46,7 +46,11 @@ const routes: Routes = [
     data: {
       roles: ['user', 'admin']
     }
-  }, 
+  },   {
+    path: 'post',
+    loadChildren: () => import('./post/post.module').then( m => m.PostPageModule)
+  },
+
 
 ];
 
