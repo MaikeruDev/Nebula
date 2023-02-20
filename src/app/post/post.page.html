@@ -1,5 +1,16 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Post</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-<!--   <div *ngFor="let post of posts; trackBy: trackByFn; let i = index" [attr.data-index]="i">
+  <div>
     <ion-item lines="none" (click)="visitUser(post?.User)"> 
       <ion-avatar slot="start">
         <img src="{{ post?.User?.ProfilePicture }}" (click)="openViewer(post?.User?.ProfilePicture)"/>
@@ -15,11 +26,35 @@
       <img class="content" *ngIf="post?.Image?.trim()" (click)="openViewer(post?.Image)" src="{{ post?.Image }}">
       <ion-grid fixed class="ion-no-padding">
         <ion-row>
-          <ion-col size="4"><ion-button appDebounceClick (debounceClick)="like_change(post, i)" [debounceTime]="500" expand="full" [ngStyle]="post?.Liked ? {'color': 'var(--ion-color-primary)', 'font-weight': 'bold'} : {'color': 'var(--ion-color-dark)'}" fill=""><ion-icon slot="start" [name]="post?.Liked ? 'heart' : 'heart-outline'"></ion-icon>{{ post?.Likes?.length }}</ion-button></ion-col>
-          <ion-col size="4"><ion-button expand="full" fill=""><ion-icon slot="start" name="chatbox-outline"></ion-icon>{{ post?.Comments?.length }}</ion-button></ion-col>
+          <ion-col size="4"><ion-button appDebounceClick (debounceClick)="like_change()" [debounceTime]="500" expand="full" [ngStyle]="post?.Liked ? {'color': 'var(--ion-color-primary)', 'font-weight': 'bold'} : {'color': 'var(--ion-color-dark)'}" fill=""><ion-icon slot="start" [name]="post?.Liked ? 'heart' : 'heart-outline'"></ion-icon>{{ post?.Likes?.length }}</ion-button></ion-col>
+          <ion-col size="4"><ion-button (click)="comment()" expand="full" fill=""><ion-icon slot="start" name="chatbox-outline"></ion-icon>{{ post?.Comments?.length }}</ion-button></ion-col>
           <ion-col size="4" id="share"><ion-button expand="full" fill=""><ion-icon slot="start" name="share-outline"></ion-icon></ion-button></ion-col>
         </ion-row>
       </ion-grid>
     </div>
-  </div> -->
+  </div>
+  <div class="input">
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img src="{{ user?.ProfilePicture }}" (click)="openViewer(user?.ProfilePicture)"/>
+      </ion-avatar> 
+      <ion-textarea placeholder="Write your comment..." [autoGrow]="true" maxlength="300"></ion-textarea>
+      <ion-button shape="round" mode="ios">
+        Send
+      </ion-button>
+    </ion-item> 
+  </div> 
+  <div *ngFor="let comment of post?.Comments">
+    <ion-item lines="none" (click)="visitUser(comment?.User)"> 
+      <ion-avatar slot="start">
+        <img src="{{ comment?.User?.ProfilePicture }}" (click)="openViewer(comment?.User?.ProfilePicture)"/>
+      </ion-avatar> 
+      <ion-item lines="none" class="ion-no-padding">
+        <h1>{{ comment?.User?.Username }}</h1>
+        <h2>@{{ comment?.User?.Handle }}</h2> 
+        <h3> · {{ comment?.DateCreated | date: 'dd.MM.yy'}}</h3>
+      </ion-item>  
+      <ion-text><p>{{ comment?.Text }}</p></ion-text>  
+    </ion-item>   
+  </div>
 </ion-content>

@@ -48,7 +48,11 @@ const routes: Routes = [
     }
   },   {
     path: 'post',
-    loadChildren: () => import('./post/post.module').then( m => m.PostPageModule)
+    loadChildren: () => import('./post/post.module').then( m => m.PostPageModule),
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['user', 'admin']
+    }
   },
 
 

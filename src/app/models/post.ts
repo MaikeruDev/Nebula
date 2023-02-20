@@ -12,7 +12,7 @@ export class Post {
   public Image: string;
   public Text: string;  
   public User: User;
-  public Likes: Object;
+  public Likes: any[];
   public Comments: any;
   public Liked: boolean;
 
@@ -23,7 +23,7 @@ export class Post {
     Image: string,
     Text: string, 
     User: User,
-    Likes: Object,
+    Likes: any[],
     Comments: any,
     liked: boolean,
     private userAdapter: UserAdapter,
