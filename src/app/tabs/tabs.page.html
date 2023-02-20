@@ -1,4 +1,4 @@
-<ion-tabs>
+<ion-tabs (ionTabsDidChange)="ionTabsDidChange($event)">
   <ion-tab-bar slot="bottom">
     
     <ion-tab-button tab="feed">
@@ -17,7 +17,7 @@
 
     <ion-tab-button tab="notifications"> 
       <ion-icon name="notifications-outline"></ion-icon>
-      <ion-badge id="notification-badge"></ion-badge> 
+      <ion-badge *ngIf="notifications" id="notification-badge"></ion-badge> 
     </ion-tab-button>
 
     <ion-tab-button (click)="settings()"> 

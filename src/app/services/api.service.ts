@@ -31,6 +31,15 @@ export class ApiService {
       map(data => data.data)
     );
   }
+  
+  hasNewNotifications(): Observable<any> {
+    return this.http.get<any>(api_url + '/user/hasNewNotifications', { headers: this.getHeader()}).pipe(
+      map((data: any) => {
+        if (data.data.seen == false) return true
+        else return false
+      })
+    );
+  }
 
   getPosts(skip: any): Observable<any> {
     return this.http.post<any>(api_url + '/posts/getPosts', {skip: skip}, { headers: this.getHeader()})
