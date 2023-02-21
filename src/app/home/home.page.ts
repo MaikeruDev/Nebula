@@ -93,6 +93,7 @@ export class HomePage implements OnInit {
     });
 
     this.fetchPosts(0);
+    console.log(this.posts)
     this.getRandomUsers(3);
   } 
 
@@ -197,7 +198,7 @@ export class HomePage implements OnInit {
     } 
     this.nav.navigateForward('/user', {
       state: {
-        user: this.userAdapter.adapt(user)
+        user: user
       }
     })
   }

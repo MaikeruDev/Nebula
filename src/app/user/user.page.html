@@ -27,7 +27,7 @@
       Follow
     </ion-button>
     <ion-button appDebounceClick (debounceClick)="follow_change()" [debounceTime]="500" *ngIf="visit_user?.Self_Following == true && visit_user?.ID != user?.ID" fill="outline" expand="block" shape="round">
-      Followed
+      Unfollow
     </ion-button>
     <ion-text>
       <p class="bio">{{ visit_user?.Bio }}</p>
