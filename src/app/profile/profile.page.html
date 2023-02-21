@@ -20,7 +20,7 @@
   </ion-avatar>
 
   <div class="content">
-    <ion-title>{{ user?.Username }} <ion-badge *ngIf="user?.ID == 1 || user?.ID == 2" color="primary">Dev</ion-badge><ion-badge *ngIf="user?.ID == 1 || user?.ID == 2" style="background-color: #007e84">Pro</ion-badge><ion-badge *ngIf="user?.ID == 1 || user?.ID == 2" style="background-color: #000000">Day One</ion-badge></ion-title> 
+    <ion-title>{{ user?.Username }} <ion-badge *ngIf="user?.ID == 1 || user?.ID == 2" color="primary">Dev</ion-badge><ion-badge *ngIf="user?.ID == 1 || user?.ID == 2" style="background-color: #007e84">Pro</ion-badge><ion-badge *ngIf="day_one > user?.SignUpDate" style="background-color: #000000">Day One</ion-badge></ion-title> 
     <ion-text>
       <p class="handle">@{{ user?.Handle }}</p>
     </ion-text> 

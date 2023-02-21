@@ -30,6 +30,8 @@ export class ProfilePage implements OnInit {
   refreshing: boolean = false
   no_posts: boolean = false
   isOpen: boolean = false;
+
+  day_one = new Date('2023-03-01')
   
   @ViewChild('popover') popover: any; 
 
@@ -120,7 +122,7 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() { 
     this.userService.getCurrentUser().subscribe(user => {
-      this.user = user;
+      this.user = user; 
     });
     this.fetchPosts(0);
   }
