@@ -101,6 +101,12 @@ ion-content{
             margin-bottom: 0px; 
             margin-left: 4px;
           } 
+          ion-icon.ellipsis{
+            position: absolute;
+            right: 50px;
+            top: 5px;
+            font-size: 20px;
+          }
         }
         ion-avatar{
           margin-right: 8px;
@@ -159,6 +165,9 @@ ion-content{
   }
   ion-list.follow-suggestion{
     margin-top: 70px;
+  }
+  ion-list.popover{
+    margin: 0;
   }
 }
 

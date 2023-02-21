@@ -62,7 +62,7 @@ ion-content{
         }
     }
     ion-item ion-icon {
-      padding-right: 61px;
+      margin-right: 61px;
     }
     div.content{
         border-bottom: 1px rgb(235, 235, 235) solid;
@@ -165,9 +165,9 @@ ion-content{
                 } 
                 ion-icon.ellipsis{
                   position: absolute;
-                  right: -5px;
-                  top: 6px;
-                  font-size: 18px;
+                  right: -10px;
+                  top: 5px;
+                  font-size: 20px;
                 }
               }
               ion-avatar{

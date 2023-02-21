@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, HostListener, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController, ViewWillEnter, ViewDidEnter, NavController, Platform } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer'; 
@@ -8,8 +8,10 @@ import { NewPostPageModule } from '../modal/new-post/new-post.module'; // Needed
 import { NewPostPage } from '../modal/new-post/new-post.page';
 import { Post } from '../models/post';
 import { User } from '../models/user';
+import { AlertService } from '../services/alert.service';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -22,10 +24,17 @@ export class HomePage implements OnInit {
 
   counter_skip: number = 0;
 
+  popover_post: Post;
+
+  user: User;
+
   no_posts: boolean = false;
   refreshing: boolean = false;
+  isOpen: boolean = false;
   
-  constructor(private router: Router, public platform: Platform, private nav: NavController, private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {
+  @ViewChild('popover') popover: any; 
+  
+  constructor(private userService: UserService, private alert: AlertService, private router: Router, public platform: Platform, private nav: NavController, private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, private auth: AuthService, private modalController: ModalController) {
    
     router.events.forEach((event) => {
       if(event instanceof NavigationStart && event.url == "/tabs/feed") { //If our site gets called again
@@ -59,26 +68,44 @@ export class HomePage implements OnInit {
     })  
   }
 
+  presentPopover(e: Event, post: Post) {
+    this.popover.event = e;  
+    this.popover_post = post;
+    this.isOpen = true;
+  }
+
+  deletePost(){
+    this.isOpen = false;
+    this.alert.custom("Are you sure?", "Yes", "No", "trash", "danger", () => {
+      this.api.deletePost({PostID: this.popover_post.ID}).subscribe(() => {
+        this.handleRefresh()
+      })
+    })
+  }
+
   trackByFn(index: any, item: any) {
     return item.ID; // return a unique identifier for each item in the array
   }
 
   ngOnInit(): void {   
+    this.userService.getCurrentUser().subscribe(user => {
+      this.user = user;
+    });
+
     this.fetchPosts(0);
     this.getRandomUsers(3);
   } 
 
   openPost(event: Event, post: Post){
-    const target = event.target as HTMLElement;
-    console.log(target.className.includes("comment"))
+    const target = event.target as HTMLElement; 
     if (target.tagName.toLowerCase() === 'img' || target.tagName.toLowerCase() === 'ion-button' && !target.className.includes("comment")) {
       return;
-    }
+    } 
     this.nav.navigateForward('/post', {
       state: {
         PostID: post.ID
       }
-    })
+    }) 
   }
 
   share(){
@@ -163,7 +190,11 @@ export class HomePage implements OnInit {
     return await modal.present();
   }
 
-  visitUser(user: User){
+  visitUser(event: any, user: User){
+    const target = event.target as HTMLElement; 
+    if (target.tagName.toLowerCase() === 'ion-icon') {
+      return;
+    } 
     this.nav.navigateForward('/user', {
       state: {
         user: this.userAdapter.adapt(user)

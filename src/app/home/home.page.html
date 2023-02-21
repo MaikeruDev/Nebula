@@ -28,7 +28,7 @@
 
   <ion-list *ngIf="posts != []">
     <div *ngFor="let post of posts; trackBy: trackByFn; let i = index" [attr.data-index]="i">
-      <ion-item lines="none" (click)="visitUser(post?.User)"> 
+      <ion-item lines="none" (click)="visitUser($event, post?.User)"> 
         <ion-avatar slot="start">
           <img src="{{ post?.User?.ProfilePicture }}" (click)="openViewer(post?.User?.ProfilePicture)"/>
         </ion-avatar> 
@@ -36,6 +36,7 @@
           <h1>{{ post?.User?.Username }}</h1>
           <h2>@{{ post?.User?.Handle }}</h2> 
           <h3> · {{ post?.DateCreated | timeAgo }}</h3>
+          <ion-icon *ngIf="post?.User?.ID ==  user?.ID" (click)="presentPopover($event, post)" slot="end" name="ellipsis-horizontal" class="ellipsis"></ion-icon>
         </ion-item> 
       </ion-item>  
       <div (click)="openPost($event, post)">
@@ -51,6 +52,17 @@
       </div>
     </div>
   </ion-list>
+
+  <ion-popover mode="ios" #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+    <ng-template>
+      <ion-content>
+        <ion-list class="popover">
+          <ion-item lines="none" [button]="true" (click)="deletePost()" [detail]="false">Delete</ion-item> 
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+
   <ion-infinite-scroll *ngIf="!no_posts" (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll> 

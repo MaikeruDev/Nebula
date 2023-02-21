@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController, NavController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
@@ -6,6 +6,7 @@ import { PostAdapter } from '../adapter/post-adapter';
 import { NewPostPage } from '../modal/new-post/new-post.page';
 import { Post } from '../models/post';
 import { User } from '../models/user';
+import { AlertService } from '../services/alert.service';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
@@ -20,14 +21,19 @@ export class ProfilePage implements OnInit {
 
   user: User;
 
+  popover_post: Post;
+
   posts: any = [];
 
   counter_skip: number = 0;  
 
   refreshing: boolean = false
   no_posts: boolean = false
+  isOpen: boolean = false;
+  
+  @ViewChild('popover') popover: any; 
 
-  constructor(private router: Router, private nav: NavController, private auth: AuthService, private modalController: ModalController, private userService: UserService, private api: ApiService, private postAdapter: PostAdapter) {
+  constructor(private alert: AlertService, private router: Router, private nav: NavController, private auth: AuthService, private modalController: ModalController, private userService: UserService, private api: ApiService, private postAdapter: PostAdapter) {
     router.events.forEach((event) => {
       if(event instanceof NavigationStart && event.url == "/tabs/profile") { //If our site gets called again
         this.ionViewDidEnter()                                              //Update Data
@@ -64,6 +70,21 @@ export class ProfilePage implements OnInit {
     });
   }
 
+  presentPopover(e: Event, post: Post) {
+    this.popover.event = e;  
+    this.popover_post = post;
+    this.isOpen = true;
+  }
+
+  deletePost(){
+    this.isOpen = false;
+    this.alert.custom("Are you sure?", "Yes", "No", "trash", "danger", () => {
+      this.api.deletePost({PostID: this.popover_post.ID}).subscribe(() => {
+        this.handleRefresh()
+      })
+    })
+  }
+
   openPost(event: Event, post: Post){
     const target = event.target as HTMLElement;
     console.log(target.className.includes("comment"))
@@ -81,7 +102,7 @@ export class ProfilePage implements OnInit {
     return item.ID; // return a unique identifier for each item in the array
   }
 
-  ngOnInit() {
+  ngOnInit() { 
     this.userService.getCurrentUser().subscribe(user => {
       this.user = user;
     });
