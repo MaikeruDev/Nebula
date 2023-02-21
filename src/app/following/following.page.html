@@ -1,0 +1,32 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="back()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Following</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher style="margin-top: 55px"slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <div *ngFor="let following of followings; let i = index;" [attr.data-index]="i">
+      <ion-item>
+        <ion-avatar (click)="visitUser(following)">
+          <img src="{{ following.ProfilePicture }}" />
+        </ion-avatar>
+        <ion-text><p><span (click)="visitUser(following)" class="name">{{ following.Handle }} {{ following.skip }}</span><br> <span class="time">since {{ following.Date | timeAgo }}</span></p></ion-text>
+      </ion-item>
+    </div>
+  </ion-list>
+
+  <ion-infinite-scroll *ngIf="!no_followings" (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll> 
+</ion-content>

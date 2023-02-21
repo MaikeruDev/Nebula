@@ -54,6 +54,23 @@ const routes: Routes = [
       roles: ['user', 'admin']
     }
   },
+  {
+    path: 'followers',
+    loadChildren: () => import('./followers/followers.module').then( m => m.FollowersPageModule),
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['user', 'admin']
+    }
+  },
+  {
+    path: 'following',
+    loadChildren: () => import('./following/following.module').then( m => m.FollowingPageModule),
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['user', 'admin']
+    }
+  },
+
 
 
 ];

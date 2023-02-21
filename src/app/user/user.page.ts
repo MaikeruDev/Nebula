@@ -79,6 +79,22 @@ export class UserPage implements OnInit {
     this.fetchPosts(0)
   }
 
+  openFollowing(){
+    this.nav.navigateForward('/following', {
+      state: {
+        userID: this.visit_user.ID
+      }
+    })
+  }
+
+  openFollowers(){
+    this.nav.navigateForward('/followers', {
+      state: {
+        userID: this.visit_user.ID
+      }
+    })
+  }
+
   async handleRefresh(event?: any) { 
     this.refreshing = true;
     this.no_posts = true;

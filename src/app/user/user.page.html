@@ -33,7 +33,7 @@
       <p class="bio">{{ visit_user?.Bio }}</p>
     </ion-text> 
     <ion-text>
-      <p class="follow"><b>{{ visit_user?.Following }}</b> Following ·<b>{{ visit_user?.Followers }}</b> Followers</p>
+      <p class="follow"><span (click)="openFollowing()"><b>{{ visit_user?.Following }}</b> Following </span>·<span (click)="openFollowers()"><b (click)="openFollowers()">{{ visit_user?.Followers }}</b> Followers</span></p>
       <p class="joined">Joined {{ visit_user?.SignUpDate | date: 'd. MMMM yyyy'}}</p>
     </ion-text> 
   </div>

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+ion-toolbar{ 
+    ion-title{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+ion-content{
+    ion-list{ 
+        div{
+            ion-item{
+                ion-avatar{
+                    width: 40px;
+                    height: 40px;
+                    img{
+                        width: 40px;
+                        height: 40px;
+                        max-width: unset;
+                    }
+                }
+                ion-text{
+                    font-family: 'Lato', sans-serif; 
+                    margin-left: 15px;
+                    p{
+                        span.time{
+                            color: grey;
+                            font-size: 12px;
+                        }
+                        span.name{
+                            color: var(--ion-color-primary);
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

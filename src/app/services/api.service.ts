@@ -31,6 +31,18 @@ export class ApiService {
       map(data => data.data)
     );
   }
+
+  getFollowers(skip: number, userID: any): Observable<any> {
+    return this.http.post<any>(api_url + '/user/getFollowers', { skip: skip, userID: userID }, { headers: this.getHeader()}).pipe(
+      map(data => data.data)
+    );
+  }
+
+  getFollowing(skip: number, userID: any): Observable<any> {
+    return this.http.post<any>(api_url + '/user/getFollowing', { skip: skip, userID: userID }, { headers: this.getHeader()}).pipe(
+      map(data => data.data)
+    );
+  }
   
   hasNewNotifications(): Observable<any> {
     return this.http.get<any>(api_url + '/user/hasNewNotifications', { headers: this.getHeader()}).pipe(

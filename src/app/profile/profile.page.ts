@@ -97,6 +97,22 @@ export class ProfilePage implements OnInit {
       }
     })
   }
+
+  openFollowing(){
+    this.nav.navigateForward('/following', {
+      state: {
+        userID: this.user.ID
+      }
+    })
+  }
+
+  openFollowers(){
+    this.nav.navigateForward('/followers', {
+      state: {
+        userID: this.user.ID
+      }
+    })
+  }
   
   trackByFn(index: any, item: any) {
     return item.ID; // return a unique identifier for each item in the array
