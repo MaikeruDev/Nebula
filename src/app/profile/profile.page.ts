@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { IonInfiniteScroll, InfiniteScrollCustomEvent, ModalController, NavController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
+import { filter, map, take } from 'rxjs';
 import { PostAdapter } from '../adapter/post-adapter';
 import { NewPostPage } from '../modal/new-post/new-post.page';
 import { Post } from '../models/post';
@@ -35,7 +36,7 @@ export class ProfilePage implements OnInit {
   
   @ViewChild('popover') popover: any; 
 
-  constructor(private alert: AlertService, private router: Router, private nav: NavController, private auth: AuthService, private modalController: ModalController, private userService: UserService, private api: ApiService, private postAdapter: PostAdapter) {
+  constructor(private authService: AuthService, private alert: AlertService, private router: Router, private nav: NavController, private auth: AuthService, private modalController: ModalController, private userService: UserService, private api: ApiService, private postAdapter: PostAdapter) {
     router.events.forEach((event) => {
       if(event instanceof NavigationStart && event.url == "/tabs/profile") { //If our site gets called again
         this.ionViewDidEnter()                                              //Update Data
@@ -88,8 +89,7 @@ export class ProfilePage implements OnInit {
   }
 
   openPost(event: Event, post: Post){
-    const target = event.target as HTMLElement;
-    console.log(target.className.includes("comment"))
+    const target = event.target as HTMLElement; 
     if (target.tagName.toLowerCase() === 'img' || target.tagName.toLowerCase() === 'ion-button' && !target.className.includes("comment")) {
       return;
     }
@@ -123,7 +123,8 @@ export class ProfilePage implements OnInit {
   ngOnInit() { 
     this.userService.getCurrentUser().subscribe(user => {
       this.user = user; 
-    });
+    }); 
+
     this.fetchPosts(0);
   }
 

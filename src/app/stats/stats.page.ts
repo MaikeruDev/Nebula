@@ -13,8 +13,7 @@ export class StatsPage implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit() {
-    this.getStats();
-    console.log(this.stats)
+    this.getStats(); 
   }
 
   getStats(){

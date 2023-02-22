@@ -6,14 +6,14 @@ import { IonicModule } from '@ionic/angular';
 
 import { NewPostPageRoutingModule } from './new-post-routing.module';
 
-import { NewPostPage } from './new-post.page';
+import { NewPostPage } from './new-post.page'; 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NewPostPageRoutingModule
+    NewPostPageRoutingModule, 
   ],
   declarations: [NewPostPage]
 })

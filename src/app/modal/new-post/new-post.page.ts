@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './new-post.page.html',
   styleUrls: ['./new-post.page.scss'],
 })
-export class NewPostPage implements OnInit {
+export class NewPostPage implements OnInit { 
 
   user: User;
   progress: number = 0
@@ -50,7 +50,10 @@ export class NewPostPage implements OnInit {
     return await modal.present();
   }
 
-  progressHandler(ev: any){
+  checkChar(ev: any){
+  } 
+ 
+  progressHandler(ev: any){  
     var len = ev.detail.value.length
     this.progress = (len / 300)
   }
@@ -76,6 +79,10 @@ export class NewPostPage implements OnInit {
         })
       }
     };
+  }
+
+  addUserMention(){ 
+    this.textarea_value += '<p style="color: green"> soos </p>'
   }
 
   async compressImage(src: any, newX: any, newY: any) {

@@ -29,8 +29,14 @@
     </label> 
     <input (change)="imageChangeEvent($event)" type="file" name="file-input" id="image-input" class="hideInput" accept="image/png, image/jpeg"/>
   </ion-fab-button>
+  <ion-fab-button (click)="addUserMention()">
+    <label>
+      <ion-icon class="image" name="person"></ion-icon>
+    </label> 
+    <input class="hideInput"/>
+  </ion-fab-button>
   <ion-fab-button disabled="true">
-    <label for="input">
+    <label for=" ">
       <ion-icon class="gif" src="../../../assets/icon/gif.svg"></ion-icon>
     </label> 
     <input id="input" type="file" class="hideInput">

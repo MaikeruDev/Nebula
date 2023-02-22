@@ -29,6 +29,17 @@
           Show
         </ion-button>
       </ion-item>
+
+      <ion-item *ngIf="notification.Type == 'comment'">
+        <ion-avatar (click)="visitUser(notification.Sender)">
+          <img src="{{ notification.Sender.ProfilePicture }}" />
+        </ion-avatar>
+        <ion-text><p><span (click)="visitUser(notification.Sender)" class="name">{{ notification.Sender.Handle }}</span> {{ notification.Message }} <br> <span class="time">{{ notification.DateCreated | timeAgo }}</span></p></ion-text>
+        <ion-button (click)="openPost(notification.PostID)" fill="clear" slot="end">
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+          Show
+        </ion-button>
+      </ion-item>
     </div>
   </ion-list>
 

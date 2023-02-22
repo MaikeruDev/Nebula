@@ -127,8 +127,7 @@ export class UserPage implements OnInit {
   }
 
   openPost(event: Event, post: Post){
-    const target = event.target as HTMLElement;
-    console.log(target.className.includes("comment"))
+    const target = event.target as HTMLElement; 
     if (target.tagName.toLowerCase() === 'img' || target.tagName.toLowerCase() === 'ion-button' && !target.className.includes("comment")) {
       return;
     }

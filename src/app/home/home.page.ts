@@ -92,8 +92,7 @@ export class HomePage implements OnInit {
       this.user = user;
     });
 
-    this.fetchPosts(0);
-    console.log(this.posts)
+    this.fetchPosts(0); 
     this.getRandomUsers(3);
   } 
 
