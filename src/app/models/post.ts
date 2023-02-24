@@ -10,6 +10,7 @@ export class Post {
   public AuthorID: number;
   public DateCreated: Date;
   public Image: string;
+  public Image_Loaded: boolean;
   public Text: string;  
   public User: User;
   public Likes: any[];
@@ -22,6 +23,7 @@ export class Post {
     AuthorID: number,
     DateCreated: Date,
     Image: string,
+    Image_Loaded: boolean,
     Text: string, 
     User: User,
     Likes: any[],
@@ -35,6 +37,7 @@ export class Post {
     this.AuthorID = AuthorID;
     this.DateCreated = DateCreated;
     this.Image = Image;
+    this.Image_Loaded = Image_Loaded;
     this.Text = Text;
     this.User = this.userAdapter.adapt(User);
     this.Likes = Likes;

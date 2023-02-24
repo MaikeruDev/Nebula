@@ -10,7 +10,7 @@ const routes: Routes = [
     children: [
       {
         path: 'feed',
-        loadChildren: () => import('../home/home.module').then(m => m.HomePageModule),
+        loadChildren: () => import('../home/home.module').then(m => m.HomePageModule), 
         title: "Feed"
       },   
       {

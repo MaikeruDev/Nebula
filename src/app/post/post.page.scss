@@ -55,7 +55,7 @@ ion-content{
                 margin-top: 0px;
                 margin-bottom: 0px; 
                 margin-left: 4px;
-            } 
+            }  
             }
             ion-avatar{
             margin-right: 8px;
@@ -112,8 +112,8 @@ ion-content{
             display: block;  
             padding-bottom: 5px;
             border-radius: 20px;
-            margin-left: 72px
-            }
+            margin-left: 72px; 
+            } 
             ion-text.time{ 
                 color: grey;
                 font-size: 14px; 
@@ -228,3 +228,10 @@ ion-content{
         }
     }
 }
+
+ion-icon.ellipsis{
+    position: absolute;
+    right: 50px;
+    top: -25px;
+    font-size: 20px;
+  }

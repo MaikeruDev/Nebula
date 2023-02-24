@@ -81,7 +81,7 @@ export class HomePage implements OnInit {
         this.handleRefresh()
       })
     })
-  }
+  } 
 
   trackByFn(index: any, item: any) {
     return item.ID; // return a unique identifier for each item in the array
@@ -93,7 +93,7 @@ export class HomePage implements OnInit {
     });
 
     this.fetchPosts(0); 
-    this.getRandomUsers(3);
+    this.getRandomUsers(3); 
   } 
 
   openPost(event: Event, post: Post){

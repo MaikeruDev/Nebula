@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, InfiniteScrollCustomEvent, ModalController, NavController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
@@ -20,10 +20,15 @@ export class PostPage implements OnInit {
   counter_skip: number = 0
 
   post: Post;
+  popover_post: Post; 
 
   user: any
 
   comment_input: string;
+
+  post_isOpen: boolean = false;
+
+  @ViewChild('post_popover') popover: any; 
 
   constructor(private userService: UserService, private userAdapter: UserAdapter, private modalController: ModalController, private postAdapter: PostAdapter, private api: ApiService, private router: Router, private nav: NavController) {
     if (router.getCurrentNavigation()?.extras.state) { 
@@ -40,8 +45,7 @@ export class PostPage implements OnInit {
     });
     this.api.getPost(this.PostID, 0).subscribe(post => {
       this.post = this.postAdapter.adapt(post);   
-    })
-    //this.loadPost(0)  
+    }) 
   }
 
   loadPost(skip: number){
@@ -51,6 +55,10 @@ export class PostPage implements OnInit {
       });  
     })
   }
+
+  deletePost(){
+     this.post_isOpen = false
+  } 
 
   async openViewer(src: any) {
     const modal = await this.modalController.create({
@@ -99,6 +107,12 @@ export class PostPage implements OnInit {
         this.comment_input = ""
       }); 
     }
+  }
+
+  presentPostPopover(e: Event, post: Post) {
+    this.popover.event = e;  
+    this.popover_post = post;
+    this.post_isOpen = true;
   }
 
   onIonInfinite(ev: Event) {

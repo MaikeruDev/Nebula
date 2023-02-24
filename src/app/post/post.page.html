@@ -22,10 +22,13 @@
     <div>
       <h2>@{{ post?.User?.Handle }}</h2>  
       <ion-text><p>{{ post?.Text }}</p></ion-text>
+      
       <img class="content" *ngIf="post?.Image?.trim()" (click)="openViewer(post?.Image)" src="{{ post?.Image }}">
+
       <ion-text class="time">
         <p>{{ post?.DateCreated | date: 'HH:mm · dd.MM.yy':"-0000"}}</p>
       </ion-text>
+      <ion-icon *ngIf="post?.User?.ID ==  user?.ID" (click)="presentPostPopover($event, post)" slot="end" name="ellipsis-horizontal" class="ellipsis"></ion-icon>
       <ion-grid fixed class="ion-no-padding">
         <ion-row>
           <ion-col size="4"><ion-button appDebounceClick (debounceClick)="like_change()" [debounceTime]="500" expand="full" [ngStyle]="post?.Liked ? {'color': 'var(--ion-color-primary)', 'font-weight': 'bold'} : {'color': 'var(--ion-color-dark)'}" fill=""><ion-icon slot="start" [name]="post?.Liked ? 'heart' : 'heart-outline'"></ion-icon>{{ post?.Likes?.length }}</ion-button></ion-col>
@@ -61,6 +64,16 @@
       <ion-text><p>{{ comment?.Text }}</p></ion-text>  
     </ion-item>   
   </div>
+
+  <ion-popover mode="ios" #post_popover [isOpen]="post_isOpen" (didDismiss)="post_isOpen = false">
+    <ng-template>
+      <ion-content>
+        <ion-list class="popover">
+          <ion-item lines="none" [button]="true" (click)="deletePost()" [detail]="false">Delete</ion-item> 
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
 
   <ion-infinite-scroll *ngIf="post?.Comments" (ionInfinite)="onIonInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>

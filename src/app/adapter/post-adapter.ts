@@ -16,6 +16,6 @@ export class PostAdapter implements Adapter<Post> {
   adapt(item: any): Post {  
     item.DateCreated = new Date(item.DateCreated);  
     return new Post(
-      item.ID, item.AuthorID, item.DateCreated, item.Image, item.Text, item.users, item.likes, item.comments, item.liked, item.len, this.userAdapter, this.commentAdapter);
+      item.ID, item.AuthorID, item.DateCreated, item.Image, false, item.Text, item.users, item.likes, item.comments, item.liked, item.len, this.userAdapter, this.commentAdapter);
   }
 }
