@@ -21,5 +21,5 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 })],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
-})
+}) 
 export class AppModule {}
