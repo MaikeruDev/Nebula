@@ -67,15 +67,13 @@ ion-content{
         top: 70px; 
         left: 80px; 
         z-index: 999; 
-        max-width: 350px;
-        ion-textarea{/* 
-            display: none;  */
-        }/* 
-        textarea.autogrow-textarea{
-            min-height: 50px;
-            height: auto;
-            overflow-y: hidden;
-        } */
+        max-width: 350px; 
+        ion-badge{
+            margin-right: 5px;  
+            ion-icon{
+                font-size: 15px;
+            }
+        }
         div.image-container{
             position: relative;
             img{

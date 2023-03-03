@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { ApiService } from 'src/app/services/api.service';
+import { UserMentionPage } from '../user-mention/user-mention.page';
+import { UserAdapter } from 'src/app/adapter/user-adapter';
 
 @Component({
   selector: 'app-new-post',
@@ -14,13 +16,16 @@ import { ApiService } from 'src/app/services/api.service';
 export class NewPostPage implements OnInit { 
 
   user: User;
-  progress: number = 0
-  image: any = ""
-  resizedImage: any = ""
 
+  progress: number = 0
+
+  image: any = ""
+  resizedImage: any = "" 
   textarea_value: any = ""
 
-  constructor(private api: ApiService, private modalController: ModalController, private auth: AuthService, private nav: NavController, private userService: UserService) { }
+  mentionedUsers: any[] = []
+
+  constructor(private userAdapter: UserAdapter, private api: ApiService, private modalController: ModalController, private auth: AuthService, private nav: NavController, private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
@@ -81,8 +86,24 @@ export class NewPostPage implements OnInit {
     };
   }
 
-  addUserMention(){ 
-    this.textarea_value += '<p style="color: green"> soos </p>'
+  removeMention(index: number){ 
+    this.mentionedUsers.splice(index, 1) 
+  }
+
+  async addUserMention(){ 
+    const modal = await this.modalController.create({
+      component: UserMentionPage,  
+      cssClass: 'small-modal',
+      showBackdrop: true,
+    });
+
+    await modal.present()
+
+    const data = await modal.onWillDismiss(); 
+
+    if(data.data.user == undefined || this.mentionedUsers.find(e => e.Handle === data.data.user.Handle)) return
+
+    this.mentionedUsers.push(this.userAdapter.adapt(data.data.user))
   }
 
   async compressImage(src: any, newX: any, newY: any) {

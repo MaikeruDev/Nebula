@@ -69,7 +69,11 @@ const routes: Routes = [
     data: {
       roles: ['user', 'admin']
     }
+  },  {
+    path: 'user-mention',
+    loadChildren: () => import('./modal/user-mention/user-mention.module').then( m => m.UserMentionPageModule)
   },
+
 
 
 

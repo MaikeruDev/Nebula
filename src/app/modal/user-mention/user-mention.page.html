@@ -1,0 +1,26 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar> 
+    <ion-title class="ion-text-center">Mention User</ion-title>
+    <ion-searchbar placeholder="Search User" (ionChange)="onSearchChange($event)" [debounce]="250"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="users.length > 0" id="userList"> 
+    <div *ngFor="let user of users">
+      <ion-item lines="none" (click)="mention(user)"> 
+        <ion-avatar slot="start">
+          <img src="{{ user?.ProfilePicture }}"/>
+        </ion-avatar>
+        <ion-title>{{ user?.Username }}</ion-title>
+        <ion-text>@{{ user?.Handle }}</ion-text>
+      </ion-item>  
+    </div>
+  </ion-list>
+  
+  <ion-list *ngIf="users.length == 0 && noUserFound == true" id="userList"> 
+    <ion-item lines="none"> 
+      <ion-title>No users found</ion-title>
+    </ion-item>  
+  </ion-list>
+</ion-content>
