@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
-import { InfiniteScrollCustomEvent, ModalController, NavController } from '@ionic/angular';
+import { AlertController, InfiniteScrollCustomEvent, ModalController, NavController } from '@ionic/angular';
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { PostAdapter } from '../adapter/post-adapter';
 import { UserAdapter } from '../adapter/user-adapter'; 
 import { Post } from '../models/post';
 import { User } from '../models/user';
+import { AlertService } from '../services/alert.service';
 import { ApiService } from '../services/api.service';
 import { UserService } from '../services/user.service';
 
@@ -28,7 +29,7 @@ export class UserPage implements OnInit {
   no_posts: boolean = false;
   refreshing: boolean = false;
 
-  constructor(private userService: UserService, private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, public router: Router, private nav: NavController, private modalController: ModalController) {
+  constructor(private alert: AlertService, private userService: UserService, private userAdapter: UserAdapter, private postAdapter: PostAdapter, private api: ApiService, public router: Router, private nav: NavController, private modalController: ModalController) {
     if (router.getCurrentNavigation()?.extras.state) { 
       this.visit_user = this.router?.getCurrentNavigation()?.extras?.state?.user,
       this.return_page = this.router?.getCurrentNavigation()?.extras?.state?.page 
@@ -136,6 +137,18 @@ export class UserPage implements OnInit {
         PostID: post.ID
       }
     })
+  }
+
+  async share(PostID: number){ // ONLY WORKS ON BUILDS BECAUSE OF HTTPS
+    try {
+      await navigator.share({
+       title: "Nebula Post",
+       url: "https://nebula-web.netlify.app/share/" + PostID,
+       text: "Come check out this cool post on Nebula!"
+      })  
+   } catch (err) { 
+      this.alert.custom('Whoops. Your Browser doesnt support this feature.', 'OKAY', undefined, 'warning-outline')
+   }
   }
 
   follow_change(){

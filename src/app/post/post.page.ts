@@ -32,7 +32,7 @@ export class PostPage implements OnInit {
 
   post_isOpen: boolean = false;
   comment_isOpen: boolean = false;
-  share: boolean = false;
+  from_share: boolean = false;
 
   @ViewChild('post_popover') popover: any; 
   @ViewChild('comment_popover') popover_c: any; 
@@ -40,11 +40,23 @@ export class PostPage implements OnInit {
   constructor(private alert: AlertService, private userService: UserService, private userAdapter: UserAdapter, private modalController: ModalController, private postAdapter: PostAdapter, private api: ApiService, private router: Router, private nav: NavController) {
     if (router.getCurrentNavigation()?.extras.state) { 
       this.PostID = this.router?.getCurrentNavigation()?.extras?.state?.PostID
-      this.share = this.router?.getCurrentNavigation()?.extras?.state?.share
+      this.from_share = this.router?.getCurrentNavigation()?.extras?.state?.share
     }
     else{
       this.nav.back() 
     } 
+  }
+
+  async share(PostID: number){ // ONLY WORKS ON BUILDS BECAUSE OF HTTPS
+    try {
+      await navigator.share({
+       title: "Nebula Post",
+       url: "https://nebula-web.netlify.app/share/" + PostID,
+       text: "Come check out this cool post on Nebula!"
+      })  
+   } catch (err) { 
+      this.alert.custom('Whoops. Your Browser doesnt support this feature.', 'OKAY', undefined, 'warning-outline')
+   }
   }
 
   async ngOnInit() {
@@ -157,7 +169,7 @@ export class PostPage implements OnInit {
   }
 
   back(){
-    if (this.share) this.nav.navigateBack('/tabs/feed')
+    if (this.from_share) this.nav.navigateBack('/tabs/feed')
     else this.nav.back() 
   }
 
