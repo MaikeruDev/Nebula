@@ -230,3 +230,12 @@ ion-content{
 ion-button{ 
     --ripple-color: transparent; 
   }
+
+
+  @media only screen and (min-width: 1300px) { 
+    ion-avatar.headerProfilePic{
+      width: 70px !important;
+      height: 70px !important;   
+      margin: -35px 0px 0px 15px !important; 
+    } 
+  }

@@ -134,3 +134,12 @@ ion-content.crop-content{
         max-height: 90%;
     }
 } 
+
+@media only screen and (min-width: 1300px) { 
+    ion-avatar{
+      width: 70px !important;
+      height: 70px !important;   
+      top: -35px !important;
+      left: 30px !important;
+    } 
+  }

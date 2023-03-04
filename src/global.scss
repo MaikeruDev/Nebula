@@ -136,17 +136,13 @@ ion-alert.fancy-alert{
     --backdrop-opacity: var(--ion-backdrop-opacity, 0.4) !important; 
 } 
 
-@media only screen and (min-width: 1300px) {
+@media only screen and (min-width: 1300px) { 
   body{
-    margin-left: 35%;
-    background-color: rgb(221, 221, 221);
-  }
-  ion-content{
     position: absolute;
-    width: 30%;
-  }
-  ion-tabs{
-    position: relative;
-    width: 30%;
+    top: 0;
+    left: 50%;
+    width: 450px;
+    height: 100%;
+    transform: translate(-50%);
   }
 }
