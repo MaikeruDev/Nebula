@@ -1,61 +1,106 @@
-ion-content{
-    .background-svg{
-        position: absolute; 
+ion-content {
+    .background-svg {
+        position: absolute;
         scale: 180%;
         bottom: 26.6vw;
         z-index: -2;
     }
-    div.logo{ 
-        ion-title{
+
+    div.logo {
+        ion-title {
             position: relative;
             top: -100px;
             font-family: 'Lato', sans-serif;
             font-weight: 700;
-            font-size: 5vw; 
-        } 
-        img{  
+            font-size: 5vw;
+        }
+
+        img {
             -webkit-user-drag: none;
             -khtml-user-drag: none;
             -moz-user-drag: none;
             -o-user-drag: none;
             pointer-events: none;
-            mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 77%, rgba(0,0,0,0.5186275193671219) 80%, rgba(0,0,0,0) 100%);
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 77%, rgba(0, 0, 0, 0.5186275193671219) 80%, rgba(0, 0, 0, 0) 100%);
         }
     }
-    div.content{
+
+    div.content {
         position: absolute;
         bottom: 30px;
         width: 100%;
-        ion-button{
+
+        ion-button {
             font-size: 3.2vw;
             height: 5vh;
-            margin: 0 50px; 
+            margin: 0 50px;
             font-weight: bold;
             font-family: 'Lato', sans-serif;
         }
-        p{
+
+        p {
             color: rgb(187, 187, 187);
             font-size: 3vw;
             cursor: default;
-            span{
+
+            span {
                 color: rgb(235, 235, 235);
                 font-weight: bold;
-                
+
             }
-            span:hover{
+
+            span:hover {
                 cursor: pointer;
             }
         }
     }
-    
+
 }
 
-.invalid-input{
+.invalid-input {
     border-bottom: var(--ion-color-danger) 1.5px solid;
 }
-.empty-input{
+
+.empty-input {
     border-bottom: rgb(255, 255, 255) 1.5px solid;
 }
-.valid-input{
+
+.valid-input {
     border-bottom: rgb(255, 255, 255) 1.5px solid;
+}
+
+@media only screen and (min-width: 1300px) {
+    .background-svg {
+        position: absolute;
+        scale: 100% !important;
+        bottom: 0px !important;
+        z-index: -2;
+    }
+
+    div.logo {
+        ion-title {
+            top: -100px;
+            font-weight: 700;
+            font-size: 25px !important;
+        }
+    }
+
+    div.content {
+        bottom: 30px;
+        width: 100%;
+
+        ion-button {
+            font-size: 18px !important;
+            height: 50px !important;
+            margin: 0 50px;
+            font-weight: bold;
+            font-family: 'Lato', sans-serif;
+        }
+
+        p {
+            color: rgb(187, 187, 187);
+            font-size: 16px !important;
+            cursor: default;
+        }
+    }
 }

@@ -32,7 +32,7 @@ export class ProfilePage implements OnInit {
   no_posts: boolean = false
   isOpen: boolean = false;
 
-  day_one = new Date('2023-03-01')
+  day_one = new Date('2023-04-01')
   
   @ViewChild('popover') popover: any; 
 
