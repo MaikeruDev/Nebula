@@ -21,7 +21,7 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
     canActivate: [AuthGuard],
     data: {
-      /* roles: ['none'] */
+      roles: ['none']
     }
   }, 
   {
@@ -78,6 +78,15 @@ const routes: Routes = [
     path: 'change-mail',
     loadChildren: () => import('./change-mail/change-mail.module').then( m => m.ChangeMailPageModule)
   },
+  {
+    path: 'share/:PostID',
+    loadChildren: () => import('./share/share.module').then( m => m.SharePageModule),
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['user', 'admin']
+    }
+  },
+
 
 
 

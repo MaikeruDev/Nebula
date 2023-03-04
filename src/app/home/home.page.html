@@ -46,7 +46,7 @@
           <ion-row>
             <ion-col size="4"><ion-button appDebounceClick (debounceClick)="like_change(post, i)" [debounceTime]="500" expand="full" [ngStyle]="post?.Liked ? {'color': 'var(--ion-color-primary)', 'font-weight': 'bold'} : {'color': 'var(--ion-color-dark)'}" fill=""><ion-icon slot="start" [name]="post?.Liked ? 'heart' : 'heart-outline'"></ion-icon>{{ post?.Likes?.length }}</ion-button></ion-col>
             <ion-col size="4"><ion-button expand="full" fill="" class="comment"><ion-icon slot="start" name="chatbox-outline"></ion-icon>{{ post?.Comments?.length }}</ion-button></ion-col>
-            <ion-col size="4" id="share"><ion-button (click)="share()" expand="full" fill=""><ion-icon slot="start" name="share-outline"></ion-icon></ion-button></ion-col>
+            <ion-col size="4" id="share"><ion-button (click)="share(post?.ID)" expand="full" fill=""><ion-icon slot="start" name="share-outline"></ion-icon></ion-button></ion-col>
           </ion-row>
         </ion-grid>
       </div>

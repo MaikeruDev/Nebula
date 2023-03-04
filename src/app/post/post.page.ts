@@ -32,6 +32,7 @@ export class PostPage implements OnInit {
 
   post_isOpen: boolean = false;
   comment_isOpen: boolean = false;
+  share: boolean = false;
 
   @ViewChild('post_popover') popover: any; 
   @ViewChild('comment_popover') popover_c: any; 
@@ -39,6 +40,7 @@ export class PostPage implements OnInit {
   constructor(private alert: AlertService, private userService: UserService, private userAdapter: UserAdapter, private modalController: ModalController, private postAdapter: PostAdapter, private api: ApiService, private router: Router, private nav: NavController) {
     if (router.getCurrentNavigation()?.extras.state) { 
       this.PostID = this.router?.getCurrentNavigation()?.extras?.state?.PostID
+      this.share = this.router?.getCurrentNavigation()?.extras?.state?.share
     }
     else{
       this.nav.back() 
@@ -155,7 +157,8 @@ export class PostPage implements OnInit {
   }
 
   back(){
-    this.nav.back() 
+    if (this.share) this.nav.navigateBack('/tabs/feed')
+    else this.nav.back() 
   }
 
 }

@@ -108,8 +108,17 @@ export class HomePage implements OnInit {
     }) 
   }
 
-  share(){
-    
+  async share(PostID: number){ // ONLY WORKS ON BUILDS BECAUSE OF HTTPS
+    try {
+      await navigator.share({
+       title: "Nebula Post",
+       url: "https://nebula-web.netlify.app:8100/share/" + PostID,
+       text: "Come check out this cool post on Nebula!"
+      }) 
+       alert(`Thanks for Sharing!`);
+   } catch (err) { 
+      this.alert.custom('Whoops. Your Browser doesnt support this feature.', 'OKAY', undefined, 'warning-outline')
+   }
   }
 
   async newPost(){
