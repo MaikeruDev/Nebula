@@ -7,6 +7,7 @@ import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { ApiService } from 'src/app/services/api.service';
 import { UserMentionPage } from '../user-mention/user-mention.page';
 import { UserAdapter } from 'src/app/adapter/user-adapter';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-new-post',
@@ -25,7 +26,7 @@ export class NewPostPage implements OnInit {
 
   mentionedUsers: any[] = []
 
-  constructor(private userAdapter: UserAdapter, private api: ApiService, private modalController: ModalController, private auth: AuthService, private nav: NavController, private userService: UserService) { }
+  constructor(private alert: AlertService, private userAdapter: UserAdapter, private api: ApiService, private modalController: ModalController, private auth: AuthService, private nav: NavController, private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getCurrentUser().subscribe(user => {
@@ -36,8 +37,14 @@ export class NewPostPage implements OnInit {
   async sendMessage(){ 
     var str = this.textarea_value
     str = str.replace(/\s{2,}/g, ' ');
-    if(this.textarea_value.trim() !== "") this.api.newPost({Text: this.textarea_value, Image: this.resizedImage, Mentions: this.mentionedUsers}).subscribe()
-    return this.modalController.dismiss('confirm'); 
+    if(this.textarea_value.trim() !== ""){
+      this.api.newPost({Text: this.textarea_value, Image: this.resizedImage, Mentions: this.mentionedUsers}).subscribe()
+      return this.modalController.dismiss('confirm'); 
+    }
+    else{
+      this.alert.custom('Please enter some text.', 'OKAY', undefined, 'chatbox-ellipses-outline')
+      return null;
+    } 
   }
 
   async openViewer(src: any) {
