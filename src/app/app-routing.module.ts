@@ -21,7 +21,7 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
     canActivate: [AuthGuard],
     data: {
-      roles: ['none']
+      /* roles: ['none'] */
     }
   }, 
   {
@@ -69,7 +69,8 @@ const routes: Routes = [
     data: {
       roles: ['user', 'admin']
     }
-  },  {
+  },
+  {
     path: 'user-mention',
     loadChildren: () => import('./modal/user-mention/user-mention.module').then( m => m.UserMentionPageModule)
   },
