@@ -76,6 +76,10 @@ export class AlertService {
             this.showErrorToast("New Password is empty")
             return
           }
+          if(data.new_pw.length < 6){
+            this.showErrorToast("Password needs at least 6 characters")
+            return
+          }
           if (data.rp_new_pw == "" || data.rp_new_pw.trim() === ""){
             this.showErrorToast("Repeat New Password is empty")
             return
