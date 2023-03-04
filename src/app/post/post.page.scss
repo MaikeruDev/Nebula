@@ -122,9 +122,12 @@ ion-content{
                 }
             }
             span{
-                ion-badge{
+                ion-badge:first-child{
                     margin: 10px 0px 0px 70px; 
                 } 
+                ion-badge{
+                    margin: 10px 0px 0px 5px; 
+                }
             }
             ion-grid{ 
                 padding: 0px 38px 0px 60px; 
