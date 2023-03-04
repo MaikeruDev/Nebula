@@ -85,6 +85,12 @@ export class ApiService {
     );
   }
 
+  deleteComment(obj: any) {    
+    return this.http.post<any>(api_url + '/posts/deleteComment', obj, { headers: this.getHeader()}).pipe(
+      map(data => data)
+    );
+  }
+
   newComment(obj: any) {    
     return this.http.post<any>(api_url + '/posts/newComment', obj, { headers: this.getHeader()}).pipe(
       map(data => data)

@@ -36,7 +36,7 @@ export class NewPostPage implements OnInit {
   async sendMessage(){ 
     var str = this.textarea_value
     str = str.replace(/\s{2,}/g, ' ');
-    if(this.textarea_value.trim() !== "") this.api.newPost({Text: this.textarea_value, Image: this.resizedImage}).subscribe()
+    if(this.textarea_value.trim() !== "") this.api.newPost({Text: this.textarea_value, Image: this.resizedImage, Mentions: this.mentionedUsers}).subscribe()
     return this.modalController.dismiss('confirm'); 
   }
 

@@ -17,6 +17,7 @@ export class Post {
   public Comments: any;
   public Liked: boolean;
   public CommentCount: number;
+  public Mentions: any;
 
   constructor(
     ID: number,
@@ -30,6 +31,7 @@ export class Post {
     Comments: any,
     liked: boolean,
     commentsCount: number,
+    mentions: any,
     private userAdapter: UserAdapter,
     private commentAdapter: CommentAdapter
   ) {
@@ -46,6 +48,10 @@ export class Post {
       this.Comments.push(this.commentAdapter.adapt(comment));
     });
     this.Liked = liked;
+    this.Mentions = []
+    mentions?.forEach((mention: any) => { 
+      this.Mentions.push(this.userAdapter.adapt(mention.users_mentions_mentionedUserIDTousers));
+    }); 
     this.CommentCount = commentsCount;
   }
 }

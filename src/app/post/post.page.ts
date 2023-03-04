@@ -4,8 +4,10 @@ import { AlertController, InfiniteScrollCustomEvent, ModalController, NavControl
 import { ViewerModalComponent } from 'ngx-ionic-image-viewer';
 import { PostAdapter } from '../adapter/post-adapter';
 import { UserAdapter } from '../adapter/user-adapter';
+import { Comment } from '../models/comment';
 import { Post } from '../models/post';
 import { User } from '../models/user';
+import { AlertService } from '../services/alert.service';
 import { ApiService } from '../services/api.service';
 import { UserService } from '../services/user.service';
 
@@ -22,15 +24,19 @@ export class PostPage implements OnInit {
   post: Post;
   popover_post: Post; 
 
+  popover_comment: Comment; 
+
   user: any
 
   comment_input: string;
 
   post_isOpen: boolean = false;
+  comment_isOpen: boolean = false;
 
   @ViewChild('post_popover') popover: any; 
+  @ViewChild('comment_popover') popover_c: any; 
 
-  constructor(private userService: UserService, private userAdapter: UserAdapter, private modalController: ModalController, private postAdapter: PostAdapter, private api: ApiService, private router: Router, private nav: NavController) {
+  constructor(private alert: AlertService, private userService: UserService, private userAdapter: UserAdapter, private modalController: ModalController, private postAdapter: PostAdapter, private api: ApiService, private router: Router, private nav: NavController) {
     if (router.getCurrentNavigation()?.extras.state) { 
       this.PostID = this.router?.getCurrentNavigation()?.extras?.state?.PostID
     }
@@ -43,8 +49,8 @@ export class PostPage implements OnInit {
     this.userService.getCurrentUser().subscribe(user => {
       this.user = user; 
     });
-    this.api.getPost(this.PostID, 0).subscribe(post => {
-      this.post = this.postAdapter.adapt(post);   
+    this.api.getPost(this.PostID, 0).subscribe(post => { 
+      this.post = this.postAdapter.adapt(post);    
     }) 
   }
 
@@ -58,7 +64,22 @@ export class PostPage implements OnInit {
 
   deletePost(){
      this.post_isOpen = false
+     this.alert.custom("Are you sure?", "Yes", "No", "trash", "danger", () => {
+      this.api.deletePost({PostID: this.popover_post.ID}).subscribe(() => {
+        this.nav.back();
+      })
+    })
   } 
+
+  deleteComment(){
+    this.comment_isOpen = false
+    this.alert.custom("Are you sure?", "Yes", "No", "trash", "danger", () => {
+      this.api.deleteComment({CommentID: this.popover_comment.ID}).subscribe(() => {
+        let index = this.post.Comments.findIndex((c: any) => c.ID === this.popover_comment.ID);
+        this.post.Comments.splice(index, 1);
+      })
+   })
+ } 
 
   async openViewer(src: any) {
     const modal = await this.modalController.create({
@@ -75,7 +96,11 @@ export class PostPage implements OnInit {
     return await modal.present();
   }
 
-  visitUser(user: User){
+  visitUser(user: User, event: Event){
+    const target = event.target as HTMLElement;
+    if (target.tagName.toLowerCase() === 'ion-icon') {
+      return;
+    }
     this.nav.navigateForward('/user', {
       state: {
         user: user
@@ -113,6 +138,12 @@ export class PostPage implements OnInit {
     this.popover.event = e;  
     this.popover_post = post;
     this.post_isOpen = true;
+  }
+
+  presentCommentPopover(e: Event, comment: Comment) {
+    this.popover_c.event = e;  
+    this.popover_comment = comment;
+    this.comment_isOpen = true;
   }
 
   onIonInfinite(ev: Event) {

@@ -17,7 +17,7 @@
 
   <div class=input-area>
     <ion-textarea [(ngModel)]="textarea_value" (ionChange)="progressHandler($event)" maxlength="300" [autoGrow]="true" placeholder="Type something.."></ion-textarea>
-    <ion-badge *ngFor="let mentionUser of mentionedUsers; let i = index" [attr.data-index]="i" color="primary" mode="ios">@{{ mentionUser?.Handle }} <ion-icon (click)="removeMention(i)" name="close"></ion-icon></ion-badge>
+    <ion-badge style="vertical-align: middle; padding: 5px;" *ngFor="let mentionUser of mentionedUsers; let i = index" [attr.data-index]="i" color="primary" mode="ios">@{{ mentionUser?.Handle }} <ion-icon (click)="removeMention(i)" name="close"></ion-icon></ion-badge>
     <div class="image-container">
       <img src="{{ resizedImage }}" (click)="openViewer(resizedImage)" class="file-input" *ngIf="image != ''" >
       <ion-icon color="primary" name="close" (click)="removeImage()" *ngIf="resizedImage != ''"></ion-icon>  <!-- *ngIf="resizedImage != ''" -->

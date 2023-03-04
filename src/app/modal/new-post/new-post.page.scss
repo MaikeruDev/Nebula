@@ -69,9 +69,12 @@ ion-content{
         z-index: 999; 
         max-width: 350px; 
         ion-badge{
-            margin-right: 5px;  
+            margin-right: 5px;   
+            padding-right: 20px !important;
+            --padding-right: 20px !important;
             ion-icon{
-                font-size: 15px;
+                position: absolute;
+                right: 5px;
             }
         }
         div.image-container{

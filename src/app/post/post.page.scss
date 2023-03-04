@@ -121,6 +121,11 @@ ion-content{
                     padding-top: 10px;
                 }
             }
+            span{
+                ion-badge{
+                    margin: 10px 0px 0px 70px; 
+                } 
+            }
             ion-grid{ 
                 padding: 0px 38px 0px 60px; 
                 ion-row{
@@ -235,3 +240,10 @@ ion-icon.ellipsis{
     top: -25px;
     font-size: 20px;
   }
+
+ion-icon.ellipsis-comment{
+    position: relative;
+    right: 30px;
+    top: -8px;
+    font-size: 20px;
+}
