@@ -64,7 +64,7 @@ export class PostPage implements OnInit {
 
   deletePost(){
      this.post_isOpen = false
-     this.alert.custom("Are you sure?", "Yes", "No", "trash", "danger", () => {
+     this.alert.custom("Are you sure?", "Yes", "No", "trash", () => {
       this.api.deletePost({PostID: this.popover_post.ID}).subscribe(() => {
         this.nav.back();
       })
@@ -73,7 +73,7 @@ export class PostPage implements OnInit {
 
   deleteComment(){
     this.comment_isOpen = false
-    this.alert.custom("Are you sure?", "Yes", "No", "trash", "danger", () => {
+    this.alert.custom("Are you sure?", "Yes", "No", "trash", () => {
       this.api.deleteComment({CommentID: this.popover_comment.ID}).subscribe(() => {
         let index = this.post.Comments.findIndex((c: any) => c.ID === this.popover_comment.ID);
         this.post.Comments.splice(index, 1);

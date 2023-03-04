@@ -71,11 +71,11 @@
         <ion-title class="ion-text-center">Account Settings</ion-title>
       </ion-list-header> 
 
-      <ion-button fill="outline" expand="block" color="dark" shape="round">
+      <ion-button (click)="change_email()" fill="outline" expand="block" color="dark" shape="round">
         Change Email
       </ion-button> 
  
-      <ion-button fill="outline" expand="block" color="dark" shape="round">
+      <ion-button (click)="change_password()" fill="outline" expand="block" color="dark" shape="round">
         Change Password
       </ion-button> 
  
@@ -91,7 +91,7 @@
         Sign out
       </ion-button> 
 
-      <ion-button (click)="logout()" expand="block" color="dark" shape="round">
+      <ion-button (click)="delete_account()" expand="block" color="dark" shape="round">
         Delete Account
       </ion-button> 
     </ion-list>

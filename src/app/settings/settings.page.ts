@@ -105,8 +105,22 @@ export class SettingsPage implements OnInit {
     })
   } 
 
+  change_email(){
+    this.alert.custom("Not yet lol","OKAY", "", "code-slash-outline", () => { 
+    })
+  }
+
+  change_password(){
+    this.alert.change_password()
+  }
+
   async logout(){
     this.auth.logout();
+  }
+
+  async delete_account(){
+    this.alert.custom("Not yet lol","OKAY", "", "code-slash-outline", () => { 
+    })
   }
 
 }

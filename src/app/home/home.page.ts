@@ -76,7 +76,7 @@ export class HomePage implements OnInit {
 
   deletePost(){
     this.isOpen = false;
-    this.alert.custom("Are you sure?", "Yes", "No", "trash", "danger", () => {
+    this.alert.custom("Are you sure?", "Yes", "No", "trash", () => {
       this.api.deletePost({PostID: this.popover_post.ID}).subscribe(() => {
         this.handleRefresh()
       })

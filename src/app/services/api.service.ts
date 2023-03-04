@@ -121,6 +121,16 @@ export class ApiService {
     return this.http.post<any>(api_url + '/registration/login', { email, password });
   }
 
+  changePassword(obj: any){ 
+    obj.old_pw = this.crypto.set(obj.old_pw); 
+    obj.new_pw = this.crypto.set(obj.new_pw); 
+    obj.rp_new_pw = this.crypto.set(obj.rp_new_pw); 
+    return this.http.post<any>(api_url + '/registration/changePassword', obj, { headers: this.getHeader()}).pipe(
+      map(data => data)
+    );
+  }
+
+
   follow(user: User){
     return this.http.post<any>(api_url + '/user/follow', user, { headers: this.getHeader()})
   }

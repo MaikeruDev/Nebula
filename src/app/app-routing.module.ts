@@ -73,6 +73,10 @@ const routes: Routes = [
     path: 'user-mention',
     loadChildren: () => import('./modal/user-mention/user-mention.module').then( m => m.UserMentionPageModule)
   },
+  {
+    path: 'change-mail',
+    loadChildren: () => import('./change-mail/change-mail.module').then( m => m.ChangeMailPageModule)
+  },
 
 
 
