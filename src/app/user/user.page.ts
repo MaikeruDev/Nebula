@@ -25,6 +25,7 @@ export class UserPage implements OnInit {
   return_page: string;
 
   counter_skip: number = 0;
+  day_one = new Date('2023-04-01')
 
   no_posts: boolean = false;
   refreshing: boolean = false;
