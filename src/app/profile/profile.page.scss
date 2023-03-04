@@ -196,13 +196,6 @@ ion-content{
                   padding: 0 20px 0 72px;
                 }
               }
-              /* img.content{ 
-                margin-top: 10px;
-                width: 90%;
-                display: block; 
-                padding: 0 20px 0 72px;
-                padding-bottom: 5px;
-              } */
               img.content{ 
                 margin-top: 10px;
                 width: 68%;
@@ -226,12 +219,9 @@ ion-content{
           } 
       }
 }
-
 ion-button{ 
     --ripple-color: transparent; 
   }
-
-
   @media only screen and (min-width: 1300px) { 
     ion-avatar.headerProfilePic{
       width: 70px !important;
