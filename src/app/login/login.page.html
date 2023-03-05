@@ -28,11 +28,11 @@
           <ion-title>Create Account</ion-title> 
           <ion-item lines="none"> 
             <ion-label position="stacked" [ngStyle]="{'opacity': reg_username.value ? '1' : '0'}">Name</ion-label>
-            <ion-input placeholder="Name" type="name" formControlName="reg_username" [ngClass]="reg_username.value ? reg_username.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+            <ion-input placeholder="Display Name" type="name" formControlName="reg_username" [ngClass]="reg_username.value ? reg_username.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
           </ion-item>
           <ion-item lines="none"> 
             <ion-label position="stacked" [ngStyle]="{'opacity': reg_handle.value ? '1' : '0'}">Handle</ion-label>
-            <ion-input placeholder="Handle (@)" type="name" formControlName="reg_handle" [ngClass]="reg_handle.value ? reg_handle.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+            <ion-input placeholder="Username" type="name" formControlName="reg_handle" [ngClass]="reg_handle.value ? reg_handle.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
           </ion-item>
           <ion-item lines="none"> 
             <ion-label position="stacked" [ngStyle]="{'opacity': reg_email.value ? '1' : '0'}">Email</ion-label>
